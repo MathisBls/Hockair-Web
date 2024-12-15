@@ -1,0 +1,126 @@
+1. Users (Utilisateurs)
+Description :
+Stocke les informations des utilisateurs, leurs statistiques, leurs abonnements, leurs skins, et leurs historiques.
+
+Champs :
+_id : (ObjectId) Identifiant unique de l'utilisateur.
+username : (String) Nom d'utilisateur unique.
+email : (String) Adresse email (unique).
+password : (String) Mot de passe hashé.
+profilePicture : (String) URL de l'image de profil.
+elo : (Number) Score Elo actuel.
+level : (Number) Niveau de l'utilisateur basé sur son expérience (XP).
+xp : (Number) Points d'expérience accumulés.
+subscription : (Object) Abonnement :
+status : (String) free, premium, pro.
+startDate : (Date) Date de début de l'abonnement.
+endDate : (Date) Date de fin de l'abonnement.
+ownedSkins : (Array of ObjectId) Références aux skins possédés (collection Skins).
+ownedItems : (Array of ObjectId) Références aux items possédés (collection Items).
+matchHistory : (Array of Object) Historique des matchs :
+matchId : (ObjectId) Référence à la collection Matches.
+result : (String) win, lose, draw.
+timestamp : (Date) Date de la partie.
+createdAt : (Date) Date de création du compte.
+updatedAt : (Date) Dernière modification.
+
+
+2. Matches (Parties)
+Description :
+Stocke les informations de chaque partie, y compris les paramètres, les scores, et les replays.
+
+Champs :
+_id : (ObjectId) Identifiant unique de la partie.
+player1Id : (ObjectId) Référence au joueur 1.
+player2Id : (ObjectId) Référence au joueur 2.
+type : (String) Type de partie (ranked, friendly, tournament).
+parameters : (Object) Paramètres spécifiques à la partie :
+maxTime : (Number) Durée maximale en secondes.
+scoreLimit : (Number) Score maximal pour terminer la partie.
+itemsEnabled : (Boolean) Si les items sont activés dans cette partie.
+rules : (String) Règles spécifiques (classic, timed, sudden death).
+result : (Object) Résultat de la partie :
+winnerId : (ObjectId) Référence au gagnant.
+scorePlayer1 : (Number) Score du joueur 1.
+scorePlayer2 : (Number) Score du joueur 2.
+replayData : (String) Données JSON ou fichier stockant le replay.
+startTime : (Date) Date et heure de début.
+endTime : (Date) Date et heure de fin.
+
+
+3. Skins
+Description :
+Stocke les skins disponibles pour les joueurs.
+
+Champs :
+_id : (ObjectId) Identifiant unique du skin.
+name : (String) Nom du skin.
+type : (String) Type de skin (puck, mallet, table).
+price : (Number) Prix du skin en points ou en argent réel.
+premiumOnly : (Boolean) Disponible uniquement pour les utilisateurs premium.
+createdAt : (Date) Date d'ajout du skin.
+4. Items
+Description :
+Stocke les items utilisables en jeu.
+
+Champs :
+_id : (ObjectId) Identifiant unique de l'item.
+name : (String) Nom de l'item.
+effect : (String) Effet de l'item (ex : speed boost, shield, slow opponent).
+type : (String) Catégorie de l'item (offensive, defensive, utility).
+price : (Number) Prix de l'item.
+premiumOnly : (Boolean) Disponible uniquement pour les utilisateurs premium.
+createdAt : (Date) Date d'ajout de l'item.
+5. Tournaments (Tournois)
+Description :
+Stocke toutes les informations relatives aux tournois.
+
+Champs :
+_id : (ObjectId) Identifiant unique du tournoi.
+name : (String) Nom du tournoi.
+type : (String) Type de tournoi (league, bracket, pool-and-bracket).
+participants : (Array of ObjectId) Liste des utilisateurs inscrits.
+parameters : (Object) Paramètres du tournoi :
+maxPlayers : (Number) Nombre maximum de participants.
+startDate : (Date) Date de début.
+endDate : (Date) Date de fin.
+rules : (String) Règles spécifiques (classic, timed, etc.).
+matches : (Array of ObjectId) Références aux matchs associés (collection Matches).
+leaderboard : (Array of Object) Classement complet des joueurs :
+playerId : (ObjectId) Référence au joueur.
+rank : (Number) Position dans le classement.
+points : (Number) Points accumulés.
+prizes : (Object) Récompenses :
+firstPlace : (String) Récompense pour le 1er.
+secondPlace : (String) Récompense pour le 2e.
+thirdPlace : (String) Récompense pour le 3e.
+status : (String) Statut du tournoi (upcoming, ongoing, finished).
+6. GameTypes (Types de Partie)
+Description :
+Décrit les types de parties disponibles dans le jeu.
+
+Champs :
+_id : (ObjectId) Identifiant unique.
+name : (String) Nom du type de partie (ranked, friendly, tournament).
+eloImpact : (Boolean) Si le score Elo est affecté.
+description : (String) Description du type de partie.
+7. Leaderboard (Classement Global)
+Description :
+Stocke le classement global des joueurs.
+
+Champs :
+_id : (ObjectId) Identifiant unique.
+playerId : (ObjectId) Référence à l'utilisateur.
+elo : (Number) Score Elo actuel.
+rank : (Number) Classement global.
+8. Transactions
+Description :
+Gère les transactions des utilisateurs, que ce soit des achats ou des récompenses.
+
+Champs :
+_id : (ObjectId) Identifiant unique.
+userId : (ObjectId) Référence à l'utilisateur.
+type : (String) Type de transaction (purchase, reward).
+amount : (Number) Montant en points ou en monnaie réelle.
+details : (String) Détails de la transaction.
+createdAt : (Date) Date de la transaction.
