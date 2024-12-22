@@ -1,0 +1,51 @@
+{
+  "page": {
+    "shop": {
+      "title": "Boutique"
+    },
+    "home": {
+      "title": "Accueil"
+    },
+    "login": {
+      "title": "Vous êtes de retour !",
+      "description": "Connectez-vous à votre compte Hockair",
+      "email": "Email",
+      "password": "Mot de passe",
+      "placeholder": {
+        "email": "Entrez votre email",
+        "password": "Entrez votre mot de passe"
+      },
+      "button": "Connexion",
+      "dontHaveAccount": "Vous n'avez pas de compte ?",
+      "signupRedirect": "Inscrivez-vous"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "description": "Inscrivez-vous pour rejoindre AirHockey et défiez vos amis !",
+      "username": "Nom d'utilisateur",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmez le mot de passe",
+      "placeholder": {
+        "username": "Entrez votre nom d'utilisateur",
+        "email": "Entrez votre adresse e-mail",
+        "password": "Entrez votre mot de passe",
+        "confirmPassword": "Confirmez votre mot de passe"
+      },
+      "button": "S'inscrire",
+      "alreadyHaveAccount": "Vous avez déjà un compte ?",
+      "loginRedirect": "Connectez-vous"
+    }
+  },
+  "errors": {
+    "genericError": "Une erreur est survenue.",
+    "serverError": "Erreur du serveur. Veuillez réessayer plus tard.",
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas.",
+    "weakPassword": "Le mot de passe doit comporter au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",
+    "genericError": "Une erreur est survenue.",
+    "serverError": "Erreur du serveur. Veuillez réessayer plus tard."
+  },
+  "success": {
+    "registerSuccess": "Compte créé avec succès !"
+  }
+}

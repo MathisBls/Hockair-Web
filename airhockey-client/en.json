@@ -1,0 +1,51 @@
+{
+    "page": {
+        "shop": {
+            "title": "Shop"
+        },
+        "home": {
+            "title": "Home"
+        },
+        "login": {
+            "title": "Welcome Back !",
+            "description": "Sign in to your Hockair account",
+            "email": "Email",
+            "password": "Password",
+            "placeholder": {
+                "email": "Enter your email",
+                "password": "Enter your password"
+            },
+            "button": "Login",
+            "dontHaveAccount": "Don't have an account?",
+            "signupRedirect": "Sign up"
+        },
+        "register": {
+            "title": "Create an Account",
+            "description": "Sign up to join AirHockey and challenge your friends!",
+            "username": "Username",
+            "email": "Email Address",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "placeholder": {
+                "username": "Enter your username",
+                "email": "Enter your email address",
+                "password": "Enter your password",
+                "confirmPassword": "Confirm your password"
+            },
+            "button": "Sign Up",
+            "alreadyHaveAccount": "Already have an account?",
+            "loginRedirect": "Log in"
+        }
+    },
+    "errors": {
+        "genericError": "An error occurred.",
+        "serverError": "Server error. Please try again later.",
+        "passwordsDoNotMatch": "Passwords do not match.",
+        "weakPassword": "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.",
+        "genericError": "An error occurred.",
+        "serverError": "Server error. Please try again later."
+    },
+    "success": {
+        "registerSuccess": "Account successfully created!"
+    }
+}

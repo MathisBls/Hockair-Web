@@ -1,0 +1,11 @@
+.logo-headerlog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.logo-headerlog img {
+    width: 70px;
+    height: 70px;
+}
