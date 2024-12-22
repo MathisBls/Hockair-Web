@@ -34,7 +34,6 @@ const Login = () => {
         // Stocker le token JWT dans le localStorage
         localStorage.setItem("token", data.token);
 
-        // Rediriger vers la page d'accueil
         navigate("/");
       } else {
         setError(data.message || translations.errors.genericError);

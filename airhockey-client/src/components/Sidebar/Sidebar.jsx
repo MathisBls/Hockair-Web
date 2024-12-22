@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Home as HomeIcon,
   SportsEsports as GameIcon,
@@ -10,24 +10,57 @@ import {
   EmojiEvents as TournamentIcon,
   Chat as ChatIcon,
   Store as ShopIcon,
-
   Logout as LogoutIcon,
   Login as LoginIcon,
 } from '@mui/icons-material';
 import Logo from '../../assets/logo.png';
 import './Sidebar.css';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from "../../../LanguageContext";
 
 const Sidebar = () => {
-
   const navigate = useNavigate();
-
+  const [user, setUser] = useState(null);
+  const { translations } = useLanguage();
   const isLoggedIn = !!localStorage.getItem('token');
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (isLoggedIn) {
+        try {
+          const token = localStorage.getItem('token');
+          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          });
+          if (response.ok) {
+            const data = await response.json();
+            setUser(data);
+          } else {
+            console.error('Failed to fetch user profile');
+          }
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('language');
+    setUser(null);
     navigate('/login');
-  }
+  };
+
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+  };
 
   return (
     <div className="sidebar">
@@ -37,89 +70,98 @@ const Sidebar = () => {
         </a>
       </div>
 
-      <div className="profile">
-        <div className="profile-pic">A</div>
-        <div className="profile-info">
-          <h2>HockMaster</h2>
-          <div className="container-badgeupgrade">
-            <div className="badge">Elo: <strong>1450</strong></div>
-            <button className="upgrade" onClick={() => navigate('/premium')}>Upgrade</button>
+      {isLoggedIn && user ? (
+        <div className="profile">
+          <div className="profile-pic">
+            {user.username.charAt(0).toUpperCase()}
+          </div>
+          <div className="profile-info">
+            <h2>{truncateText(user.username, 14)}</h2>
+            <div className="container-badgeupgrade">
+              <div className="badge">Elo: <strong>{user.elo}</strong></div>
+              <button className="upgrade" onClick={() => navigate('/premium')}>{translations.sidebar.upgrade}</button>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="profile">
+          <div className="profile-pic">G</div>
+          <div className="profile-info">
+            <h2>Guest</h2>
+          </div>
+        </div>
+      )}
 
       <ul className="menu">
         <li onClick={() => navigate('/')}>
           <p className="list-side">
-            <HomeIcon /> Dashboard
+            <HomeIcon /> {translations.sidebar.home}
           </p>
         </li>
         <li onClick={() => navigate('/play')}>
           <p className="list-side">
-            <GameIcon /> Play Online
+            <GameIcon /> {translations.sidebar.playOnline}
           </p>
         </li>
         <li onClick={() => navigate('/leaderboard')}>
           <p className="list-side">
-            <LeaderboardIcon /> Leaderboard
+            <LeaderboardIcon /> {translations.sidebar.leaderboard}
           </p>
         </li>
         <li onClick={() => navigate('/stats')}>
           <p className="list-side">
-            <StatsIcon /> My Stats
+            <StatsIcon /> {translations.sidebar.myStats}
           </p>
         </li>
         <li onClick={() => navigate('/tournaments')}>
           <p className="list-side">
-            <TournamentIcon /> Tournaments
+            <TournamentIcon /> {translations.sidebar.tournaments}
           </p>
         </li>
       </ul>
 
-      {/* Améliorations et interactions */}
-      <h4 className="menu-title">Community</h4>
+      <h4 className="menu-title">{translations.sidebar.community}</h4>
       <ul className="menu">
         <li onClick={() => navigate('/chat')}>
           <p className="list-side">
-            <ChatIcon /> Chat with Friends
+            <ChatIcon /> {translations.sidebar.chatWithFriends}
           </p>
         </li>
         <li onClick={() => navigate('/friends')}>
           <p className="list-side">
-            <ProfileIcon /> Friends List
+            <ProfileIcon /> {translations.sidebar.friendsList}
           </p>
         </li>
       </ul>
 
-      {/* Plus d'options */}
-      <h4 className="menu-title">Extras</h4>
+      <h4 className="menu-title">{translations.sidebar.extras}</h4>
       <ul className="menu">
-        <li onClick={() => navigate('/shop')}>
+        <li onClick={() => window.location.href = '/shop'}> {/* besoin de charger les models de la boutique */}
           <p className="list-side">
-            <ShopIcon /> Shop
+            <ShopIcon /> {translations.sidebar.shop}
           </p>
         </li>
         <li onClick={() => navigate('/premium')}>
           <p className="list-side">
-            <PremiumIcon /> Premium Plans
+            <PremiumIcon /> {translations.sidebar.premiumPlans}
           </p>
         </li>
         <li onClick={() => navigate('/settings')}>
           <p className="list-side">
-            <SettingsIcon /> Settings
+            <SettingsIcon /> {translations.sidebar.settings}
           </p>
         </li>
         <hr></hr>
         {isLoggedIn ? (
           <li onClick={handleLogout}>
             <p className="list-side">
-              <LogoutIcon /> Logout
+              <LogoutIcon /> {translations.sidebar.logout}
             </p>
           </li>
         ) : (
           <li onClick={() => navigate('/login')}>
             <p className="list-side">
-              <LoginIcon /> Login
+              <LoginIcon /> {translations.sidebar.login}
             </p>
           </li>
         )}

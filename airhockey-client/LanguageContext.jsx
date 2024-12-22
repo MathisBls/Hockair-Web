@@ -8,31 +8,27 @@ export const useLanguage = () => useContext(LanguageContext);
 
 export const LanguageProvider = ({ children }) => {
   const detectBrowserLanguage = () => {
-    const browserLang = navigator.language || navigator.languages[0]; // Langue du navigateur
+    const browserLang = navigator.language || navigator.languages[0];
     if (browserLang.startsWith('fr')) {
-      return 'fr'; // Français pour France, Belgique, Suisse, etc.
+      return 'fr'; // Français par défaut pour les régions francophones
     }
-    return 'en'; // Par défaut : anglais
+    return 'en'; // Par défaut anglais
   };
 
-  const [language, setLanguage] = useState(detectBrowserLanguage);
+  const [language, setLanguage] = useState(() => {
+    const savedLanguage = localStorage.getItem('language');
+    return savedLanguage || detectBrowserLanguage();
+  });
 
   const translations = language === 'fr' ? fr : en;
 
   const changeLanguage = (lang) => {
     setLanguage(lang);
-    localStorage.setItem('language', lang); // Sauvegarde la langue choisie
+    localStorage.setItem('language', lang);
   };
 
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
-
   return (
-    <LanguageContext.Provider value={{ translations, changeLanguage }}>
+    <LanguageContext.Provider value={{ translations, changeLanguage, language }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Boutique from './pages/Boutique/Boutique';
 import Login from './pages/Login/Login';
+import ChoixLangue from './pages/ChoixLangue/ChoixLangue';
 import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
 
@@ -21,6 +22,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/shop" element={<Boutique />} />
+              <Route path="/language" element={<ChoixLangue />} />
             </Routes>
           </Layout>
         </Router>
@@ -33,7 +35,7 @@ function Layout({ children }) {
   const location = useLocation();
 
   const isLoginPage = location.pathname === '/login' ||
-   location.pathname === '/register';
+   location.pathname === '/register' || location.pathname === '/language';
 
   return (
     <div className={`app-container ${isLoginPage ? 'no-sidebar' : ''}`}>

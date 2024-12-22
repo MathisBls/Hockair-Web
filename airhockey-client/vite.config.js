@@ -9,4 +9,5 @@ export default defineConfig({
       overlay: true,
     },
   },
+  assetsInclude: ['**/*.gltf', '**/*.glb'],
 });

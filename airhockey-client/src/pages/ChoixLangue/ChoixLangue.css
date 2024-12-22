@@ -1,0 +1,58 @@
+@import url("../../vars.css");
+
+.choix-langue-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, var(--background-black), var(--background));
+    color: var(--white);
+    text-align: center;
+}
+
+.choix-langue-container .content {
+    text-align: center;
+}
+
+.choix-langue-container .content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.choix-langue-container .buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.choix-langue-container .buttons button {
+    background-color: var(--bleu);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.choix-langue-container .buttons button:hover {
+    background-color: var(--red-focus);
+    transform: scale(1.1);
+}
+
+.choix-langue-container .fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

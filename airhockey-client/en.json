@@ -1,7 +1,25 @@
 {
+    "sidebar": {
+        "home": "Dashboard",
+        "playOnline": "Play Online",
+        "leaderboard": "Leaderboard",
+        "myStats": "My Stats",
+        "tournaments": "Tournaments",
+        "community": "Community",
+        "chatWithFriends": "Chat with Friends",
+        "friendsList": "Friends List",
+        "extras": "Extras",
+        "shop": "Shop",
+        "premiumPlans": "Premium Plans",
+        "settings": "Settings",
+        "login": "Login",
+        "logout": "Logout",
+        "upgrade": "Upgrade"
+    },
     "page": {
         "shop": {
-            "title": "Shop"
+            "title": "Shop",
+            "buy": "Buy"
         },
         "home": {
             "title": "Home"
@@ -19,6 +37,9 @@
             "dontHaveAccount": "Don't have an account?",
             "signupRedirect": "Sign up"
         },
+        "choixLangue": {
+            "title": "Choose your language"
+          },
         "register": {
             "title": "Create an Account",
             "description": "Sign up to join AirHockey and challenge your friends!",
@@ -47,5 +68,21 @@
     },
     "success": {
         "registerSuccess": "Account successfully created!"
+    },
+    "footer": {
+        "left": {
+            "title": "Hockair",
+            "description": "The ultimate AirHockey experience. Play online, compete in tournaments, and climb the global leaderboard."
+        },
+        "links": {
+            "home": "Home",
+            "leaderboard": "Leaderboard",
+            "tournaments": "Tournaments",
+            "premiumPlans": "Premium Plans",
+            "contactUs": "Contact Us"
+        },
+        "right": {
+            "copyright": "© 2024 Hockair. All rights reserved."
+        }
     }
 }

@@ -15,3 +15,9 @@ export const authenticateToken = (req, res, next) => {
     res.status(403).json({ message: 'Invalid token.' });
   }
 };
+export const authorizeAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Accès refusé : administrateur requis' });
+  }
+  next();
+};

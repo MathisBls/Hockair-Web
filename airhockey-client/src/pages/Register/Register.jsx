@@ -55,7 +55,7 @@ const Register = () => {
       const data = await response.json();
       if (response.ok) {
         setSuccess(translations.success.registerSuccess);
-        navigate("/login");
+        navigate("/language");
         setFormData({ username: "", email: "", password: "", confirmPassword: "" });
       } else {
         setError(data.message || translations.errors.genericError);
