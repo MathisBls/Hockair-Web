@@ -74,13 +74,13 @@ const Sidebar = () => {
         <div className="profile">
           <div className="profile-pic">
             {user.profilePicture ? (
-              <img src={`${import.meta.env.VITE_BACKEND_URL}${user.profilePicture}`} alt="Profile" />
+              <img src={`${import.meta.env.VITE_BACKEND_URL}${user.profilePicture}`} onClick={() => navigate('/profile')} alt="Profile" />
             ) : (
               user.username.charAt(0).toUpperCase()
             )}
           </div>
           <div className="profile-info">
-            <h2>{truncateText(user.username, 14)}</h2>
+            <h2 onClick={() => navigate('/profile')}>{truncateText(user.username, 14)}</h2>
             <div className="container-badgeupgrade">
               <div className="badge">Elo: <strong>{user.elo}</strong></div>
               <button className="upgrade" onClick={() => navigate('/premium')}>{translations.sidebar.upgrade}</button>

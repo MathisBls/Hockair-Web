@@ -109,6 +109,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  activationToken: {
+    type: String,
+    default: null,
+  },
   role: {
     type: String,
     enum: ['user', 'admin'],

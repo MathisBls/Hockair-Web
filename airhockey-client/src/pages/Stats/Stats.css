@@ -1,0 +1,16 @@
+
+canvas {
+    max-height: 300px;
+    max-width: 100%;
+  }
+
+  .MuiPaper-root {
+    background-color: var(--background-black);
+    color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .MuiTypography-root {
+    color: var(--white);
+  }

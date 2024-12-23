@@ -5,6 +5,10 @@ const tournamentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isPremium: {
+    type: Boolean,
+    default: false,
+  },
   type: {
     type: String,
     enum: ['league', 'bracket', 'pool-and-bracket'],
