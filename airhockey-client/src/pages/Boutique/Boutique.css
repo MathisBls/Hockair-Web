@@ -40,6 +40,39 @@
     transition: transform 0.3s, box-shadow 0.3s;
   }
 
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .filter-button {
+    background-color: var(--bleu);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .filter-button.active {
+    background-color: var(--rouge);
+    transform: scale(1.1);
+  }
+
+  .filter-button:hover {
+    background-color: var(--red-focus);
+  }
+
+  .filter-button:focus {
+    outline: none;
+  }
+
+
+
   .model-card:hover {
     transform: translateY(-10px);
     box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.6);

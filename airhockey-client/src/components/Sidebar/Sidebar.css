@@ -14,11 +14,18 @@
 }
 
 .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 30px;
-    /* margin-left: 20px; */
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    color: var(--white);
+    margin-left: 10px;
 }
 
 .logo img {

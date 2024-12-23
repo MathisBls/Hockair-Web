@@ -53,7 +53,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('language');
+    localStorage
     setUser(null);
     navigate('/login');
   };
@@ -68,6 +68,8 @@ const Sidebar = () => {
         <a href="/">
           <img src={Logo} alt="Logo" />
         </a>
+        <h1>Hockair</h1>
+
       </div>
 
       {isLoggedIn && user ? (
@@ -136,7 +138,7 @@ const Sidebar = () => {
 
       <h4 className="menu-title">{translations.sidebar.extras}</h4>
       <ul className="menu">
-        <li onClick={() => window.location.href = '/shop'}> {/* besoin de charger les models de la boutique */}
+        <li onClick={() => navigate('/shop')}>
           <p className="list-side">
             <ShopIcon /> {translations.sidebar.shop}
           </p>

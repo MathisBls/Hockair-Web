@@ -19,7 +19,13 @@
     "page": {
         "shop": {
             "title": "Shop",
-            "buy": "Buy"
+            "buy": "Buy",
+            "filters": {
+                "all": "All",
+                "pucks": "Pucks",
+                "strikers": "Strikers",
+                "tables": "Tables"
+              }
         },
         "home": {
             "title": "Home"

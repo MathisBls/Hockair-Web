@@ -19,7 +19,13 @@
   "page": {
     "shop": {
       "title": "Boutique",
-      "buy": "Acheter"
+      "buy": "Acheter",
+      "filters": {
+        "all": "Tous",
+        "pucks": "Palets",
+        "strikers": "Maillets",
+        "tables": "Tables"
+      }
     },
     "home": {
       "title": "Accueil"
