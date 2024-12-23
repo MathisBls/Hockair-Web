@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Boutique from './pages/Boutique/Boutique';
 import Login from './pages/Login/Login';
 import ChoixLangue from './pages/ChoixLangue/ChoixLangue';
+import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 import Footer from './components/Footer/Footer';
 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/shop" element={<Boutique />} />
               <Route path="/language" element={<ChoixLangue />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Layout>
         </Router>

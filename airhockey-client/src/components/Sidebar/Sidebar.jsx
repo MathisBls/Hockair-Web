@@ -53,7 +53,6 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage
     setUser(null);
     navigate('/login');
   };
@@ -69,13 +68,16 @@ const Sidebar = () => {
           <img src={Logo} alt="Logo" />
         </a>
         <h1>Hockair</h1>
-
       </div>
 
       {isLoggedIn && user ? (
         <div className="profile">
           <div className="profile-pic">
-            {user.username.charAt(0).toUpperCase()}
+            {user.profilePicture ? (
+              <img src={`${import.meta.env.VITE_BACKEND_URL}${user.profilePicture}`} alt="Profile" />
+            ) : (
+              user.username.charAt(0).toUpperCase()
+            )}
           </div>
           <div className="profile-info">
             <h2>{truncateText(user.username, 14)}</h2>

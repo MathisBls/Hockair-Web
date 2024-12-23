@@ -67,6 +67,15 @@ const userSchema = new mongoose.Schema({
       ref: 'Item',
     },
   ],
+  equippedSkin: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Skin',
+    default: null,
+  },
+  money: {
+    type: Number,
+    default: 0,
+  },
   matchHistory: [
     {
       matchId: {

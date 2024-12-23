@@ -25,7 +25,11 @@
                 "pucks": "Pucks",
                 "strikers": "Strikers",
                 "tables": "Tables"
-              }
+            },
+            "owned": "Owned",
+            "equiped": "Equipped",
+            "equip": "Equip",
+            "notEnoughMoney": "You do not have enough money to buy this item."
         },
         "home": {
             "title": "Home"
@@ -43,9 +47,39 @@
             "dontHaveAccount": "Don't have an account?",
             "signupRedirect": "Sign up"
         },
+        "profile": {
+            "title": "My Profile",
+            "info": {
+                "title": "User Information",
+                "elo": "Elo",
+                "level": "Level",
+                "victories": "Victories",
+                "defeats": "Defeats",
+                "picturePlaceholder": "Click here to add a photo",
+                "pictureUpdated": "Your profile picture has been updated successfully!",
+                "uploadError": "Error uploading profile picture."
+            },
+            "edit": {
+                "title": "Edit Information",
+                "username": "Username",
+                "email": "Email Address",
+                "currentPassword": "Current Password",
+                "newPassword": "New Password",
+                "confirmNewPassword": "Confirm New Password",
+                "saveButton": "Save"
+            },
+            "errors": {
+                "usernameRequired": "Username is required",
+                "invalidEmail": "Invalid email address",
+                "passwordTooShort": "Password must be at least 6 characters",
+                "passwordMismatch": "Passwords do not match"
+            },
+            "updateSuccess": "Profile updated successfully!",
+            "updateError": "Error updating profile"
+        },
         "choixLangue": {
             "title": "Choose your language"
-          },
+        },
         "register": {
             "title": "Create an Account",
             "description": "Sign up to join AirHockey and challenge your friends!",

@@ -19,34 +19,87 @@ const InteractiveModel = ({ path }) => {
 
 const Boutique = () => {
   const [skins, setSkins] = useState([]);
+  const [user, setUser] = useState(null);
   const [filter, setFilter] = useState("all"); // Filtre par défaut
   const { translations } = useLanguage();
 
   useEffect(() => {
-    const fetchSkins = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/skins`);
-        if (response.ok) {
-          const data = await response.json();
-          setSkins(data);
-        } else {
-          console.error("Erreur lors de la récupération des skins");
-        }
+        // Récupérer les skins
+        const skinsResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/skins`);
+        const skinsData = await skinsResponse.json();
+        setSkins(skinsData);
+
+        // Récupérer les informations utilisateur
+        const userResponse = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+        const userData = await userResponse.json();
+        setUser(userData);
       } catch (error) {
-        console.error("Erreur API :", error);
+        console.error("Erreur lors de la récupération des données :", error);
       }
     };
 
-    fetchSkins();
+    fetchData();
   }, []);
 
-  // Filtrer les skins en fonction du type
+  const handleBuy = async (skinId, price) => {
+    if (user?.money < price) {
+      alert(translations.page.shop.notEnoughMoney); // Message si argent insuffisant
+      return;
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/skins/buy/${skinId}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        setUser(updatedUser.user); // Met à jour l'état utilisateur
+      } else {
+        console.error("Erreur lors de l'achat du skin");
+      }
+    } catch (error) {
+      console.error("Erreur API :", error);
+    }
+  };
+
+  const handleEquip = async (skinId) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/skins/equip/${skinId}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+        setUser(updatedUser.user); // Met à jour l'état utilisateur
+      } else {
+        console.error("Erreur lors de l'équipement du skin");
+      }
+    } catch (error) {
+      console.error("Erreur API :", error);
+    }
+  };
+
   const filteredSkins = filter === "all" ? skins : skins.filter((skin) => skin.type === filter);
 
   return (
     <div className="boutique-container">
+      <div className="user-money">
+        <p>
+          {user?.money}
+          <img src={monnaie} alt="Monnaie" className="money-icon" />
+        </p>
+      </div>
+
       <h1 className="boutique-title">{translations.page.shop.title}</h1>
 
+      {/* Boutons de filtre */}
       <div className="filter-buttons">
         <button
           className={`filter-button ${filter === "all" ? "active" : ""}`}
@@ -78,9 +131,17 @@ const Boutique = () => {
       <div className="models-grid">
         {filteredSkins.map((skin) => (
           <div className="model-card" key={skin._id}>
-            <div className="monnaie-container">
-              <p className="monnaie-amount">{skin.price}</p>
-              <img src={monnaie} alt="Monnaie" className="monnaie-boutique" />
+            <div className="tags-container">
+              {user?.ownedSkins?.includes(skin._id) && (
+                <p className="tag isowned">{translations.page.shop.owned}</p>
+              )}
+              {user?.equippedSkin === skin._id && (
+                <p className="tag isEquiped">{translations.page.shop.equiped}</p>
+              )}
+              <div className="monnaie-container">
+                <p className="monnaie-amount">{skin.price}</p>
+                <img src={monnaie} alt="Monnaie" className="monnaie-boutique" />
+              </div>
             </div>
             <Canvas className="canvas">
               <ambientLight intensity={0.5} />
@@ -90,7 +151,24 @@ const Boutique = () => {
               <OrbitControls enableZoom={false} enablePan={false} />
             </Canvas>
             <h2 className="model-title">{skin.name}</h2>
-            <button className="buy-button">{translations.page.shop.buy}</button>
+            {user?.ownedSkins?.includes(skin._id) ? (
+              <button
+                className="buy-button"
+                onClick={() => handleEquip(skin._id)}
+                disabled={user?.equippedSkin === skin._id}
+              >
+                {user?.equippedSkin === skin._id
+                  ? translations.page.shop.equiped
+                  : translations.page.shop.equip}
+              </button>
+            ) : (
+              <button
+                className="buy-button"
+                onClick={() => handleBuy(skin._id, skin.price)}
+              >
+                {translations.page.shop.buy}
+              </button>
+            )}
           </div>
         ))}
       </div>

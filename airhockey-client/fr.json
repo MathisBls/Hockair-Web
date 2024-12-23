@@ -25,7 +25,11 @@
         "pucks": "Palets",
         "strikers": "Maillets",
         "tables": "Tables"
-      }
+      },
+      "owned": "Possédé",
+      "equiped": "Équipé",
+      "equip": "Équiper",
+      "notEnoughMoney": "Vous n'avez pas assez d'argent pour acheter cet article."
     },
     "home": {
       "title": "Accueil"
@@ -42,6 +46,36 @@
       "button": "Connexion",
       "dontHaveAccount": "Vous n'avez pas de compte ?",
       "signupRedirect": "Inscrivez-vous"
+    },
+    "profile": {
+      "title": "Mon Profil",
+      "info": {
+        "title": "Informations Utilisateur",
+        "elo": "Elo",
+        "level": "Niveau",
+        "victories": "Victoires",
+        "defeats": "Défaites",
+        "picturePlaceholder": "Cliquez ici pour ajouter une photo",
+        "pictureUpdated": "Your profile picture has been updated successfully!",
+        "uploadError": "Error uploading profile picture."
+      },
+      "edit": {
+        "title": "Modifier les Informations",
+        "username": "Nom d'utilisateur",
+        "email": "Adresse e-mail",
+        "currentPassword": "Mot de passe actuel",
+        "newPassword": "Nouveau mot de passe",
+        "confirmNewPassword": "Confirmer le nouveau mot de passe",
+        "saveButton": "Sauvegarder"
+      },
+      "errors": {
+        "usernameRequired": "Le nom d'utilisateur est requis",
+        "invalidEmail": "L'adresse e-mail est invalide",
+        "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+        "passwordMismatch": "Les mots de passe ne correspondent pas"
+      },
+      "updateSuccess": "Informations mises à jour avec succès !",
+      "updateError": "Erreur lors de la mise à jour des informations"
     },
     "choixLangue": {
       "title": "Choisissez votre langue"

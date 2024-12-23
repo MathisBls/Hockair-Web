@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { getAllSkins, createSkin, updateSkin } from '../controllers/skinController.js';
+import { getAllSkins, createSkin, updateSkin, buySkin, equipSkin } from '../controllers/skinController.js';
 import { authenticateToken, authorizeAdmin } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -127,5 +127,55 @@ router.post('/', authenticateToken, authorizeAdmin, upload.single('file'), creat
  *         description: Erreur serveur
  */
 router.put('/:id', authenticateToken, authorizeAdmin, upload.single('file'), updateSkin);
+
+/** 
+ * @swagger
+ * /api/skins/buy/{skinId}:
+ *   post:
+ *     summary: Acheter un skin
+ *     tags: [Skins]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: skinId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID du skin
+ *     responses:
+ *       200:
+ *         description: Skin acheté avec succès
+ *       404:
+ *         description: Skin non trouvé
+ *       500:
+ *         description: Erreur serveur
+ */
+router.post('/buy/:skinId', authenticateToken, buySkin);
+
+/**
+ * @swagger
+ * /api/skins/equip/{skinId}:
+ *   post:
+ *     summary: Équiper un skin
+ *     tags: [Skins]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: skinId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID du skin
+ *     responses:
+ *       200:
+ *         description: Skin équipé avec succès
+ *       404:
+ *         description: Skin non trouvé
+ *       500:
+ *         description: Erreur serveur
+ */
+router.post('/equip/:skinId', authenticateToken, equipSkin);
 
 export default router;
