@@ -1,6 +1,8 @@
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import { sendActivationEmail } from '../services/emailService.js';
 
 export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -8,22 +10,36 @@ export const registerUser = async (req, res) => {
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: 'User already exists.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({
+    const newUser = await User.create({
       username,
       email,
       password: hashedPassword,
+      isActivated: false,
     });
 
-    res.status(201).json({ message: 'User registered successfully', user });
+    const activationToken = jwt.sign(
+      { _id: newUser._id },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    await sendActivationEmail(email, activationToken);
+
+    res.status(201).json({
+      message: 'User registered successfully. Please check your email to activate your account.',
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error('Error during registration:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
+
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -48,6 +64,41 @@ export const loginUser = async (req, res) => {
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const activateUser = async (req, res) => {
+  const { token } = req.body; // Le token est envoyé depuis le frontend dans le body
+
+  try {
+    // Vérification et décodage du token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (!decoded) {
+      return res.status(400).json({ message: "Invalid or expired activation link." });
+    }
+
+    const userId = decoded._id;
+
+    // Récupérer l'utilisateur
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    if (user.isActivated) {
+      return res.status(400).json({ message: "Account is already activated." });
+    }
+
+    // Activer le compte
+    user.isActivated = true;
+    await user.save();
+
+    res.status(200).json({ message: "Account successfully activated!" });
+  } catch (error) {
+    console.error("Activation error:", error.message);
+    return res.status(400).json({ message: "Invalid or expired activation link." });
   }
 };
 
@@ -119,3 +170,17 @@ export const updateUserProfilePicture = async (req, res) => {
   }
 };
 
+export const searchUsers = async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    const users = await User.find({
+      username: { $regex: query, $options: 'i' },
+    }).select('username elo level profilePicture');
+
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error searching users:', error);
+    res.status(500).json({ message: 'Error searching users' });
+  }
+};

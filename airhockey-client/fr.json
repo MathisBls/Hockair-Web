@@ -2,6 +2,7 @@
   "sidebar": {
     "home": "Tableau de bord",
     "playOnline": "Jouer en ligne",
+    "challenge": "Challenge",
     "leaderboard": "Classement",
     "myStats": "Mes statistiques",
     "tournaments": "Tournois",
@@ -47,6 +48,18 @@
       "dontHaveAccount": "Vous n'avez pas de compte ?",
       "signupRedirect": "Inscrivez-vous"
     },
+    "activateAccount": {
+      "title": "Compte activé !",
+      "description": "Votre compte a été activé avec succès. Vous pouvez maintenant vous connecter et profiter de toutes les fonctionnalités de notre plateforme."
+    },
+    "messageUser": {
+      "chatWith": "Discuter avec",
+      "selectContact": "Sélectionnez un contact pour commencer à discuter",
+      "typeMessage": "Tapez un message...",
+      "sendMessage": "Envoyer",
+      "deleteMessage": "Supprimer le message",
+      "cancel": "Annuler"
+    },
     "profile": {
       "title": "Mon Profil",
       "info": {
@@ -79,6 +92,36 @@
     },
     "choixLangue": {
       "title": "Choisissez votre langue"
+    },
+    "friendsRequest": {
+      "block": "Bloquer",
+      "message": "Message",
+      "delete": "Supprimer",
+      "level": "Niveau",
+      "accept": "Accepter",
+      "decline": "Refuser",
+      "unknown": "Inconnu",
+      "messageFriendRequest": "Demandes d'amis",
+      "searchPlaceholder": "Rechercher des amis...",
+      "friendDeletedSuccess": "Ami supprimé avec succès !",
+      "friendDeletedError": "Erreur lors de la suppression de l'ami.",
+      "errorFetchingBlockedFriends": "Erreur lors de la récupération des amis bloqués.",
+      "friendUnblockedSuccess": "Ami débloqué avec succès !",
+      "friendUnblockedError": "Erreur lors du déblocage de l'ami.",
+      "friendBlockedSuccess": "Ami bloqué avec succès !",
+      "friendBlockedError": "Erreur lors du blocage de l'ami.",
+      "friendAcceptedError": "Erreur lors de l'acceptation de la demande d'ami.",
+      "friendAcceptedSuccess": "Demande d'ami acceptée avec succès !",
+      "friendRequestSentSuccess": "Demande d'ami envoyée avec succès !",
+      "friendRequestSentError": "Erreur lors de l'envoi de la demande d'ami.",
+      "friendRequestAlreadySent": "Demande d'ami déjà envoyée.",
+      "errorSearchingUsers": "Erreur lors de la recherche d'utilisateurs.",
+      "errorFetchingRequests": "Erreur lors de la récupération des demandes d'amis.",
+      "errorFetchingUserProfile": "Erreur lors de la récupération du profil utilisateur.",
+      "friendDeclinedError": "Erreur lors du refus de la demande d'ami.",
+      "friendDeclinedSuccess": "Demande d'ami refusée avec succès !",
+      "unexpectedError": "Une erreur inattendue est survenue.",
+      "errorFetchingFriends": "Erreur lors de la récupération des amis."
     },
     "register": {
       "title": "Créer un compte",

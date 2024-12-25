@@ -12,6 +12,7 @@ import {
   Store as ShopIcon,
   Logout as LogoutIcon,
   Login as LoginIcon,
+  GpsFixed as ChallengeIcon,
 } from '@mui/icons-material';
 import Logo from '../../assets/logo.png';
 import './Sidebar.css';
@@ -72,9 +73,9 @@ const Sidebar = () => {
 
       {isLoggedIn && user ? (
         <div className="profile">
-          <div className="profile-pic">
+          <div className="profile-pic" onClick={() => navigate('/profile')}>
             {user.profilePicture ? (
-              <img src={`${import.meta.env.VITE_BACKEND_URL}${user.profilePicture}`} onClick={() => navigate('/profile')} alt="Profile" />
+              <img src={`${import.meta.env.VITE_BACKEND_URL}${user.profilePicture}`} alt="Profile" />
             ) : (
               user.username.charAt(0).toUpperCase()
             )}
@@ -107,6 +108,11 @@ const Sidebar = () => {
             <GameIcon /> {translations.sidebar.playOnline}
           </p>
         </li>
+        <li onClick={() => navigate('/challenge')}>
+          <p className="list-side">
+            <ChallengeIcon /> {translations.sidebar.challenge}
+          </p>
+        </li>
         <li onClick={() => navigate('/leaderboard')}>
           <p className="list-side">
             <LeaderboardIcon /> {translations.sidebar.leaderboard}
@@ -126,7 +132,7 @@ const Sidebar = () => {
 
       <h4 className="menu-title">{translations.sidebar.community}</h4>
       <ul className="menu">
-        <li onClick={() => navigate('/chat')}>
+        <li onClick={() => navigate('/friends/chat')}>
           <p className="list-side">
             <ChatIcon /> {translations.sidebar.chatWithFriends}
           </p>

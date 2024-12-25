@@ -61,6 +61,7 @@ hr{
     color: var(--white);
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
     overflow: hidden; /* Masque tout contenu qui dépasse */
   }
 

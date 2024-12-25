@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../../../LanguageContext";
+import Toast from "../../components/Toast/Toast";
 import "./Profile.css";
 
 const Profile = () => {
@@ -16,6 +17,8 @@ const Profile = () => {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState("");
     const [profilePicture, setProfilePicture] = useState(user?.profilePicture || ""); // État pour la photo de profil
+
+    const [toast, setToast] = useState({ visible: false, message: "", type: "" }); // État pour gérer les toasts
 
     useEffect(() => {
         // Fetch user data
@@ -51,7 +54,7 @@ const Profile = () => {
         if (file) {
           const formData = new FormData();
           formData.append('file', file);
-      
+
           try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/upload-profile-picture`, {
               method: 'POST',
@@ -60,20 +63,22 @@ const Profile = () => {
               },
               body: formData,
             });
-      
+
             if (response.ok) {
               const data = await response.json();
               setProfilePicture(`${import.meta.env.VITE_BACKEND_URL}${data.user.profilePicture}`); // Mettre à jour la prévisualisation
               setSuccessMessage(translations.page.profile.info.pictureUpdated); // Message de succès
+              setToast({ visible: true, message: translations.page.profile.info.pictureUpdated, type: "success" }); // Afficher le toast
             } else {
               const error = await response.json();
-              alert(error.message || translations.page.profile.info.uploadError);
+              setToast({ visible: true, message: error.message || translations.page.profile.info.uploadError, type: "error" }); // Afficher le toast d'erreur
             }
           } catch (error) {
             console.error('Erreur lors de l’upload de l’image :', error);
+            setToast({ visible: true, message: translations.page.profile.info.uploadError, type: "error" });
           }
         }
-      };      
+      };
 
     const validateForm = () => {
         const newErrors = {};
@@ -109,17 +114,20 @@ const Profile = () => {
                 const updatedUser = await response.json();
                 setUser(updatedUser);
                 setSuccessMessage(translations.page.profile.updateSuccess);
+                setToast({ visible: true, message: translations.page.profile.updateSuccess, type: "success" }); // Afficher le toast de succès
             } else {
                 const error = await response.json();
-                alert(error.message || translations.page.profile.updateError);
+                setToast({ visible: true, message: error.message || translations.page.profile.updateError, type: "error" });
             }
         } catch (error) {
             console.error("Erreur lors de la mise à jour :", error);
+            setToast({ visible: true, message: translations.page.profile.updateError, type: "error" });
         }
     };
 
     return (
         <div className="profile-user-container">
+            {toast.visible && <Toast message={toast.message} type={toast.type} />} {/* Toast */}
             <h1 className="profile-user-title">{translations.page.profile.title}</h1>
             <div className="profile-user-content">
                 <div className="profile-user-info">

@@ -1,6 +1,6 @@
 
 import express from 'express';
-import { registerUser, loginUser, getUserProfile, updateUser, updateUserProfilePicture } from '../controllers/userController.js';
+import { registerUser, loginUser, getUserProfile, updateUser, updateUserProfilePicture, activateUser, searchUsers } from '../controllers/userController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 import multer from 'multer';
 
@@ -177,5 +177,42 @@ router.put('/update', authenticateToken, updateUser);
  *         description: Erreur du serveur
  */
 router.post('/upload-profile-picture', authenticateToken, upload.single('file'), updateUserProfilePicture);
+
+router.post("/activate", activateUser);
+
+/**
+ * @swagger
+ * /api/users/search:
+ *   get:
+ *     summary: Rechercher des utilisateurs
+ *     description: Permet de rechercher des utilisateurs par nom d'utilisateur ou adresse e-mail.
+ *     tags:
+ *       - Users
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Le terme de recherche (nom d'utilisateur ou adresse e-mail)
+ *     responses:
+ *       200:
+ *         description: Utilisateurs trouvés avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Requête invalide
+ *       404:
+ *         description: Aucun utilisateur trouvé
+ *       500:
+ *         description: Erreur du serveur
+ */
+router.get('/search', authenticateToken, searchUsers);
 
 export default router;

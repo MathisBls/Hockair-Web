@@ -2,6 +2,7 @@
     "sidebar": {
         "home": "Dashboard",
         "playOnline": "Play Online",
+        "challenge": "Challenge",
         "leaderboard": "Leaderboard",
         "myStats": "My Stats",
         "tournaments": "Tournaments",
@@ -47,6 +48,18 @@
             "dontHaveAccount": "Don't have an account?",
             "signupRedirect": "Sign up"
         },
+        "activateAccount": {
+            "title": "Account Activated!",
+            "description": "Your account has been successfully activated. You can now log in and enjoy all the features of our platform."
+        },
+        "messageUser": {
+            "chatWith": "Chat with",
+            "selectContact": "Select a contact to start chatting",
+            "typeMessage": "Type a message...",
+            "sendMessage": "Send",
+            "deleteMessage": "Delete Message",
+            "cancel": "Cancel"
+        },
         "profile": {
             "title": "My Profile",
             "info": {
@@ -79,6 +92,36 @@
         },
         "choixLangue": {
             "title": "Choose your language"
+        },
+        "friendsRequest": {
+            "block": "Block",
+            "message": "Message",
+            "delete": "Delete",
+            "level": "Level",
+            "accept": "Accept",
+            "decline": "Decline",
+            "unknown": "Unknown",
+            "messageFriendRequest": "Friend Requests",
+            "searchPlaceholder": "Search for friends...",
+            "friendDeletedSuccess": "Friend deleted successfully!",
+            "friendDeletedError": "Error deleting friend.",
+            "errorFetchingBlockedFriends": "Error fetching blocked friends.",
+            "friendUnblockedSuccess": "Friend unblocked successfully!",
+            "friendUnblockedError": "Error unblocking friend.",
+            "friendBlockedSuccess": "Friend blocked successfully!",
+            "friendBlockedError": "Error blocking friend.",
+            "friendAcceptedError": "Error accepting friend request.",
+            "friendAcceptedSuccess": "Friend request accepted successfully!",
+            "friendRequestSentSuccess": "Friend request sent successfully!",
+            "friendRequestSentError": "Error sending friend request.",
+            "friendRequestAlreadySent": "Friend request already sent.",
+            "errorSearchingUsers": "Error searching for users.",
+            "errorFetchingRequests": "Error fetching friend requests.",
+            "errorFetchingUserProfile": "Error fetching user profile.",
+            "friendDeclinedError": "Error declining friend request.",
+            "friendDeclinedSuccess": "Friend request declined successfully!",
+            "unexpectedError": "An unexpected error occurred.",
+            "errorFetchingFriends": "Error fetching friends."
         },
         "register": {
             "title": "Create an Account",

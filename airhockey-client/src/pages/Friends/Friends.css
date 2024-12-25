@@ -1,0 +1,192 @@
+/* Friends.css */
+
+.friends-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: var(--background-black);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+.friends-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.friends-tab {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  background: var(--bleu);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+.action-icon {
+  color: var(--rouge);
+}
+
+.friends-tab.active {
+  background: var(--rouge);
+}
+
+.friends-tab + .friends-tab {
+  border-left: 2px solid var(--background); /* Bordure entre les boutons */
+}
+
+.notification-badge {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: var(--rouge);
+  color: var(--white);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.friends-content {
+  width: 100%;
+  max-width: 800px;
+}
+
+.friend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: var(--background);
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.friend-details {
+  text-align: left;
+}
+
+.friend-name {
+  font-weight: bold;
+}
+
+.friend-info {
+  color: var(--rouge);
+}
+
+.friend-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-button {
+  background: var(--rouge);
+  color: var(--white);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.accept-button {
+  background: var(--bleu);
+  color: var(--white);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.decline-button {
+  background: var(--rouge);
+  color: var(--white);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 5px;
+  border: 1px solid var(--rouge);
+  background: var(--background);
+  color: var(--white);
+}
+
+/* FOCUS ON BUTTON*/
+
+.action-button:focus {
+  outline: none;
+}
+
+.accept-button:focus {
+  outline: none;
+}
+
+.decline-button:focus {
+  outline: none;
+}
+
+.friends-tab:focus {
+  outline: none;
+}
+
+/* HOVER */
+
+.action-button:hover {
+  transform: scale(1.05);
+  background-color: var(--red-focus);
+}
+
+.accept-button:hover {
+  background-color: var(--bleu-bg);
+  border: 1px solid var(--bleu-bg);
+}
+
+.decline-button:hover {
+  background-color: var(--red-focus);
+  border: 1px solid var(--red-focus);
+}
+
+.custom-context-menu {
+  position: absolute;
+  background: var(--bleu-bg);
+  border: 1px solid var(--rouge);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.custom-context-menu button {
+  display: block;
+  background: none;
+  color: var(--white);
+  border: none;
+  text-align: left;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.custom-context-menu button:hover {
+  background: var(--rouge);
+  color: var(--white);
+}
+
+/* focus */
+.send-button:focus {
+  outline: none;
+}

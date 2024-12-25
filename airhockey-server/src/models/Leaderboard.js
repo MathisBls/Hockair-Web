@@ -10,7 +10,7 @@ const leaderboardSchema = new mongoose.Schema({
     },
     rank: {
       type: Number,
-      required: true,
+      required: false,
     },
     createdAt: {
       type: Date,

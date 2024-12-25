@@ -10,9 +10,11 @@ import Profile from './pages/Profile/Profile';
 import Stats from './pages/Stats/Stats';
 import Tournaments from './pages/Tournaments/Tournaments';
 import Register from './pages/Register/Register';
+import FriendsList from './pages/Friends/Friends';
+import MessageFriend from './pages/Friends/MessageFriend';
 import Footer from './components/Footer/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import ActivateAccount from './pages/ActivateAccount/ActivateAccount';
 // Gameplay
 import Classic from './pages/Gameplay/Classic';
 
@@ -34,6 +36,9 @@ function App() {
               <Route path="/gameplay-classic" element={<ProtectedRoute><Classic /></ProtectedRoute>} />
               <Route path="/stats" element={<ProtectedRoute><Stats /></ProtectedRoute>} />
               <Route path="/tournaments" element={<ProtectedRoute><Tournaments /></ProtectedRoute>} />
+              <Route path="/activate/:token" element={<ActivateAccount />} />
+              <Route path="/friends" element={<ProtectedRoute><FriendsList /></ProtectedRoute>} />
+              <Route path="/friends/chat/:id" element={<ProtectedRoute><MessageFriend /></ProtectedRoute>} />
             </Routes>
           </Layout>
         </Router>
@@ -46,7 +51,8 @@ function Layout({ children }) {
   const location = useLocation();
 
   const isLoginPage = location.pathname === '/login' ||
-   location.pathname === '/register' || location.pathname === '/language';
+   location.pathname === '/register' || location.pathname === '/language'
+    || location.pathname.startsWith('/activate/');
 
   return (
     <div className={`app-container ${isLoginPage ? 'no-sidebar' : ''}`}>

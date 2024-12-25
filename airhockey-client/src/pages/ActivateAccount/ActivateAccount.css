@@ -1,0 +1,56 @@
+/* ActivateAccount.css */
+
+.activate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--background-black), var(--background));
+    color: var(--white);
+}
+
+.activate-card {
+    text-align: center;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 92, 122, 0.9),
+      rgba(22, 33, 62, 0.8)
+    );
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+}
+
+.activate-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--bleu-bg);
+}
+
+.activate-message {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.activate-button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--bleu-bg);
+    color: var(--rouge);
+    font-weight: bold;
+}
+
+.activate-button:hover {
+    background-color: var(--rouge);
+    color: var(--white);
+    transform: scale(1.05);
+}

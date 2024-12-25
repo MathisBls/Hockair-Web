@@ -99,9 +99,13 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 import userRoutes from './routes/userRoutes.js';
 import skinRoutes from './routes/skinRoutes.js';
+import friendRoutes from './routes/friendRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
 
 app.use('/api/users', userRoutes);
 app.use('/api/skins', skinRoutes);
+app.use('/api/friends', friendRoutes);
+app.use('/api/messages', messageRoutes);
 
 app.get('/', (req, res) => {
   res.send('AirHockey API is running');
