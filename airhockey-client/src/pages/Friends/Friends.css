@@ -16,6 +16,10 @@
   margin-bottom: 20px;
 }
 
+.friends-tab:hover {
+  background-color: var(--rouge);
+}
+
 .friends-tab {
   flex: 1;
   padding: 15px 20px;
