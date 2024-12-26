@@ -12,6 +12,8 @@ import Tournaments from './pages/Tournaments/Tournaments';
 import Register from './pages/Register/Register';
 import FriendsList from './pages/Friends/Friends';
 import MessageFriend from './pages/Friends/MessageFriend';
+import Discussion from './pages/Discussion/Discussion';
+import Challenge from './pages/Challenge/Challenge';
 import Footer from './components/Footer/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import ActivateAccount from './pages/ActivateAccount/ActivateAccount';
@@ -38,7 +40,9 @@ function App() {
               <Route path="/tournaments" element={<ProtectedRoute><Tournaments /></ProtectedRoute>} />
               <Route path="/activate/:token" element={<ActivateAccount />} />
               <Route path="/friends" element={<ProtectedRoute><FriendsList /></ProtectedRoute>} />
+              <Route path="/friends/chat" element={<ProtectedRoute><Discussion /></ProtectedRoute>} />
               <Route path="/friends/chat/:id" element={<ProtectedRoute><MessageFriend /></ProtectedRoute>} />
+              <Route path="/challenges" element={<ProtectedRoute><Challenge /></ProtectedRoute>} />
             </Routes>
           </Layout>
         </Router>

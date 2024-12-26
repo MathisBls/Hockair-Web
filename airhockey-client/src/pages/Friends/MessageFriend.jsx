@@ -18,7 +18,9 @@ const MessageFriend = () => {
     const messageEndRef = useRef(null);
 
     const scrollToBottom = () => {
-        messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (messageEndRef.current) {
+            messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     useEffect(() => {

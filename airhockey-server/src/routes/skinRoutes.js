@@ -5,13 +5,12 @@ import { authenticateToken, authorizeAdmin } from '../middlewares/authMiddleware
 
 const router = express.Router();
 
-// Configuration Multer pour les uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'src/assets'); // Enregistrer les fichiers dans le dossier "assets"
+    cb(null, 'src/assets');
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`); // Nom unique pour chaque fichier
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 

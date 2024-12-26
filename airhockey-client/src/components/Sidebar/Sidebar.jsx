@@ -108,7 +108,7 @@ const Sidebar = () => {
             <GameIcon /> {translations.sidebar.playOnline}
           </p>
         </li>
-        <li onClick={() => navigate('/challenge')}>
+        <li onClick={() => navigate('/challenges')}>
           <p className="list-side">
             <ChallengeIcon /> {translations.sidebar.challenge}
           </p>

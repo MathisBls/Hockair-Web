@@ -5,7 +5,8 @@ import {
   markAsRead,
   getChatList,
   postMessage,
-  deleteMessage
+  deleteMessage,
+  getLatestMessages
 } from "../controllers/messageController.js";
 import { authenticateToken } from "../middlewares/authMiddleware.js";
 import Message from "../models/Message.js";
@@ -20,6 +21,8 @@ router.get("/:friendId", authenticateToken, getMessages);
 router.put("/read", authenticateToken, markAsRead);
 
 router.delete("/:messageId", authenticateToken, deleteMessage);
+
+router.get("/latest", authenticateToken, getLatestMessages);
 
 router.get("/", authenticateToken, getChatList);
 

@@ -131,3 +131,48 @@ export const deleteMessage = async (req, res) => {
       res.status(500).json({ message: "Server error.", error: error.message });
     }
   };
+
+  export const getLatestMessages = async (req, res) => {
+    const userId = req.user._id;
+  
+    try {
+      const messages = await Message.aggregate([
+        {
+          $match: {
+            $or: [{ senderId: userId }, { receiverId: userId }],
+          },
+        },
+        {
+          $sort: { createdAt: -1 },
+        },
+        {
+          $group: {
+            _id: {
+              $cond: [
+                { $eq: ["$senderId", userId] },
+                "$receiverId",
+                "$senderId",
+              ],
+            },
+            lastMessage: { $first: "$$ROOT" },
+          },
+        },
+      ])
+        .lookup({
+          from: "users",
+          localField: "_id",
+          foreignField: "_id",
+          as: "userDetails",
+        });
+  
+      const formattedMessages = messages.map((msg) => ({
+        contactId: msg._id,
+        lastMessage: msg.lastMessage,
+        userDetails: msg.userDetails[0] || null,
+      }));
+  
+      res.status(200).json(formattedMessages);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching latest messages.", error: error.message });
+    }
+  };

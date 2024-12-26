@@ -5,6 +5,10 @@ const tournamentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    required: false,
+  },
   isPremium: {
     type: Boolean,
     default: false,
