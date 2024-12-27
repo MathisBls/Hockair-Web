@@ -3,7 +3,7 @@ import './Classement.css';
 
 const Classement = () => {
   const [selectedLeague, setSelectedLeague] = useState('Bronze');
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(600); // Exemple : 10 minutes
 
   const leagues = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond'];
 
@@ -24,15 +24,14 @@ const Classement = () => {
   }, []);
 
   const formatTime = (seconds) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
+    const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
     <div className="classement-container">
-      <h1>Classement</h1>
+      <h1 className="classement-title">Classement</h1>
       <div className="league-selector">
         {leagues.map(league => (
           <button
@@ -45,7 +44,7 @@ const Classement = () => {
         ))}
       </div>
       <div className="timer">
-        Temps restant: {formatTime(timeLeft)}
+        Temps restant : {formatTime(timeLeft)}
       </div>
       <div className="leaderboard">
         {leaderboardData.map((player, index) => (

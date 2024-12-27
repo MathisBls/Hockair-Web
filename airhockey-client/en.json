@@ -123,6 +123,35 @@
             "unexpectedError": "An unexpected error occurred.",
             "errorFetchingFriends": "Error fetching friends."
         },
+        "subscriptionData": {
+            "hockairPro": {
+            "name": "Hockair Pro",
+            "price": "4.99€/month",
+            "target": "Regular players, competitive aspect",
+            "advantages": [
+                "Double virtual currency gains or triple if 0 points on the opponent's side",
+                "Access to exclusive skins (table, puck, strikers)",
+                "More advanced stats",
+                "Premium badge"
+            ]
+            },
+            "hockairChampion": {
+            "name": "Hockair Champion",
+            "price": "9.99€/month",
+            "target": "Competitive players, highly invested in the game",
+            "advantages": [
+                "Everything included in Hockair Pro",
+                "Priority placement against opponents of the same level",
+                "Personalized suggestions based on play style (AI Coaching)",
+                "Access to exclusive tournaments with significant rewards",
+                "Ultra-rare and animated cosmetic items",
+                "Increased ELO points gained (+5%)",
+                "10-15% discount on all in-game purchases",
+                "Access to detailed opponent stats before the match"
+            ]
+            },
+            "subscribe": "Upgrade"
+        },
         "register": {
             "title": "Create an Account",
             "description": "Sign up to join AirHockey and challenge your friends!",

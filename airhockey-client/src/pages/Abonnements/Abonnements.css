@@ -3,12 +3,11 @@
     min-height: 100vh;
     padding: 50px 20px;
     color: #ffffff;
-  }
+}
 
-  .subscriptions-title {
+.subscriptions-title {
     text-align: center;
     margin-bottom: 50px;
-/* border */
     border: 2px solid #e94560;
     border-radius: 10px;
     padding: 20px;
@@ -17,110 +16,98 @@
     flex-direction: column;
     align-items: center;
     margin: 0 auto 50px auto;
-  }
+    font-size: 2.5rem;
+}
 
-
-  .subscriptions-grid {
+.subscriptions-grid {
     display: flex;
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
-  }
+}
 
-  .subscription-card {
+.subscription-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 30px;
     width: 350px;
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    position: relative;
+}
 
-  .subscription-card:hover {
+.subscription-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
-  }
+    box-shadow: 0px 0px 20px rgba(233, 69, 96, 0.7),
+                0px 0px 40px rgba(233, 69, 96, 0.5);
+}
 
-  .hockair-pro {
-    border: 2px solid #4a69bd;
-  }
-
-  .hockair-champion {
-    border: 2px solid #ffa502;
-  }
-
-  .subscription-header {
+.subscription-header {
     text-align: center;
-    margin-bottom: 20px;
-  }
+}
 
-  .subscription-header h2 {
+.subscription-header h2 {
     font-size: 2rem;
     margin-bottom: 10px;
-  }
+}
 
-  .subscription-price {
+.subscription-price {
     font-size: 1.5rem;
     font-weight: bold;
     color: #e94560;
-  }
+}
 
-  .subscription-target {
+.subscription-target {
     font-style: italic;
     margin-bottom: 20px;
-    text-align: center;
-  }
+}
 
-  .subscription-advantages {
+.subscription-advantages {
     list-style-type: none;
-    padding: 0;
-  }
+    padding-left: 0;
+}
 
-  .subscription-advantages li {
+.subscription-advantages li {
     margin-bottom: 10px;
-    padding-left: 25px;
-    position: relative;
-  }
+}
 
-  .subscription-advantages li::before {
+.subscription-advantages li::before {
     content: '✓';
-    position: absolute;
-    left: 0;
     color: #e94560;
-  }
+    margin-right: 10px;
+}
 
-  .subscribe-button {
+.subscribe-button {
     display: block;
     width: 100%;
     padding: 15px;
     margin-top: 30px;
-    background: #e94560;
+    background-color: #e94560;
     border: none;
     border-radius: 10px;
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease;
-  }
+}
 
-  .subscribe-button:hover {
-    background: #ff6b81;
-  }
+.subscribe-button:hover {
+   background-color: #ff6b81;
+}
 
-  /* focus */
-    .subscribe-button:focus {
-        outline: none;
-    }
+.subscribe-button:focus,
+.league-button:focus {
+    outline: none;
+}
 
-  @media (max-width: 768px) {
-    .subscriptions-grid {
-      flex-direction: column;
-      align-items: center;
-    }
+@media (max-width: 768px) {
+   .subscriptions-grid {
+       flex-direction: column;
+       align-items: center;
+   }
 
-    .subscription-card {
-      width: 100%;
-      max-width: 350px;
-    }
-  }
+   .subscription-card {
+       width: 100%;
+       max-width: 350px;
+   }
+}

@@ -16,7 +16,7 @@
   letter-spacing: 3px;
   text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
   animation: glow 2s ease-in-out infinite alternate;
-  max-width: 1240px;
+  padding: 15px;
 }
 
 @keyframes glow {

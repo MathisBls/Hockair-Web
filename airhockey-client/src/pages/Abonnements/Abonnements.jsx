@@ -1,8 +1,28 @@
 import React from 'react';
-import { subscriptions } from './subscriptionData';
+import { useLanguage } from '../../../LanguageContext';
 import './Abonnements.css';
 
+
+
+
 const Abonnements = () => {
+
+  const { translations } = useLanguage();
+
+  const subscriptions = [
+    {
+      name: translations.page.subscriptionData.hockairPro.name,
+      price: translations.page.subscriptionData.hockairPro.price,
+      target: translations.page.subscriptionData.hockairPro.target,
+      advantages: translations.page.subscriptionData.hockairPro.advantages
+    },
+    {
+      name: translations.page.subscriptionData.hockairChampion.name,
+      price: translations.page.subscriptionData.hockairChampion.price,
+      target: translations.page.subscriptionData.hockairChampion.target,
+      advantages: translations.page.subscriptionData.hockairChampion.advantages
+    }
+  ];
   return (
     <div className="subscriptions-container">
       <div className="subscriptions-grid">
@@ -18,7 +38,7 @@ const Abonnements = () => {
                 <li key={i}>{adv}</li>
               ))}
             </ul>
-            <button className="subscribe-button">S'abonner</button>
+            <button className="subscribe-button">{translations.page.subscriptionData.subscribe}</button>
           </div>
         ))}
       </div>
