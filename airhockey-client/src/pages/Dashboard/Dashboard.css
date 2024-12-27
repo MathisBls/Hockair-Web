@@ -1,0 +1,314 @@
+/* General Container */
+.dashboard-container {
+    background: linear-gradient(to bottom, var(--background-black), var(--bleu));
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.dashboard-banner {
+    background-image: url('src/assets/airhockey-banner.webp');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dashboard-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to right,
+      rgba(22, 33, 62, 0.8) 0%,
+      rgba(233, 69, 96, 0.5) 100%
+    );
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    padding: 0 10%;
+    height: 100%;
+}
+
+.banner-text {
+    max-width: 60%;
+}
+
+.banner-content h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-content p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 600px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.play-button {
+    padding: 20px 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--rouge);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.play-button:hover {
+    background-color: var(--white);
+    color: var(--rouge);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(233, 69, 96, 0.3);
+}
+
+.play-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--red-focus);
+}
+
+  /* Animation pour le texte */
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+/* Overview Cards */
+.dashboard-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin: -50px 40px 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.overview-card {
+    background: rgba(22, 33, 62, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.overview-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+}
+
+.overview-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--cyan);
+}
+
+.overview-card p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--white);
+}
+
+/* Section Styles */
+.dashboard-section {
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: var(--rouge);
+    border-radius: 4px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background: var(--background-black);
+}
+
+.challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .challenge-card {
+    background: linear-gradient(135deg, var(--bleu) 0%);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .challenge-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--rouge) 0%, transparent 70%);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+  }
+
+  .challenge-card:hover::before {
+    top: -20%;
+    left: -20%;
+  }
+
+  .challenge-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(233, 69, 96, 0.4);
+  }
+
+  .challenge-card h3 {
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .challenge-card p {
+    font-size: 1.1rem;
+    color: var(--cyan);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .challenge-card .stars {
+    position: relative;
+  }
+
+  .star {
+    color: var(--rouge);
+    font-size: 1.4rem;
+    margin: 0 2px;
+    text-shadow: 0 0 10px var(--rouge);
+  }
+
+  .recent-matches {
+    background: var(--background);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .matches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .match-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bleu-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .match-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .player-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .player-name {
+    font-weight: bold;
+  }
+
+  .country-flag {
+    width: 24px;
+    height: 18px;
+    object-fit: cover;
+  }
+
+  .match-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vs {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--rouge);
+  }
+
+  .score {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--cyan);
+  }
+
+  .date {
+    font-size: 0.8em;
+    color: var(--white);
+    opacity: 0.7;
+  }

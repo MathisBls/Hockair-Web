@@ -10,4 +10,7 @@ export default defineConfig({
     },
   },
   assetsInclude: ['**/*.gltf', '**/*.glb'],
+  optimizeDeps: {
+    include: ['@mui/icons-material']
+  }
 });

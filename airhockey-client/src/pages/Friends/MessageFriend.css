@@ -1,151 +1,183 @@
 /* General container */
 .message-container {
-    display: flex;
-    height: 100vh;
-    color: var(--white);
-  }
+  display: flex;
+  height: 100vh;
+  color: var(--white);
+  background: var(--background-black);
+}
 
-  .contacts-panel {
-    width: 250px;
-    background: var(--bleu-bg);
-    border-right: 1px solid var(--rouge);
-  }
+/* Contacts panel */
+.contacts-panel {
+  width: 300px;
+  background: var(--bleu);
+  border-right: 2px solid var(--cyan);
+  overflow-y: auto;
+}
 
-  .contacts-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.contacts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .contact-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    border-bottom: 1px solid var(--background-black);
-  }
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-  .contact-item:hover {
-    background: var(--bleu-bg);
-  }
+.contact-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
 
-  .contact-item.active {
-    background: var(--rouge);
-  }
+.contact-item.active {
+  background: var(--rouge);
+  box-shadow: 0 0 10px var(--rouge);
+}
 
-  .contact-profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    object-fit: cover;
-  }
+.contact-profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+  border: 2px solid var(--cyan);
+}
 
-  .contact-name {
-    font-size: 1rem;
-    font-weight: bold;
-  }
+.contact-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
 
-  /* Chat section */
-  .chat-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+/* Chat section */
+.chat-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
 
-  /* Header */
-  .message-header {
-    padding: 15px;
-    background: var(--bleu-bg);
-    color: var(--white);
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: bold;
-    border-bottom: 1px solid var(--rouge);
-  }
+/* Header */
+.message-header {
+  padding: 20px;
+  background: var(--bleu);
+  color: var(--white);
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid var(--cyan);
+}
 
-  /* Message body */
-  .message-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: var(--background);
-  }
+/* Message body */
+.message-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-  /* Message bubbles */
-  .message-bubble {
-    max-width: 70%;
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 1rem;
-    word-wrap: break-word;
-    align-self: flex-start;
-  }
+/* Message bubbles */
+.message-bubble {
+  max-width: 70%;
+  padding: 12px 18px;
+  border-radius: 20px;
+  font-size: 1rem;
+  word-wrap: break-word;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-  .message-bubble.sent {
-    background: var(--rouge);
-    color: var(--white);
-    align-self: flex-end;
-    border-bottom-right-radius: 0;
-  }
+.message-bubble.sent {
+  background: linear-gradient(135deg, var(--rouge), var(--rouge-fonce));
+  color: var(--white);
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
 
-  .message-bubble.received {
-    background: var(--bleu);
-    color: var(--white);
-    align-self: flex-start;
-    border-bottom-left-radius: 0;
-  }
+.message-bubble.received {
+  background: linear-gradient(135deg, var(--bleu), var(--cyan));
+  color: var(--white);
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
 
-  /* Input container */
-  .message-input-container {
-    display: flex;
-    padding: 15px;
-    border-top: 1px solid var(--rouge);
-    background: var(--bleu-bg);
-  }
+/* Input container */
+.message-input-container {
+  display: flex;
+  padding: 20px;
+  background: var(--bleu);
+  border-top: 2px solid var(--cyan);
+}
 
-  .message-input {
-    flex: 1;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid var(--bleu);
-    background: var(--background);
-    color: var(--white);
-    outline: none;
-  }
+.message-input {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: none;
+  background: var(--background-black);
+  color: var(--white);
+  outline: none;
+  transition: all 0.3s ease;
+}
 
-  .message-input::placeholder {
-    color: var(--white);
-  }
+.message-input:focus {
+  box-shadow: 0 0 10px var(--cyan);
+}
 
-  .send-button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    background: var(--rouge);
-    color: var(--white);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+.message-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
 
-  .send-button:hover {
-    background: var(--red-focus);
-  }
+.send-button {
+  margin-left: 15px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  background: var(--rouge);
+  color: var(--white);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-  .message-read-icon {
-    font-size: 1rem;
-    color: var(--bleu);
-    margin-left: 5px;
-    vertical-align: middle;
-  }
+.send-button:hover {
+  background: var(--red-focus);
+  box-shadow: 0 0 15px var(--rouge);
+}
 
-  .custom-context-menu button {
-    outline: none;
-  }
+.message-read-icon {
+  font-size: 0.8rem;
+  color: var(--cyan);
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* Context menu */
+.custom-context-menu {
+  background: var(--bleu);
+  border: 1px solid var(--cyan);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.custom-context-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.custom-context-menu button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

@@ -46,7 +46,7 @@ const Challenge = () => {
       <h1 className="challenge-title">Challenges</h1>
       <div className="challenge-grid">
         {challenges.map((challenge) => (
-          <div key={challenge.id} className="challenge-card">
+          <div key={challenge.id} className="challenge-cards">
             <img
               src={challenge.image}
               alt={challenge.name}

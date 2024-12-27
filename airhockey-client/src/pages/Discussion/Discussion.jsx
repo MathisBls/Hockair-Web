@@ -64,47 +64,53 @@ const Discussion = () => {
   const handleDiscussionClick = (contactId) => {
     navigate(`/friends/chat/${contactId}`);
   };
-
+  const conversations = [
+    {
+      id: 1,
+      friendName: "Alice",
+      lastMessage: "On se fait une partie ce soir ?",
+      profilePic: "https://example.com/alice.jpg",
+      unreadCount: 2,
+    },
+    {
+      id: 2,
+      friendName: "Bob",
+      lastMessage: "Bien joué pour ta victoire !",
+      profilePic: "https://example.com/bob.jpg",
+      unreadCount: 0,
+    },
+    {
+      id: 3,
+      friendName: "Charlie",
+      lastMessage: "J'ai trouvé une nouvelle stratégie",
+      profilePic: "https://example.com/charlie.jpg",
+      unreadCount: 5,
+    },
+    {
+      id: 4,
+      friendName: "Diana",
+      lastMessage: "Merci pour les conseils",
+      profilePic: "https://example.com/diana.jpg",
+      unreadCount: 0,
+    },
+  ];
   return (
     <div className="discussion-container">
-      <h1 className="discussion-title">Discussions</h1>
-      <ul className="discussion-list">
-        {discussions.map((discussion) => {
-          const userDetails = discussion.userDetails || {};
-          const lastMessage = discussion.lastMessage?.content || "No messages yet.";
-          const unreadMessages = discussion.lastMessage?.read === false ? 1 : 0;
-
-          return (
-            <li
-              key={discussion.contactId}
-              className="discussion-item"
-              onClick={() => handleDiscussionClick(discussion.contactId)}
-            >
-              <img
-                src={
-                  userDetails.profilePicture ||
-                  `${import.meta.env.VITE_BACKEND_URL}/default-avatar.png`
-                }
-                alt={userDetails.username || "User"}
-                className="discussion-avatar"
-              />
-              <div className="discussion-info">
-                <p className="discussion-username">
-                  {userDetails.username || "Unknown User"}
-                </p>
-                <p className="discussion-last-message">
-                  {lastMessage.length > 30
-                    ? `${lastMessage.slice(0, 30)}...`
-                    : lastMessage}
-                </p>
-              </div>
-              {unreadMessages > 0 && (
-                <span className="discussion-unread-badge">{unreadMessages}</span>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+      <h1 className="discussion-title">Récentes conversations</h1>
+      <div className="conversation-list">
+        {conversations.map((conv) => (
+          <div key={conv.id} className="conversation-item">
+            <img src={conv.profilePic} alt={conv.friendName} className="friend-avatar" />
+            <div className="conversation-info">
+              <h2 className="friend-name">{conv.friendName}</h2>
+              <p className="last-message">{conv.lastMessage}</p>
+            </div>
+            {conv.unreadCount > 0 && (
+              <span className="unread-count">{conv.unreadCount}</span>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

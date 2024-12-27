@@ -1,177 +1,220 @@
-@import url(../../vars.css);
+  @import url(../../vars.css);
 
 .boutique-container {
-    padding: 40px;
-    color: var(--white);
-    min-height: 100vh;
-    text-align: center;
-  }
-  .canvas {
-    width: 100%;
-    height: 300px;
-    display: block;
-  }
+  padding: 40px;
+  color: var(--white);
+  min-height: 100vh;
+  text-align: center;
+  background: linear-gradient(135deg, var(--background-black) 0%, var(--bleu) 100%);
+}
 
-  .boutique-title {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: var(--rouge);
-    animation: fadeIn 1s ease;
+.boutique-title {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+  max-width: 1240px;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 15px rgba(0, 255, 255, 0.5); }
+  to { text-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.3); }
+}
+
+.user-money {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: var(--white);
+  padding: 15px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+.user-money p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.user-money img.money-icon {
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.filter-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.filter-button.active {
+  background: var(--rouge);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+}
+
+.filter-button:hover {
+  background: rgba(233, 69, 96, 0.7);
+  transform: translateY(-3px);
+}
+
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  padding: 20px;
+}
+
+.model-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.model-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  border-color: var(--cyan);
+}
+
+.canvas {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  pointer-events: none;
+  aspect-ratio: 16/9;
+}
+
+.tags-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.tag {
+  background: var(--rouge);
+  color: var(--white);
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.isEquiped {
+  background: var(--cyan);
+  margin-right: 100px;
+}
+
+.monnaie-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 12px;
+  border-radius: 15px;
+}
+
+.monnaie-amount {
+  font-weight: bold;
+  color: var(--cyan);
+}
+
+.monnaie-boutique {
+  width: 20px;
+  height: 20px;
+}
+
+.model-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--white);
+}
+
+.buy-button {
+  background: var(--rouge);
+  color: var(--white);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.buy-button:hover {
+  background: var(--red-focus);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+}
+
+.buy-button:disabled {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .tags-container {
-    display: flex;
-    width: 100%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  .tags-container .tag {
-    background-color: var(--red);
-    color: var(--white);
-    padding: 5px 10px;
-    font-style: italic;
-    cursor:default;
-    border-radius: 5px;
-    border: 1px solid var(--rouge);
-    margin-right: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease; 
-  }
+.model-card {
+  animation: fadeIn 0.5s ease-out;
+}
 
-  .user-money {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: var(--bleu-bg);
-    color: var(--white);
-    padding: 10px 15px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    font-size: 16px;
-    font-weight: bold;
-  }
+.buy-button:focus {
+  outline: none;
+}
 
-  .user-money p {
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-money img.money-icon {
-    width: 24px;
-    height: 24px;
-    margin-left: 10px;
-  }  
-
-  .tags-container .isEquiped {
-    border: 1px solid var(--cyan);
-  }
-
-  .models-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    padding: 20px;
-  }
-
-  .model-card {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--bleu-bg);
-    border: 2px solid var(--cyan);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .filter-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .filter-button {
-    background-color: var(--bleu);
-    color: var(--white);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  .filter-button.active {
-    background-color: var(--rouge);
-    transform: scale(1.1);
-  }
-
-  .filter-button:hover {
-    background-color: var(--red-focus);
-  }
-
-  .filter-button:focus {
-    outline: none;
-  }
-
-
-
-  .model-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.6);
-  }
-
-  .canvas {
-    width: 100%;
-    height: 300px;
-  }
-
-  .buy-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--white);
-    background-color: var(--rouge);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-    .buy-button:focus {
-        outline: none;
-    }
-
-  .buy-button:hover {
-    background-color: var(--red-focus);
-    transform: scale(1.1);
-  }
-.monnaie-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-left: auto;
-  }
-
-  .monnaie-boutique {
-    width: 20px;
-  }
-
-  /* Animation globale */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+.filter-button:focus {
+  outline: none;
+}

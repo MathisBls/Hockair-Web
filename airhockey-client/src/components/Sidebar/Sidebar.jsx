@@ -84,7 +84,7 @@ const Sidebar = () => {
             <h2 onClick={() => navigate('/profile')}>{truncateText(user.username, 14)}</h2>
             <div className="container-badgeupgrade">
               <div className="badge">Elo: <strong>{user.elo}</strong></div>
-              <button className="upgrade" onClick={() => navigate('/premium')}>{translations.sidebar.upgrade}</button>
+              <button className="upgrade" onClick={() => navigate('/subscriptions')}>{translations.sidebar.upgrade}</button>
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@ const Sidebar = () => {
             <ShopIcon /> {translations.sidebar.shop}
           </p>
         </li>
-        <li onClick={() => navigate('/premium')}>
+        <li onClick={() => navigate('/subscriptions')}>
           <p className="list-side">
             <PremiumIcon /> {translations.sidebar.premiumPlans}
           </p>

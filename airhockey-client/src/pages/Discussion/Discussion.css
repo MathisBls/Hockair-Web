@@ -1,80 +1,109 @@
 .discussion-container {
-    padding: 20px;
-    background: var(--background-black);
-    color: var(--white);
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(135deg, var(--background-black) 0%, var(--bleu) 100%);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+.discussion-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.conversation-list {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 15px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.conversation-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.friend-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+  border: 2px solid var(--cyan);
+}
+
+.conversation-info {
+  flex: 1;
+}
+
+.friend-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--white);
+}
+
+.last-message {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+.unread-count {
+  background: var(--rouge);
+  color: var(--white);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@media (max-width: 600px) {
+  .conversation-list {
+    padding: 10px;
   }
-  
-  .discussion-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--white);
-    margin-bottom: 20px;
-  }
-  
-  .discussion-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .discussion-item {
-    display: flex;
-    align-items: center;
+
+  .conversation-item {
     padding: 15px;
-    margin-bottom: 10px;
-    background: var(--background);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
   }
-  
-  .discussion-item:hover {
-    background: var(--bleu-bg);
-  }
-  
-  .discussion-avatar {
+
+  .friend-avatar {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
     margin-right: 15px;
-    object-fit: cover;
   }
-  
-  .discussion-content {
-    flex: 1;
+
+  .last-message {
+    max-width: 200px;
   }
-  
-  .discussion-name {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--white);
-    margin: 0;
-  }
-  
-  .discussion-message {
-    font-size: 0.9rem;
-    color: var(--grey);
-    margin: 5px 0 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .discussion-message.unread {
-    font-weight: bold;
-    color: var(--white);
-  }
-  
-  .unread-badge {
-    background: var(--rouge);
-    color: var(--white);
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+}

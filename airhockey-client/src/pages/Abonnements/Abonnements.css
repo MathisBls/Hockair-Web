@@ -1,0 +1,126 @@
+.subscriptions-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    padding: 50px 20px;
+    color: #ffffff;
+  }
+
+  .subscriptions-title {
+    text-align: center;
+    margin-bottom: 50px;
+/* border */
+    border: 2px solid #e94560;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 50px auto;
+  }
+
+
+  .subscriptions-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .subscription-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 350px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .subscription-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .hockair-pro {
+    border: 2px solid #4a69bd;
+  }
+
+  .hockair-champion {
+    border: 2px solid #ffa502;
+  }
+
+  .subscription-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .subscription-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .subscription-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e94560;
+  }
+
+  .subscription-target {
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .subscription-advantages {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .subscription-advantages li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+  }
+
+  .subscription-advantages li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #e94560;
+  }
+
+  .subscribe-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background: #e94560;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .subscribe-button:hover {
+    background: #ff6b81;
+  }
+
+  /* focus */
+    .subscribe-button:focus {
+        outline: none;
+    }
+
+  @media (max-width: 768px) {
+    .subscriptions-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .subscription-card {
+      width: 100%;
+      max-width: 350px;
+    }
+  }

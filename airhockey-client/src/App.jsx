@@ -14,10 +14,14 @@ import FriendsList from './pages/Friends/Friends';
 import MessageFriend from './pages/Friends/MessageFriend';
 import Discussion from './pages/Discussion/Discussion';
 import Challenge from './pages/Challenge/Challenge';
+import Classement from './pages/Classement/Classement';
+import Abonnements from './pages/Abonnements/Abonnements';
+import Parametres from './pages/Parametres/Parametres';
 import Footer from './components/Footer/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import ActivateAccount from './pages/ActivateAccount/ActivateAccount';
 // Gameplay
+import BeforePlay from './pages/Gameplay/BeforePlay';
 import Classic from './pages/Gameplay/Classic';
 
 import { LanguageProvider } from '../LanguageContext';
@@ -43,6 +47,11 @@ function App() {
               <Route path="/friends/chat" element={<ProtectedRoute><Discussion /></ProtectedRoute>} />
               <Route path="/friends/chat/:id" element={<ProtectedRoute><MessageFriend /></ProtectedRoute>} />
               <Route path="/challenges" element={<ProtectedRoute><Challenge /></ProtectedRoute>} />
+              <Route path="/leaderboard" element={<ProtectedRoute><Classement /></ProtectedRoute>} />
+              <Route path="/subscriptions" element={<ProtectedRoute><Abonnements /></ProtectedRoute>} />
+              <Route path="/settings" element={<ProtectedRoute><Parametres /></ProtectedRoute>} />
+              <Route path="/play" element={<ProtectedRoute><BeforePlay /></ProtectedRoute>} />
+              <Route path="*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             </Routes>
           </Layout>
         </Router>
