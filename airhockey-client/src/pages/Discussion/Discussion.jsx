@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Discussion.css";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Discussion.css';
 
 const Discussion = () => {
   const [discussions, setDiscussions] = useState([]);
@@ -15,7 +15,7 @@ const Discussion = () => {
           `${import.meta.env.VITE_BACKEND_URL}/api/users/profile`,
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
           }
         );
@@ -24,10 +24,10 @@ const Discussion = () => {
           const data = await response.json();
           setCurrentUserId(data._id);
         } else {
-          console.error("Failed to fetch user profile.");
+          console.error('Failed to fetch user profile.');
         }
       } catch (error) {
-        console.error("Error fetching user profile:", error);
+        console.error('Error fetching user profile:', error);
       }
     };
 
@@ -42,7 +42,7 @@ const Discussion = () => {
           `${import.meta.env.VITE_BACKEND_URL}/api/messages/latest`,
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
           }
         );
@@ -51,10 +51,10 @@ const Discussion = () => {
           const data = await response.json();
           setDiscussions(data);
         } else {
-          console.error("Failed to fetch discussions.");
+          console.error('Failed to fetch discussions.');
         }
       } catch (error) {
-        console.error("Error fetching discussions:", error);
+        console.error('Error fetching discussions:', error);
       }
     };
 
@@ -67,46 +67,51 @@ const Discussion = () => {
   const conversations = [
     {
       id: 1,
-      friendName: "Alice",
-      lastMessage: "On se fait une partie ce soir ?",
-      profilePic: "https://example.com/alice.jpg",
+      friendName: 'Alice',
+      lastMessage: 'On se fait une partie ce soir ?',
+      profilePic: 'https://example.com/alice.jpg',
       unreadCount: 2,
     },
     {
       id: 2,
-      friendName: "Bob",
-      lastMessage: "Bien joué pour ta victoire !",
-      profilePic: "https://example.com/bob.jpg",
+      friendName: 'Bob',
+      lastMessage: 'Bien joué pour ta victoire !',
+      profilePic: 'https://example.com/bob.jpg',
       unreadCount: 0,
     },
     {
       id: 3,
-      friendName: "Charlie",
+      friendName: 'Charlie',
       lastMessage: "J'ai trouvé une nouvelle stratégie",
-      profilePic: "https://example.com/charlie.jpg",
+      profilePic: 'https://example.com/charlie.jpg',
       unreadCount: 5,
     },
     {
       id: 4,
-      friendName: "Diana",
-      lastMessage: "Merci pour les conseils",
-      profilePic: "https://example.com/diana.jpg",
+      friendName: 'Diana',
+      lastMessage: 'Merci pour les conseils',
+      profilePic: 'https://example.com/diana.jpg',
       unreadCount: 0,
     },
   ];
+
   return (
-    <div className="discussion-container">
-      <h1 className="discussion-title">Récentes conversations</h1>
-      <div className="conversation-list">
+    <div className='discussion-container'>
+      <h1 className='discussion-title'>Récentes conversations</h1>
+      <div className='conversation-list'>
         {conversations.map((conv) => (
-          <div key={conv.id} className="conversation-item">
-            <img src={conv.profilePic} alt={conv.friendName} className="friend-avatar" />
-            <div className="conversation-info">
-              <h2 className="friend-name">{conv.friendName}</h2>
-              <p className="last-message">{conv.lastMessage}</p>
+          <div key={conv.id} className='conversation-item'>
+            <img
+              src={conv.profilePic}
+              alt={conv.friendName}
+              className='friend-avatar'
+            />
+            <div className='conversation-info'>
+              <h2 className='friend-name'>{conv.friendName}</h2>
+              <p className='last-message'>{conv.lastMessage}</p>
             </div>
             {conv.unreadCount > 0 && (
-              <span className="unread-count">{conv.unreadCount}</span>
+              <span className='unread-count'>{conv.unreadCount}</span>
             )}
           </div>
         ))}

@@ -9,38 +9,38 @@ const Parametres = () => {
   const [puckColor, setPuckColor] = useState('#ff0000'); // Couleur par défaut
 
   return (
-    <div className="parametres-container">
-      <h1 className="parametres-title">Paramètres</h1>
+    <div className='parametres-container'>
+      <h1 className='parametres-title'>Paramètres</h1>
 
-      <div className="parametre-item">
-        <label className="parametre-label">
+      <div className='parametre-item'>
+        <label className='parametre-label'>
           Ne pas afficher les stats
           <input
-            type="checkbox"
+            type='checkbox'
             checked={!showStats}
             onChange={() => setShowStats(!showStats)}
           />
         </label>
       </div>
 
-      <div className="parametre-item">
-        <label className="parametre-label">
+      <div className='parametre-item'>
+        <label className='parametre-label'>
           Activer les notifications par mail
           <input
-            type="checkbox"
+            type='checkbox'
             checked={emailNotifications}
             onChange={() => setEmailNotifications(!emailNotifications)}
           />
         </label>
       </div>
 
-      <div className="parametre-item">
-        <label className="parametre-label">
+      <div className='parametre-item'>
+        <label className='parametre-label'>
           Volume des effets sonores
           <input
-            type="range"
-            min="0"
-            max="100"
+            type='range'
+            min='0'
+            max='100'
             value={soundVolume}
             onChange={(e) => setSoundVolume(e.target.value)}
           />
@@ -48,11 +48,11 @@ const Parametres = () => {
         </label>
       </div>
 
-      <div className="parametre-item">
-        <label className="parametre-label">
+      <div className='parametre-item'>
+        <label className='parametre-label'>
           Désactiver le son musical du site
           <input
-            type="checkbox"
+            type='checkbox'
             checked={!musicEnabled}
             onChange={() => setMusicEnabled(!musicEnabled)}
           />

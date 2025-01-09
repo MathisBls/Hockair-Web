@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import fr from './fr.json';
+
 import en from './en.json';
+import fr from './fr.json';
 
 const LanguageContext = createContext();
 
@@ -12,11 +13,13 @@ export const LanguageProvider = ({ children }) => {
     if (browserLang.startsWith('fr')) {
       return 'fr'; // Français par défaut pour les régions francophones
     }
+
     return 'en'; // Par défaut anglais
   };
 
   const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem('language');
+
     return savedLanguage || detectBrowserLanguage();
   });
 
@@ -28,7 +31,9 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ translations, changeLanguage, language }}>
+    <LanguageContext.Provider
+      value={{ translations, changeLanguage, language }}
+    >
       {children}
     </LanguageContext.Provider>
   );

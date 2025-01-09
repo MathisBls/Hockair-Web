@@ -15,11 +15,7 @@ const Toast = ({ message, type, duration = 3000 }) => {
 
   const toastClass = `toast toast-${type} ${visible ? 'toast-visible' : 'toast-hidden'}`;
 
-  return (
-    <div className={toastClass}>
-      {message}
-    </div>
-  );
+  return <div className={toastClass}>{message}</div>;
 };
 
 export default Toast;

@@ -17,7 +17,7 @@ const Classement = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(time => (time > 0 ? time - 1 : 0));
+      setTimeLeft((time) => (time > 0 ? time - 1 : 0));
     }, 1000);
 
     return () => clearInterval(timer);
@@ -26,14 +26,15 @@ const Classement = () => {
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
+
     return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div className="classement-container">
-      <h1 className="classement-title">Classement</h1>
-      <div className="league-selector">
-        {leagues.map(league => (
+    <div className='classement-container'>
+      <h1 className='classement-title'>Classement</h1>
+      <div className='league-selector'>
+        {leagues.map((league) => (
           <button
             key={league}
             className={`league-button ${selectedLeague === league ? 'active' : ''}`}
@@ -43,15 +44,13 @@ const Classement = () => {
           </button>
         ))}
       </div>
-      <div className="timer">
-        Temps restant : {formatTime(timeLeft)}
-      </div>
-      <div className="leaderboard">
+      <div className='timer'>Temps restant : {formatTime(timeLeft)}</div>
+      <div className='leaderboard'>
         {leaderboardData.map((player, index) => (
-          <div key={index} className="player-row">
-            <div className="rank">{player.rank}</div>
-            <div className="name">{player.name}</div>
-            <div className="score">{player.score}</div>
+          <div key={index} className='player-row'>
+            <div className='rank'>{player.rank}</div>
+            <div className='name'>{player.name}</div>
+            <div className='score'>{player.score}</div>
           </div>
         ))}
       </div>

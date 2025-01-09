@@ -1,8 +1,10 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useLanguage } from "../../../LanguageContext";
-import "./ActivateAccount.css";
-import { Pages } from "@mui/icons-material";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useLanguage } from '../../../LanguageContext';
+
+import './ActivateAccount.css';
+import { Pages } from '@mui/icons-material';
 
 const ActivateAccount = () => {
   const navigate = useNavigate();
@@ -10,17 +12,19 @@ const ActivateAccount = () => {
   const { translations } = useLanguage();
 
   const handleLoginRedirect = () => {
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
-    <div className="activate-container">
-      <div className="activate-card">
-        <h1 className="activate-title">{translations.page.activateAccount.title}</h1>
-        <p className="activate-message">
+    <div className='activate-container'>
+      <div className='activate-card'>
+        <h1 className='activate-title'>
+          {translations.page.activateAccount.title}
+        </h1>
+        <p className='activate-message'>
           {translations.page.activateAccount.description}
         </p>
-        <button className="activate-button" onClick={handleLoginRedirect}>
+        <button className='activate-button' onClick={handleLoginRedirect}>
           Go to Login
         </button>
       </div>

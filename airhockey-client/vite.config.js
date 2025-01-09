@@ -1,6 +1,8 @@
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  plugins: [react()], // Ajoute le support React
   server: {
     watch: {
       usePolling: true,
@@ -11,6 +13,6 @@ export default defineConfig({
   },
   assetsInclude: ['**/*.gltf', '**/*.glb'],
   optimizeDeps: {
-    include: ['@mui/icons-material']
-  }
+    include: ['@mui/icons-material'],
+  },
 });
