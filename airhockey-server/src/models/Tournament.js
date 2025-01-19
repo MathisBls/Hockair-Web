@@ -9,6 +9,9 @@ const tournamentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  description: {
+    type: String,
+  },
   isPremium: {
     type: Boolean,
     default: false,

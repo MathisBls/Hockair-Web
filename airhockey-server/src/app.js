@@ -102,12 +102,14 @@ import skinRoutes from './routes/skinRoutes.js';
 import friendRoutes from './routes/friendRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import rankRoutes from './routes/rankRoutes.js';
+import tournamentRoutes from './routes/tournamentRoutes.js';
 
 app.use('/api/users', userRoutes);
 app.use('/api/skins', skinRoutes);
 app.use('/api/friends', friendRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/ranks', rankRoutes);
+app.use('/api/tournaments', tournamentRoutes);
 
 app.get('/', (req, res) => {
   res.send('AirHockey API is running');
