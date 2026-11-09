@@ -1,11 +1,15 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
+
+import { isAuthenticated } from '../api/apiClient';
+
+const LOGIN_PATH = '/login';
 
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
+  const location = useLocation();
 
-  if (!token) {
-    return <Navigate to='/login' replace />;
+  if (!isAuthenticated()) {
+    return <Navigate to={LOGIN_PATH} replace state={{ from: location }} />;
   }
 
   return children;

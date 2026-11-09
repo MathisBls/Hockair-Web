@@ -1,0 +1,194 @@
+{
+  "social": {
+    "friends": {
+      "eyebrow": "Community",
+      "title": "Friends",
+      "description": "Find your friends, manage requests and send a challenge.",
+      "messagesAction": "Messages",
+      "tabsLabel": "Friends page sections",
+      "tabs": {
+        "friends": "Friends",
+        "requests": "Requests",
+        "blocked": "Blocked",
+        "add": "Add friend"
+      },
+      "userMeta": "{elo} Elo · Level {level}",
+      "unknownUser": "Unknown player",
+      "filterLabel": "Filter your friends",
+      "filterPlaceholder": "Filter by username",
+      "friendCount": {
+        "one": "{count} friend",
+        "other": "{count} friends"
+      },
+      "requestCount": {
+        "one": "{count} pending request",
+        "other": "{count} pending requests"
+      },
+      "blockedCount": {
+        "one": "{count} blocked player",
+        "other": "{count} blocked players"
+      },
+      "searchResultCount": {
+        "one": "{count} player found",
+        "other": "{count} players found"
+      },
+      "searchLabel": "Search for a player",
+      "searchPlaceholder": "Player username",
+      "searchHint": "Search starts at {count} characters.",
+      "actions": {
+        "message": "Message",
+        "challenge": "Challenge",
+        "more": "More actions for {username}",
+        "remove": "Remove friend",
+        "block": "Block",
+        "unblock": "Unblock",
+        "accept": "Accept",
+        "decline": "Decline",
+        "add": "Add",
+        "retry": "Retry",
+        "cancel": "Cancel"
+      },
+      "badges": {
+        "friend": "Friend",
+        "requestSent": "Request sent",
+        "blocked": "Blocked",
+        "incomingRequest": "Invited you"
+      },
+      "empty": {
+        "friends": {
+          "title": "No friends yet",
+          "description": "Search for a player by username to send them a request.",
+          "action": "Find friends"
+        },
+        "filter": {
+          "title": "No results",
+          "description": "No friend matches “{query}”."
+        },
+        "requests": {
+          "title": "No pending requests",
+          "description": "Friend requests you receive will show up here."
+        },
+        "blocked": {
+          "title": "No blocked players",
+          "description": "Players you block no longer appear in your friends."
+        },
+        "searchIdle": {
+          "title": "Find a player",
+          "description": "Type at least {count} characters to search by username."
+        },
+        "searchNoResult": {
+          "title": "No player found",
+          "description": "No username matches “{query}”."
+        }
+      },
+      "errors": {
+        "load": {
+          "title": "Could not load",
+          "description": "Check your connection and try again."
+        },
+        "search": {
+          "title": "Search failed",
+          "description": "The search service is not responding. Try again in a moment."
+        }
+      },
+      "confirm": {
+        "remove": {
+          "title": "Remove {username}?",
+          "description": "{username} will be removed from your friends. You can send them a new request later.",
+          "confirm": "Remove"
+        },
+        "block": {
+          "title": "Block {username}?",
+          "description": "{username} will no longer appear in your friends. You can unblock them from the Blocked tab.",
+          "confirm": "Block"
+        }
+      },
+      "toasts": {
+        "requestSent": "Request sent to {username}",
+        "requestAlreadySent": "You already sent a request to {username}",
+        "requestFailed": "Could not send the request",
+        "accepted": "{username} is now your friend",
+        "acceptFailed": "Could not accept the request",
+        "declined": "Declined {username}'s request",
+        "declineFailed": "Could not decline the request",
+        "removed": "{username} was removed from your friends",
+        "removeFailed": "Could not remove this friend",
+        "blocked": "{username} was blocked",
+        "blockFailed": "Could not block this player",
+        "unblocked": "{username} was unblocked",
+        "unblockFailed": "Could not unblock this player"
+      }
+    },
+    "messages": {
+      "eyebrow": "Community",
+      "title": "Messages",
+      "description": "Your conversations with friends.",
+      "friendsAction": "Manage friends",
+      "conversationsLabel": "Conversations",
+      "filterLabel": "Search conversations",
+      "filterPlaceholder": "Search",
+      "sections": {
+        "recent": "Recent",
+        "friends": "Start a conversation"
+      },
+      "ownPreview": "You: {content}",
+      "noMessagePreview": "No messages yet",
+      "unreadLabel": "Unread messages",
+      "emptyList": {
+        "title": "No conversations",
+        "description": "Add friends to start chatting.",
+        "action": "Find friends"
+      },
+      "noFilterResult": {
+        "title": "No results",
+        "description": "No conversation matches “{query}”."
+      },
+      "listError": {
+        "title": "Conversations unavailable",
+        "description": "The list could not be loaded.",
+        "action": "Retry"
+      },
+      "selectConversation": {
+        "title": "Select a conversation",
+        "description": "Pick a friend from the list to see your messages."
+      },
+      "conversationNotFound": {
+        "title": "Conversation not found",
+        "description": "This player is not in your friends or conversations.",
+        "action": "Back to messages"
+      },
+      "emptyConversation": {
+        "title": "Start the conversation",
+        "description": "Send a first message to {username}."
+      },
+      "loadError": {
+        "title": "Could not load",
+        "description": "Messages could not be retrieved.",
+        "action": "Retry"
+      },
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "seen": "Seen",
+      "composer": {
+        "label": "Message to {username}",
+        "placeholder": "Message {username}…",
+        "send": "Send",
+        "hint": "Enter to send · Shift + Enter for a new line"
+      },
+      "back": "Back to conversations",
+      "challenge": "Challenge",
+      "deleteMessage": "Delete message",
+      "confirmDelete": {
+        "title": "Delete this message?",
+        "description": "The message will be deleted for you and your friend. This cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Cancel"
+      },
+      "toasts": {
+        "sendFailed": "The message could not be sent",
+        "deleted": "Message deleted",
+        "deleteFailed": "Could not delete the message"
+      }
+    }
+  }
+}

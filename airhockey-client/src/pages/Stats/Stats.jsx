@@ -1,280 +1,415 @@
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {
-  Box,
-  Grid,
-  Paper,
-  Typography,
-  ThemeProvider,
-  createTheme,
-  Slider,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from '@mui/material';
-import { styled } from '@mui/system';
-import React from 'react';
+  Bolt as BoltIcon,
+  InfoOutlined as InfoIcon,
+  LocalFireDepartment as StreakIcon,
+  Percent as PercentIcon,
+  ShowChart as EloIcon,
+  SportsEsports as GamesIcon,
+  History as HistoryIcon,
+} from '@mui/icons-material';
+import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  BarChart,
-  Bar,
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
 } from 'recharts';
 
-// Création d'un thème personnalisé
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#00ffff', // cyan
-    },
-    secondary: {
-      main: '#e94560', // rouge
-    },
-    background: {
-      default: '#121522', // bleu-bg
-      paper: '#16213e', // bleu
-    },
-    text: {
-      primary: '#ffffff', // white
-      secondary: '#00ffff', // cyan
-    },
-  },
-});
+import { useLanguage } from '../../../LanguageContext';
+import BotAvatar from '../../components/BotAvatar/BotAvatar';
+import {
+  Avatar,
+  AvatarSize,
+  Badge,
+  BadgeTone,
+  Button,
+  ButtonSize,
+  ButtonVariant,
+  Card,
+  EmptyState,
+  PageContainer,
+  PageHeader,
+  SegmentedControl,
+  Skeleton,
+  StatTile,
+} from '../../components/ui';
+import { getBeatenBotIds } from '../../game/progress';
+import { useUserProfile } from '../Profile/useUserProfile';
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: theme.palette.text.primary,
-  background: theme.palette.background.paper,
-}));
+import {
+  buildEloHistoryDto,
+  buildRecentMatchesDto,
+  buildNewPlayerResultsByBotDto,
+  buildResultsByBotDto,
+  EloChartRange,
+  getFastestShotDate,
+  SAMPLE_PLAYER_RECORD,
+} from './statsData';
+import {
+  buildBotResultRows,
+  buildEloChartModel,
+  buildKpiTiles,
+  buildRecentMatchRows,
+} from './statsViewModel';
+import './Stats.css';
 
-const ShootingZone = styled(Box)(({ efficiency }) => ({
-  width: '100%',
-  height: '100%',
-  backgroundColor: `rgba(0, 255, 255, ${efficiency / 100})`,
-  border: `1px solid ${theme.palette.primary.main}`,
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    boxShadow: `0 0 15px ${theme.palette.primary.main}`,
-  },
-}));
+const PLAY_PATH = '/play';
+const CHART_Y_DOMAIN = ['auto', 'auto'];
+const CHART_X_MIN_TICK_GAP = 48;
+const CHART_MARGIN = { top: 8, right: 8, bottom: 0, left: 0 };
+const CHART_TICK_COUNT = 5;
+const CHART_Y_AXIS_WIDTH = 44;
+const CHART_LINE_WIDTH = 2;
+const CHART_ACTIVE_DOT = { r: 5, strokeWidth: 2, stroke: 'var(--surface-1)' };
 
-const SpeedArrow = styled(ArrowForwardIcon)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontSize: '3rem',
-  animation: `$pulse 1.5s infinite`,
-  '@keyframes pulse': {
-    '0%': {
-      transform: 'scale(1)',
-    },
-    '50%': {
-      transform: 'scale(1.1)',
-    },
-    '100%': {
-      transform: 'scale(1)',
-    },
-  },
-}));
+const KPI_ICON_BY_ID = {
+  elo: <EloIcon />,
+  games: <GamesIcon />,
+  winRate: <PercentIcon />,
+  bestStreak: <StreakIcon />,
+  fastestShot: <BoltIcon />,
+};
 
-const Stats = () => {
-  const shootingData = [
-    { zone: 'A1', attempts: 50, made: 30 },
-    { zone: 'A2', attempts: 40, made: 28 },
-    { zone: 'A3', attempts: 30, made: 15 },
-    { zone: 'B1', attempts: 20, made: 12 },
-    { zone: 'B2', attempts: 60, made: 45 },
-    { zone: 'B3', attempts: 25, made: 10 },
-    { zone: 'C1', attempts: 15, made: 5 },
-    { zone: 'C2', attempts: 35, made: 20 },
-    { zone: 'C3', attempts: 45, made: 25 },
-  ];
+const RESULT_BADGE_TONE = {
+  win: BadgeTone.SUCCESS,
+  lose: BadgeTone.ACCENT,
+  draw: BadgeTone.NEUTRAL,
+};
 
-  const calculateEfficiency = (made, attempts) => {
-    return attempts > 0 ? (made / attempts) * 100 : 0;
-  };
-
-  const averageGoalSpeed = 95; // km/h
-
-  const exchangeDurationData = [
-    { duration: '0-10s', count: 20 },
-    { duration: '11-20s', count: 35 },
-    { duration: '21-30s', count: 25 },
-    { duration: '31-40s', count: 15 },
-    { duration: '41+s', count: 5 },
-  ];
-
-  const eloHistoryData = [
-    { month: 'Jan', elo: 1000, change: 0 },
-    { month: 'Feb', elo: 1050, change: 50 },
-    { month: 'Mar', elo: 1030, change: -20 },
-    { month: 'Apr', elo: 1080, change: 50 },
-    { month: 'May', elo: 1100, change: 20 },
-    { month: 'Jun', elo: 1150, change: 50 },
-  ];
-
-  const matchStats = {
-    victories: 65,
-    defeats: 30,
-    draws: 5,
-  };
-
-  const totalMatches =
-    matchStats.victories + matchStats.defeats + matchStats.draws;
+const EloTooltip = ({ active, payload }) => {
+  const point = payload?.[0]?.payload;
+  if (!active || !point) {
+    return null;
+  }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1, p: 3, backgroundColor: 'background.default' }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <StyledPaper>
-              <Typography variant='h6'>Zone de tir</Typography>
-              <Grid container spacing={1} sx={{ aspectRatio: '1', mt: 2 }}>
-                {shootingData.map((zone) => (
-                  <Grid item xs={4} key={zone.zone}>
-                    <ShootingZone
-                      efficiency={calculateEfficiency(zone.made, zone.attempts)}
-                    >
-                      <Typography variant='body2'>{zone.zone}</Typography>
-                      <Typography variant='body2'>
-                        {calculateEfficiency(zone.made, zone.attempts).toFixed(
-                          1
-                        )}
-                        %
-                      </Typography>
-                    </ShootingZone>
-                  </Grid>
-                ))}
-              </Grid>
-            </StyledPaper>
-          </Grid>
+    <div className='stats-chart-tooltip'>
+      <span className='stats-chart-tooltip-date'>{point.dateLabel}</span>
+      <span className='stats-chart-tooltip-value'>{point.eloLabel}</span>
+    </div>
+  );
+};
 
-          <Grid item xs={12} md={6}>
-            <StyledPaper>
-              <Typography variant='h6'>Vitesse moyenne des buts</Typography>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  my: 2,
-                }}
-              >
-                <SpeedArrow />
-                <Typography variant='h4' sx={{ ml: 2, color: 'primary.main' }}>
-                  {averageGoalSpeed} km/h
-                </Typography>
-              </Box>
-              <Slider
-                value={averageGoalSpeed}
-                min={60}
-                max={140}
-                step={1}
-                marks={[
-                  { value: 60, label: '60 km/h' },
-                  { value: 100, label: '100 km/h' },
-                  { value: 140, label: '140 km/h' },
-                ]}
-                sx={{
-                  '& .MuiSlider-thumb': {
-                    width: 0,
-                    height: 0,
-                  },
-                  '& .MuiSlider-track': {
-                    backgroundColor: 'primary.main',
-                    border: 'none',
-                  },
-                }}
+const Stats = () => {
+  const { translations, language } = useLanguage();
+  const navigate = useNavigate();
+  const statsTexts = translations.competitive.stats;
+  const { profile, isLoading: isProfileLoading, error } = useUserProfile();
+  const [chartRange, setChartRange] = useState(EloChartRange.QUARTER);
+
+  const playerRecord = useMemo(
+    () =>
+      profile
+        ? {
+            elo: profile.elo ?? SAMPLE_PLAYER_RECORD.elo,
+            victories: profile.victories ?? 0,
+            defeats: profile.defeats ?? 0,
+          }
+        : SAMPLE_PLAYER_RECORD,
+    [profile]
+  );
+
+  const hasMatchHistory =
+    !profile || playerRecord.victories + playerRecord.defeats > 0;
+
+  const statsSource = useMemo(() => {
+    const beatenBotIds = getBeatenBotIds();
+
+    const resultsByBot = buildResultsByBotDto(beatenBotIds);
+
+    return hasMatchHistory
+      ? {
+          beatenBotIds,
+          eloHistory: buildEloHistoryDto(playerRecord.elo),
+          recentMatches: buildRecentMatchesDto({ resultsByBot }),
+          resultsByBot,
+          fastestShotDate: getFastestShotDate(),
+        }
+      : {
+          beatenBotIds,
+          eloHistory: [],
+          recentMatches: [],
+          resultsByBot: buildNewPlayerResultsByBotDto(beatenBotIds),
+          fastestShotDate: null,
+        };
+  }, [playerRecord.elo, hasMatchHistory]);
+
+  const viewModel = useMemo(() => {
+    const formattingContext = { language, translations };
+
+    return {
+      kpiTiles: buildKpiTiles({
+        playerRecord,
+        eloHistory: statsSource.eloHistory,
+        fastestShotDate: statsSource.fastestShotDate,
+        hasMatchHistory,
+        ...formattingContext,
+      }),
+      eloChart: buildEloChartModel({
+        eloHistory: statsSource.eloHistory,
+        chartRange,
+        ...formattingContext,
+      }),
+      chartRangeOptions: Object.values(EloChartRange).map((range) => ({
+        value: range,
+        label: statsTexts.eloChart.periods[range],
+      })),
+      botRows: buildBotResultRows({
+        resultsByBot: statsSource.resultsByBot,
+        beatenBotIds: statsSource.beatenBotIds,
+        ...formattingContext,
+      }),
+      recentMatchRows: buildRecentMatchRows({
+        recentMatches: statsSource.recentMatches,
+        ...formattingContext,
+      }),
+      hasRecentMatches: statsSource.recentMatches.length > 0,
+      noticeLabel: error
+        ? statsTexts.errorDescription
+        : statsTexts.sampleNotice,
+      hasNotice: Boolean(error) || hasMatchHistory,
+    };
+  }, [
+    playerRecord,
+    statsSource,
+    chartRange,
+    language,
+    translations,
+    statsTexts,
+    error,
+    hasMatchHistory,
+  ]);
+
+  return (
+    <PageContainer className='stats-page'>
+      <PageHeader
+        eyebrow={statsTexts.eyebrow}
+        title={statsTexts.title}
+        description={statsTexts.description}
+        actions={
+          <Button onClick={() => navigate(PLAY_PATH)}>
+            {statsTexts.recent.playNow}
+          </Button>
+        }
+      />
+
+      {viewModel.hasNotice && (
+        <p className='stats-notice'>
+          <InfoIcon aria-hidden='true' />
+          {viewModel.noticeLabel}
+        </p>
+      )}
+
+      <section className='stats-kpis' aria-busy={isProfileLoading}>
+        {viewModel.kpiTiles.map((tile) => (
+          <StatTile
+            key={tile.id}
+            icon={KPI_ICON_BY_ID[tile.id]}
+            label={tile.label}
+            value={
+              isProfileLoading ? (
+                <Skeleton width='5rem' height='2rem' />
+              ) : (
+                tile.value
+              )
+            }
+            detail={tile.detail}
+          />
+        ))}
+      </section>
+
+      <div className='stats-grid'>
+        <Card
+          className='stats-elo-card'
+          title={statsTexts.eloChart.title}
+          subtitle={viewModel.eloChart.summaryLabel}
+          action={
+            viewModel.eloChart.hasPoints && (
+              <SegmentedControl
+                options={viewModel.chartRangeOptions}
+                value={chartRange}
+                onChange={setChartRange}
+                ariaLabel={statsTexts.eloChart.periodLabel}
               />
-            </StyledPaper>
-          </Grid>
+            )
+          }
+        >
+          <div className='stats-elo-chart'>
+            {isProfileLoading && <Skeleton height='100%' />}
+            {!isProfileLoading && !viewModel.eloChart.hasPoints && (
+              <EmptyState
+                icon={<EloIcon />}
+                title={statsTexts.eloChart.emptyTitle}
+                description={statsTexts.eloChart.emptyDescription}
+              />
+            )}
+            {!isProfileLoading && viewModel.eloChart.hasPoints && (
+              <ResponsiveContainer width='100%' height='100%'>
+                <LineChart
+                  data={viewModel.eloChart.points}
+                  margin={CHART_MARGIN}
+                >
+                  <CartesianGrid
+                    vertical={false}
+                    stroke='var(--border-subtle)'
+                  />
+                  <XAxis
+                    dataKey='timestamp'
+                    type='number'
+                    scale='time'
+                    domain={['dataMin', 'dataMax']}
+                    tickFormatter={viewModel.eloChart.formatTick}
+                    minTickGap={CHART_X_MIN_TICK_GAP}
+                    axisLine={{ stroke: 'var(--border-default)' }}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    domain={CHART_Y_DOMAIN}
+                    tickFormatter={viewModel.eloChart.formatValueTick}
+                    tickCount={CHART_TICK_COUNT}
+                    width={CHART_Y_AXIS_WIDTH}
+                    axisLine={false}
+                    tickLine={false}
+                    allowDecimals={false}
+                  />
+                  <Tooltip
+                    content={<EloTooltip />}
+                    cursor={{ stroke: 'var(--border-strong)' }}
+                    isAnimationActive={false}
+                  />
+                  <Line
+                    type='monotone'
+                    dataKey='elo'
+                    stroke='var(--accent)'
+                    strokeWidth={CHART_LINE_WIDTH}
+                    dot={false}
+                    activeDot={{ ...CHART_ACTIVE_DOT, fill: 'var(--accent)' }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+        </Card>
 
-          <Grid item xs={12} md={6}>
-            <StyledPaper>
-              <Typography variant='h6'>Durée des échanges</Typography>
-              <TableContainer
-                component={Paper}
-                sx={{ mt: 2, backgroundColor: 'background.paper' }}
-              >
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Durée</TableCell>
-                      <TableCell align='right'>Nombre</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {exchangeDurationData.map((row) => (
-                      <TableRow key={row.duration}>
-                        <TableCell component='th' scope='row'>
-                          {row.duration}
-                        </TableCell>
-                        <TableCell align='right'>{row.count}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </StyledPaper>
-          </Grid>
+        <Card
+          className='stats-bots-card'
+          title={statsTexts.byBot.title}
+          subtitle={statsTexts.byBot.subtitle}
+        >
+          <ul className='stats-bot-list'>
+            {viewModel.botRows.map((row) => (
+              <li key={row.botId} className='stats-bot-row'>
+                <BotAvatar
+                  color={row.bot.color}
+                  accent={row.bot.accent}
+                  mood={row.bot.mood}
+                  size='small'
+                />
+                <div className='stats-bot-body'>
+                  <div className='stats-bot-heading'>
+                    <span className='stats-bot-name'>{row.name}</span>
+                    <span className='stats-bot-tier'>
+                      {row.tierLabel} · {row.ratingLabel}
+                    </span>
+                    {row.isBeaten && (
+                      <Badge tone={BadgeTone.SUCCESS}>
+                        {statsTexts.byBot.beaten}
+                      </Badge>
+                    )}
+                  </div>
+                  <div
+                    className='stats-bot-bar'
+                    title={row.winRateLabel}
+                    aria-hidden='true'
+                  >
+                    <span
+                      className='stats-bot-bar-fill'
+                      style={{ transform: `scaleX(${row.winRatio})` }}
+                    />
+                  </div>
+                  <div className='stats-bot-figures'>
+                    <span>{row.recordLabel}</span>
+                    <span>{row.winRateLabel}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
 
-          <Grid item xs={12} md={6}>
-            <StyledPaper>
-              <Typography variant='h6'>Évolution de l&apos;ELO</Typography>
-              <Box sx={{ height: 300, mt: 2 }}>
-                <ResponsiveContainer width='100%' height='100%'>
-                  <BarChart data={eloHistoryData}>
-                    <CartesianGrid strokeDasharray='3 3' />
-                    <XAxis dataKey='month' />
-                    <YAxis />
-                    <Tooltip
-                      formatter={(value, name, props) => {
-                        if (name === 'elo') return [value, 'ELO'];
-                        if (name === 'change')
-                          return [
-                            value > 0 ? `+${value}` : value,
-                            'Changement',
-                          ];
-                      }}
+      <Card
+        className='stats-matches-card'
+        title={statsTexts.recent.title}
+        subtitle={statsTexts.recent.subtitle}
+        isPadded={false}
+      >
+        {viewModel.hasRecentMatches ? (
+          <ul className='stats-match-list'>
+            {viewModel.recentMatchRows.map((row) => (
+              <li key={row.matchId} className='stats-match-row'>
+                <span className='stats-match-result'>
+                  <Badge tone={RESULT_BADGE_TONE[row.result]}>
+                    {row.resultLabel}
+                  </Badge>
+                </span>
+                <div className='stats-match-opponent'>
+                  {row.bot ? (
+                    <BotAvatar
+                      color={row.bot.color}
+                      accent={row.bot.accent}
+                      mood={row.bot.mood}
+                      size='small'
                     />
-                    <Bar dataKey='elo' fill='#00ffff' />
-                    <Bar
-                      dataKey='change'
-                      fill={({ change }) =>
-                        change > 0 ? '#4caf50' : '#f44336'
-                      }
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              </Box>
-            </StyledPaper>
-          </Grid>
-          <Grid item xs={12}>
-            <StyledPaper>
-              <Typography variant='h6'>Résultats des matchs</Typography>
-              <Box
-                sx={{ display: 'flex', justifyContent: 'space-around', mt: 2 }}
+                  ) : (
+                    <Avatar name={row.opponentName} size={AvatarSize.MEDIUM} />
+                  )}
+                  <div className='stats-match-opponent-text'>
+                    <span className='stats-match-opponent-name'>
+                      {row.opponentName}
+                    </span>
+                    <span className='stats-match-meta'>
+                      {row.opponentKindLabel} · {row.opponentEloLabel}
+                    </span>
+                  </div>
+                </div>
+                <span className='stats-match-score'>{row.scoreLabel}</span>
+                <span
+                  className={`stats-match-elo ${row.isEloGain ? 'stats-match-elo-gain' : 'stats-match-elo-loss'}`}
+                >
+                  {row.eloChangeLabel}
+                </span>
+                <span className='stats-match-time'>
+                  <span>{row.playedAtLabel}</span>
+                  <span className='stats-match-duration'>
+                    {row.durationLabel}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <EmptyState
+            icon={<HistoryIcon />}
+            title={statsTexts.recent.emptyTitle}
+            description={statsTexts.recent.emptyDescription}
+            action={
+              <Button
+                variant={ButtonVariant.SECONDARY}
+                size={ButtonSize.SMALL}
+                onClick={() => navigate(PLAY_PATH)}
               >
-                {Object.entries(matchStats).map(([key, value]) => (
-                  <Box key={key} sx={{ textAlign: 'center', flex: 1 }}>
-                    <Typography variant='h4' sx={{ color: 'primary.main' }}>
-                      {((value / totalMatches) * 100).toFixed(1)}%
-                    </Typography>
-                    <Typography variant='body1'>
-                      {key.charAt(0).toUpperCase() + key.slice(1)}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </StyledPaper>
-          </Grid>
-        </Grid>
-      </Box>
-    </ThemeProvider>
+                {statsTexts.recent.playNow}
+              </Button>
+            }
+          />
+        )}
+      </Card>
+    </PageContainer>
   );
 };
 

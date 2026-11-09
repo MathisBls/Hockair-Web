@@ -1,64 +1,85 @@
-@import url('../../vars.css');
+@import url('../../styles/tokens.css');
 
-.choix-langue-container {
+.language-options {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.language-option {
+  display: flex;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    var(--background-black),
-    var(--background)
-  );
-  color: var(--white);
-  text-align: center;
-}
-
-.choix-langue-container .content {
-  text-align: center;
-}
-
-.choix-langue-container .content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-}
-
-.choix-langue-container .buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.choix-langue-container .buttons button {
-  background-color: var(--bleu);
-  color: var(--white);
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--surface-1);
+  border: 0.0625rem solid var(--border-default);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font: inherit;
+  text-align: left;
   cursor: pointer;
   transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
 }
 
-.choix-langue-container .buttons button:hover {
-  background-color: var(--red-focus);
-  transform: scale(1.1);
+.language-option:hover {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
 }
 
-.choix-langue-container .fade-in {
-  animation: fadeIn 1s ease-in-out;
+.language-option:focus-visible {
+  outline: 0.125rem solid var(--accent);
+  outline-offset: 0.125rem;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.language-option-selected,
+.language-option-selected:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+.language-option-code {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-3);
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.language-option-selected .language-option-code {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.language-option-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.language-option-name {
+  font-size: var(--text-md);
+  font-weight: var(--weight-semibold);
+}
+
+.language-option-region {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.language-option-check {
+  flex-shrink: 0;
+  color: var(--accent);
 }

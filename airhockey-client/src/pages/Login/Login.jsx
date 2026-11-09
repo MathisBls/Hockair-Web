@@ -1,96 +1,170 @@
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import SportsHockeyOutlinedIcon from '@mui/icons-material/SportsHockeyOutlined';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useLanguage } from '../../../LanguageContext';
-import HeaderLogin from '../../components/HeaderLogin/HeaderLogin';
-import './Login.css';
+import { apiRequest, HttpMethod, storeAuthToken } from '../../api/apiClient';
+import {
+  Button,
+  ButtonSize,
+  ButtonVariant,
+  TextField,
+} from '../../components/ui';
+import AuthAlert from '../Auth/AuthAlert';
+import AuthLayout from '../Auth/AuthLayout';
+import { getRequestErrorKey, HttpStatus } from '../Auth/authRequestErrors';
+import {
+  AuthErrorKey,
+  AuthField,
+  hasFieldErrors,
+  validateLoginForm,
+} from '../Auth/authValidation';
+import PasswordField from '../Auth/PasswordField';
+
+const HOME_PATH = '/';
+const GUEST_PLAY_PATH = '/play';
+
+const INITIAL_LOGIN_FORM = Object.freeze({
+  [AuthField.EMAIL]: '',
+  [AuthField.PASSWORD]: '',
+});
+
+const LOGIN_ERROR_KEY_BY_STATUS = Object.freeze({
+  [HttpStatus.UNAUTHORIZED]: AuthErrorKey.INVALID_CREDENTIALS,
+});
+
+const buildRedirectPath = (locationState) => {
+  const requestedLocation = locationState?.from;
+
+  return requestedLocation
+    ? `${requestedLocation.pathname}${requestedLocation.search ?? ''}`
+    : HOME_PATH;
+};
 
 const Login = () => {
   const { translations } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
+  const [formValues, setFormValues] = useState(INITIAL_LOGIN_FORM);
+  const [fieldErrorKeys, setFieldErrorKeys] = useState({});
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [requestErrorKey, setRequestErrorKey] = useState(null);
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [id]: value }));
-  };
+  const authTranslations = translations.page.auth;
+  const loginTranslations = authTranslations.login;
+  const errorTranslations = authTranslations.errors;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+  const emailError = errorTranslations[fieldErrorKeys[AuthField.EMAIL]] ?? null;
+  const passwordError =
+    errorTranslations[fieldErrorKeys[AuthField.PASSWORD]] ?? null;
+  const requestError = errorTranslations[requestErrorKey] ?? null;
 
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      const data = await response.json();
-      if (response.ok) {
-        // Stocker le token JWT dans le localStorage
-        localStorage.setItem('token', data.token);
-
-        navigate('/');
-      } else {
-        setError(data.message || translations.errors.genericError);
-      }
-    } catch (err) {
-      setError(translations.errors.serverError);
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    const nextFormValues = { ...formValues, [name]: value };
+    setFormValues(nextFormValues);
+    setRequestErrorKey(null);
+    if (hasAttemptedSubmit) {
+      setFieldErrorKeys(validateLoginForm(nextFormValues));
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setHasAttemptedSubmit(true);
+    const nextFieldErrorKeys = validateLoginForm(formValues);
+    setFieldErrorKeys(nextFieldErrorKeys);
+    if (hasFieldErrors(nextFieldErrorKeys)) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setRequestErrorKey(null);
+    try {
+      const { token } = await apiRequest('/api/users/login', {
+        method: HttpMethod.POST,
+        body: {
+          email: formValues[AuthField.EMAIL].trim(),
+          password: formValues[AuthField.PASSWORD],
+        },
+      });
+      storeAuthToken(token);
+      navigate(buildRedirectPath(location.state), { replace: true });
+    } catch (error) {
+      setRequestErrorKey(getRequestErrorKey(error, LOGIN_ERROR_KEY_BY_STATUS));
+      setIsSubmitting(false);
+    }
+  };
+
+  const navigateToGuestPlay = () => navigate(GUEST_PLAY_PATH);
+
   return (
-    <div className='login-container'>
-      <HeaderLogin />
-      <div className='login-content'>
-        <div className='login-card'>
-          <h1>{translations.page.login.title}</h1>
-          <p>{translations.page.login.description}</p>
-          {error && <p className='error-message'>{error}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className='form-group'>
-              <label htmlFor='email'>{translations.page.login.email}</label>
-              <input
-                type='email'
-                id='email'
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder={translations.page.login.placeholder.email}
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='password'>
-                {translations.page.login.password}
-              </label>
-              <input
-                type='password'
-                id='password'
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder={translations.page.login.placeholder.password}
-              />
-            </div>
-            <button type='submit' className='btn-login'>
-              {translations.page.login.button}
-            </button>
-          </form>
-          <div className='login-footer'>
-            <p>
-              {translations.page.login.dontHaveAccount}{' '}
-              <a href='/register'>{translations.page.login.signupRedirect}</a>
-            </p>
-          </div>
-        </div>
+    <AuthLayout
+      eyebrow={loginTranslations.eyebrow}
+      title={loginTranslations.title}
+      description={loginTranslations.description}
+    >
+      <form className='auth-form' onSubmit={handleSubmit} noValidate>
+        <TextField
+          label={loginTranslations.emailLabel}
+          name={AuthField.EMAIL}
+          type='email'
+          autoComplete='email'
+          inputMode='email'
+          placeholder={loginTranslations.emailPlaceholder}
+          icon={<MailOutlineIcon fontSize='small' />}
+          value={formValues[AuthField.EMAIL]}
+          onChange={handleFieldChange}
+          error={emailError}
+          autoFocus
+        />
+        <PasswordField
+          label={loginTranslations.passwordLabel}
+          name={AuthField.PASSWORD}
+          autoComplete='current-password'
+          placeholder={loginTranslations.passwordPlaceholder}
+          value={formValues[AuthField.PASSWORD]}
+          onChange={handleFieldChange}
+          error={passwordError}
+        />
+
+        {requestError && <AuthAlert>{requestError}</AuthAlert>}
+
+        <Button
+          type='submit'
+          size={ButtonSize.LARGE}
+          isFullWidth
+          isLoading={isSubmitting}
+        >
+          {loginTranslations.submit}
+        </Button>
+      </form>
+
+      <p className='auth-switch'>
+        {loginTranslations.noAccount}{' '}
+        <Link to='/register' className='auth-link'>
+          {loginTranslations.registerLink}
+        </Link>
+      </p>
+
+      <div className='auth-divider'>{loginTranslations.separator}</div>
+
+      <div className='auth-actions'>
+        <Button
+          variant={ButtonVariant.SECONDARY}
+          size={ButtonSize.LARGE}
+          icon={<SportsHockeyOutlinedIcon />}
+          isFullWidth
+          onClick={navigateToGuestPlay}
+        >
+          {loginTranslations.guestLink}
+        </Button>
+        <p className='auth-hint'>{loginTranslations.guestHint}</p>
       </div>
-    </div>
+    </AuthLayout>
   );
 };
 

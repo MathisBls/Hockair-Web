@@ -16,13 +16,13 @@ const router = express.Router();
 
 router.post("/send", authenticateToken, sendMessage);
 
+router.get("/latest", authenticateToken, getLatestMessages);
+
 router.get("/:friendId", authenticateToken, getMessages);
 
 router.put("/read", authenticateToken, markAsRead);
 
 router.delete("/:messageId", authenticateToken, deleteMessage);
-
-router.get("/latest", authenticateToken, getLatestMessages);
 
 router.get("/", authenticateToken, getChatList);
 

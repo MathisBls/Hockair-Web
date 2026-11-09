@@ -144,7 +144,7 @@ export const joinTournament = async (req, res) => {
 
 export const getTournamentParticipants = async (req, res) => {
   try {
-    const tournament = await Tournament.findById(req.params.tournamentId).populate('participants', 'name email');
+    const tournament = await Tournament.findById(req.params.tournamentId).populate('participants', 'username email');
     if (!tournament) return res.status(404).json({ message: 'Tournament not found' });
 
     res.status(200).json(tournament.participants);

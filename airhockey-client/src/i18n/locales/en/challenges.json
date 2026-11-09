@@ -1,0 +1,118 @@
+{
+  "page": {
+    "challenges": {
+      "eyebrow": "Challenges",
+      "title": "Challenges",
+      "description": "New goals every day and every week. Progress updates from your arcade runs and your wins against the bots.",
+      "openArcade": "Open the arcade",
+      "tabs": {
+        "daily": "Daily",
+        "weekly": "Weekly"
+      },
+      "summary": {
+        "daily": "Daily challenges",
+        "weekly": "Weekly challenges",
+        "coins": "Coins claimed",
+        "outOf": "{count} / {total}",
+        "coinsDetail": {
+          "one": "From the current challenges",
+          "other": "From the current challenges"
+        }
+      },
+      "resetsIn": "Resets in {duration}",
+      "duration": {
+        "days": {
+          "one": "{count} day",
+          "other": "{count} days"
+        },
+        "hours": {
+          "one": "{count} h",
+          "other": "{count} h"
+        },
+        "minutes": {
+          "one": "{count} min",
+          "other": "{count} min"
+        }
+      },
+      "scope": {
+        "daily": "Today",
+        "weekly": "This week",
+        "allTime": "Total progress"
+      },
+      "tiers": {
+        "standard": "Standard",
+        "hard": "Hard"
+      },
+      "titles": {
+        "daily-target-best": {
+          "one": "Score {target} point in a single Target Rush run",
+          "other": "Score {target} points in a single Target Rush run"
+        },
+        "daily-goalie-best": {
+          "one": "Make {target} save in a single Goalie Reflex run",
+          "other": "Make {target} saves in a single Goalie Reflex run"
+        },
+        "daily-target-total": {
+          "one": "Collect {target} Target Rush point today",
+          "other": "Collect {target} Target Rush points today"
+        },
+        "daily-goalie-total": {
+          "one": "Make {target} Goalie Reflex save today",
+          "other": "Make {target} Goalie Reflex saves today"
+        },
+        "daily-runs": {
+          "one": "Play {target} arcade run",
+          "other": "Play {target} arcade runs"
+        },
+        "daily-bank-runs": {
+          "one": "Attempt {target} Bank Shot level",
+          "other": "Attempt {target} Bank Shot levels"
+        },
+        "weekly-bots": {
+          "one": "Beat {target} different bot",
+          "other": "Beat {target} different bots"
+        },
+        "weekly-stars": {
+          "one": "Collect {target} Bank Shot star",
+          "other": "Collect {target} Bank Shot stars"
+        },
+        "weekly-runs": {
+          "one": "Play {target} arcade run this week",
+          "other": "Play {target} arcade runs this week"
+        },
+        "weekly-target-best": {
+          "one": "Reach {target} point in Target Rush",
+          "other": "Reach {target} points in Target Rush"
+        },
+        "weekly-goalie-best": {
+          "one": "Reach {target} save in Goalie Reflex",
+          "other": "Reach {target} saves in Goalie Reflex"
+        }
+      },
+      "progress": "{current} / {target}",
+      "reward": {
+        "coins": {
+          "one": "{value} coin",
+          "other": "{value} coins"
+        },
+        "xp": "{value} XP"
+      },
+      "status": {
+        "inProgress": "In progress",
+        "completed": "Completed",
+        "claimed": "Claimed"
+      },
+      "claim": "Claim",
+      "play": "Play",
+      "error": {
+        "title": "Challenges couldn't be loaded",
+        "description": "Check your connection and try again.",
+        "retry": "Try again"
+      },
+      "empty": {
+        "title": "No challenges right now",
+        "description": "New challenges arrive at the next reset."
+      }
+    }
+  }
+}

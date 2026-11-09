@@ -1,0 +1,130 @@
+{
+  "page": {
+    "settings": {
+      "eyebrow": "Preferences",
+      "title": "Settings",
+      "description": "Manage your account, game preferences and the data stored on this device.",
+      "navAria": "Settings sections",
+      "savedLocally": "Saved on this device",
+      "sections": {
+        "account": {
+          "label": "Account",
+          "description": "Information linked to your Hockair account."
+        },
+        "gameplay": {
+          "label": "Gameplay",
+          "description": "Your defaults for bot matches. The lobby picks them up automatically."
+        },
+        "audio": {
+          "label": "Audio",
+          "description": "Sounds played during matches."
+        },
+        "display": {
+          "label": "Display & language",
+          "description": "The interface language."
+        },
+        "privacy": {
+          "label": "Privacy",
+          "description": "What Hockair stores locally in your browser."
+        },
+        "danger": {
+          "label": "Danger zone",
+          "description": "Irreversible actions on your local data."
+        }
+      },
+      "account": {
+        "username": "Username",
+        "email": "Email address",
+        "memberSince": "Member since",
+        "level": "Level",
+        "elo": "ELO",
+        "plan": "Plan",
+        "coins": "Coins",
+        "plans": {
+          "free": "Free",
+          "premium": "Premium",
+          "pro": "Pro"
+        },
+        "levelValue": "Level {level}",
+        "editProfile": "Edit profile",
+        "managePlan": "Manage plan",
+        "logout": "Log out",
+        "logoutDescription": "You will be redirected to the login page.",
+        "errorTitle": "Unable to load your account",
+        "errorDescription": "Check your connection and try again.",
+        "retry": "Try again"
+      },
+      "gameplay": {
+        "malletSkin": "Default mallet",
+        "malletSkinHint": "The color of your mallet in matches.",
+        "tableTheme": "Default table",
+        "tableThemeHint": "The look of the table and arena.",
+        "goalTarget": "Goals to win",
+        "goalTargetHint": "The first player to reach this score wins the match.",
+        "timeLimit": "Time limit",
+        "timeLimitHint": "When time runs out, the higher score wins.",
+        "goals": {
+          "one": "{count} goal",
+          "other": "{count} goals"
+        },
+        "unlimited": "Unlimited",
+        "minutes": "{minutes} min",
+        "skins": {
+          "cyan": "Cyan",
+          "red": "Red",
+          "lime": "Lime",
+          "violet": "Violet",
+          "gold": "Gold"
+        },
+        "tables": {
+          "neon": "Neon",
+          "ice": "Ice",
+          "sunset": "Sunset"
+        },
+        "saved": "Preferences saved"
+      },
+      "audio": {
+        "soundEffects": "Sound effects",
+        "soundEffectsHint": "Hits, goals, countdown.",
+        "testSound": "Test sound",
+        "testSoundHint": "Plays a goal sound to check your volume."
+      },
+      "display": {
+        "language": "Language",
+        "languageHint": "Applies immediately to the whole interface.",
+        "languages": {
+          "fr": "Français",
+          "en": "English"
+        }
+      },
+      "privacy": {
+        "intro": "This data stays in your browser and is never sent to our servers.",
+        "items": {
+          "progress": "Progress against bots",
+          "matchSettings": "Match preferences",
+          "audio": "Audio preference",
+          "language": "Interface language",
+          "session": "Login session"
+        },
+        "beatenBots": {
+          "one": "{count} of {total} bots beaten",
+          "other": "{count} of {total} bots beaten"
+        },
+        "soundOn": "Sound on",
+        "soundOff": "Sound muted",
+        "sessionActive": "Signed in on this device",
+        "accountData": "Your account data (profile, ranked matches, purchases) is managed on our servers."
+      },
+      "danger": {
+        "resetProgress": "Reset local progress",
+        "resetProgressHint": "Clears beaten bots and restores default match preferences. Your account is not affected.",
+        "resetAction": "Reset",
+        "confirmTitle": "Reset progress?",
+        "confirmDescription": "Beaten bots and your match preferences will be erased from this device. This cannot be undone.",
+        "confirmCancel": "Cancel",
+        "confirmSubmit": "Yes, reset",
+        "resetDone": "Local progress reset"
+      }
+    }
+  }
+}

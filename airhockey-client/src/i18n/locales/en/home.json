@@ -1,0 +1,236 @@
+{
+  "page": {
+    "home": {
+      "greeting": {
+        "morning": "Good morning, {username}",
+        "afternoon": "Good afternoon, {username}",
+        "evening": "Good evening, {username}",
+        "fallback": "Welcome back",
+        "guestTitle": "Welcome to Hockair",
+        "guestDescription": "The competitive air hockey platform. Play bots, sharpen your reflexes in the arcade and climb the global ladder.",
+        "memberDescription": "Here is what is happening on Hockair today.",
+        "signUp": "Create a free account",
+        "logIn": "Log in",
+        "viewStats": "View my stats",
+        "profileError": "We could not load your profile.",
+        "retry": "Retry"
+      },
+      "stats": {
+        "elo": "Elo rating",
+        "record": "Record",
+        "recordValue": "{victories}W · {defeats}L",
+        "winRate": "Win rate",
+        "winRateValue": "{percent}%",
+        "noGames": "No games yet",
+        "level": "Level",
+        "xp": "{xp} XP"
+      },
+      "hero": {
+        "eyebrow": "Play now",
+        "title": "Face the computer",
+        "description": "Five bots, from sleepy beginner to ruthless master. First to 5 goals, no time limit.",
+        "play": "Play",
+        "quickPlayTitle": "Quick match by difficulty",
+        "quickPlayAriaLabel": "Start a quick match against {bot}",
+        "rating": "Elo {rating}",
+        "tiers": {
+          "beginner": "Beginner",
+          "intermediate": "Intermediate",
+          "advanced": "Advanced",
+          "master": "Master"
+        }
+      },
+      "ladder": {
+        "title": "Bot ladder",
+        "subtitle": "Beat every bot to complete the ladder.",
+        "progress": {
+          "one": "{count} of {total} bot beaten",
+          "other": "{count} of {total} bots beaten"
+        },
+        "beaten": "Beaten",
+        "nextTarget": "Next target",
+        "toBeat": "To beat",
+        "challenge": "Challenge",
+        "rematch": "Rematch",
+        "completeTitle": "Ladder complete",
+        "completeDescription": "Every bot is beaten. Time to test yourself in a tournament."
+      },
+      "arcade": {
+        "title": "Arcade",
+        "subtitle": "Short skill drills, perfect between two matches.",
+        "open": "Open the arcade",
+        "games": {
+          "target-rush": {
+            "name": "Target Rush",
+            "description": "Hit as many targets as you can before time runs out."
+          },
+          "goalie-reflex": {
+            "name": "Goalie Reflex",
+            "description": "Keep your goal clean against faster and faster shots."
+          },
+          "bank-shot": {
+            "name": "Bank Shot",
+            "description": "Score using the rails. Every bounce counts."
+          }
+        }
+      },
+      "challenge": {
+        "eyebrow": "Daily challenge",
+        "resetsIn": {
+          "one": "Resets in {count} hour",
+          "other": "Resets in {count} hours"
+        },
+        "resetsSoon": "Resets in less than an hour",
+        "reward": "Reward",
+        "coins": {
+          "one": "{count} coin",
+          "other": "{count} coins"
+        },
+        "xp": {
+          "one": "{count} XP",
+          "other": "{count} XP"
+        },
+        "cta": "View challenges",
+        "items": {
+          "cleanSheet": {
+            "title": "Clean sheet",
+            "description": {
+              "one": "Win a match without conceding a single goal.",
+              "other": "Win a match without conceding a single goal."
+            }
+          },
+          "speedDemon": {
+            "title": "Speed demon",
+            "description": {
+              "one": "Score {count} goal faster than 40 km/h.",
+              "other": "Score {count} goals faster than 40 km/h."
+            }
+          },
+          "winStreak": {
+            "title": "On fire",
+            "description": {
+              "one": "Win {count} match in a row.",
+              "other": "Win {count} matches in a row."
+            }
+          },
+          "bankShots": {
+            "title": "Rail artist",
+            "description": {
+              "one": "Score {count} goal off a rail.",
+              "other": "Score {count} goals off a rail."
+            }
+          },
+          "comeback": {
+            "title": "Comeback kid",
+            "description": {
+              "one": "Win a match after trailing by two goals.",
+              "other": "Win a match after trailing by two goals."
+            }
+          }
+        }
+      },
+      "tournaments": {
+        "title": "Tournaments",
+        "viewAll": "View all",
+        "guestTitle": "Compete for real prizes",
+        "guestDescription": "Log in to see upcoming tournaments and register.",
+        "logIn": "Log in",
+        "emptyTitle": "No tournament scheduled",
+        "emptyDescription": "New tournaments are announced every week. Check back soon.",
+        "errorTitle": "Tournaments unavailable",
+        "errorDescription": "We could not load tournaments right now.",
+        "retry": "Retry",
+        "players": {
+          "one": "{count}/{max} player",
+          "other": "{count}/{max} players"
+        },
+        "status": {
+          "upcoming": "Upcoming",
+          "ongoing": "Live"
+        },
+        "premium": "Premium",
+        "startsOn": "Starts {date}"
+      },
+      "leaderboard": {
+        "title": "Top players",
+        "viewAll": "Full leaderboard",
+        "eloValue": "{elo}",
+        "trendUp": "+{delta}",
+        "trendDown": "{delta}",
+        "trendFlat": "=",
+        "trendLabel": "Elo change this week",
+        "rankLabel": "Rank {rank}"
+      },
+      "news": {
+        "title": "News and patch notes",
+        "version": "v{version}",
+        "categories": {
+          "update": "Update",
+          "event": "Event",
+          "community": "Community"
+        },
+        "items": {
+          "botLadder": {
+            "title": "New bot ladder and smarter opponents",
+            "summary": "Bots now predict bounces more realistically and the ladder tracks every win on your profile."
+          },
+          "arcadeLaunch": {
+            "title": "The arcade is open",
+            "summary": "Three skill drills to train aim, reflexes and rail shots, with personal bests saved locally."
+          },
+          "winterCup": {
+            "title": "Winter Cup registrations",
+            "summary": "A 64-player bracket with premium rewards. Registrations open on December 1st."
+          },
+          "clubsSpotlight": {
+            "title": "Community spotlight",
+            "summary": "Meet the players behind the fastest recorded shot in Hockair history: 61 km/h."
+          }
+        }
+      },
+      "tips": {
+        "title": "Tips for beginners",
+        "items": {
+          "stayHome": "Stay close to your goal and let the puck come to you before striking.",
+          "useRails": "Aim for the rails: bank shots are much harder to read than straight ones.",
+          "readAngles": "Watch the puck's angle, not your mallet. Your hand follows your eyes.",
+          "controlSpeed": "Slow the puck down when you are under pressure, then pick your shot."
+        }
+      }
+    }
+  },
+  "footer": {
+    "tagline": "The competitive air hockey platform. Play bots, train in the arcade and climb the global ladder.",
+    "navigationLabel": "Footer",
+    "columns": {
+      "product": {
+        "title": "Play",
+        "play": "Play vs computer",
+        "arcade": "Arcade",
+        "shop": "Shop",
+        "subscriptions": "Premium"
+      },
+      "community": {
+        "title": "Community",
+        "tournaments": "Tournaments",
+        "leaderboard": "Leaderboard",
+        "challenges": "Challenges",
+        "friends": "Friends"
+      },
+      "legal": {
+        "title": "Legal",
+        "terms": "Terms of service",
+        "privacy": "Privacy policy",
+        "cookies": "Cookie policy",
+        "soon": "Soon"
+      }
+    },
+    "language": "Language",
+    "copyright": "© {year} Hockair. All rights reserved.",
+    "brandName": "Hockair",
+    "languages": {
+      "fr": "Français",
+      "en": "English"
+    }
+  }
+}

@@ -3,6 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Route,
+  Navigate,
   Routes,
   useLocation,
 } from 'react-router-dom';
@@ -14,6 +15,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Sidebar from './components/Sidebar/Sidebar';
 import Abonnements from './pages/Abonnements/Abonnements';
 import ActivateAccount from './pages/ActivateAccount/ActivateAccount';
+import Arcade from './pages/Arcade/Arcade';
+import ArcadeGame from './pages/Arcade/ArcadeGame';
 import Boutique from './pages/Boutique/Boutique';
 import Challenge from './pages/Challenge/Challenge';
 import ChoixLangue from './pages/ChoixLangue/ChoixLangue';
@@ -22,15 +25,14 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Discussion from './pages/Discussion/Discussion';
 import FriendsList from './pages/Friends/Friends';
 import MessageFriend from './pages/Friends/MessageFriend';
-import BeforePlay from './pages/Gameplay/BeforePlay';
-import Classic from './pages/Gameplay/Classic';
 import Login from './pages/Login/Login';
+import Match from './pages/Match/Match';
 import Parametres from './pages/Parametres/Parametres';
+import Play from './pages/Play/Play';
 import Profile from './pages/Profile/Profile';
 import Register from './pages/Register/Register';
 import Stats from './pages/Stats/Stats';
 import Tournaments from './pages/Tournaments/Tournaments';
-// Gameplay
 
 function App() {
   return (
@@ -41,14 +43,9 @@ function App() {
             <Routes>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-              <Route
-                path='/'
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path='/' element={<Dashboard />} />
+              <Route path='/arcade' element={<Arcade />} />
+              <Route path='/arcade/:gameId' element={<ArcadeGame />} />
               <Route
                 path='/shop'
                 element={
@@ -66,13 +63,11 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path='/play' element={<Play />} />
+              <Route path='/play/bot' element={<Match />} />
               <Route
                 path='/gameplay-classic'
-                element={
-                  <ProtectedRoute>
-                    <Classic />
-                  </ProtectedRoute>
-                }
+                element={<Navigate to='/play' replace />}
               />
               <Route
                 path='/stats'
@@ -148,27 +143,10 @@ function App() {
                 }
               />
               <Route
-                path='/play'
-                element={
-                  <ProtectedRoute>
-                    <BeforePlay />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
                 path='*'
                 element={
                   <ProtectedRoute>
                     <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path='/gameplay-classic'
-                element={
-                  <ProtectedRoute>
-                    <Classic />
                   </ProtectedRoute>
                 }
               />
@@ -188,14 +166,17 @@ function Layout({ children }) {
     location.pathname === '/register' ||
     location.pathname === '/language' ||
     location.pathname.startsWith('/activate/') ||
-    location.pathname.startsWith('/gameplay');
+    location.pathname.startsWith('/play/bot');
+  const isGamePage =
+    location.pathname.startsWith('/play') ||
+    location.pathname.startsWith('/arcade/');
 
   return (
     <div className={`app-container ${isLoginPage ? 'no-sidebar' : ''}`}>
       {!isLoginPage && <Sidebar />}
       <div className='content-container'>
         {children}
-        {!isLoginPage && <Footer />}
+        {!isLoginPage && !isGamePage && <Footer />}
       </div>
     </div>
   );

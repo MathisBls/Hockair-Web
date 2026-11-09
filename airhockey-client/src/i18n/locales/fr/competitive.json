@@ -1,0 +1,291 @@
+{
+  "competitive": {
+    "common": {
+      "retry": "Réessayer",
+      "you": "Vous",
+      "eloValue": "{elo} Elo",
+      "recordValue": "{victories} V · {defeats} D",
+      "noValue": "—",
+      "sampleData": "Données d’exemple",
+      "results": {
+        "win": "Victoire",
+        "lose": "Défaite",
+        "draw": "Nul"
+      }
+    },
+    "leaderboard": {
+      "eyebrow": "Compétition",
+      "title": "Classement",
+      "description": "Les meilleurs joueurs de air-hockey, classés par Elo.",
+      "scopeLabel": "Périmètre du classement",
+      "periodLabel": "Période",
+      "scopes": {
+        "global": "Mondial",
+        "friends": "Amis",
+        "country": "Pays · bientôt"
+      },
+      "periods": {
+        "allTime": "Depuis toujours",
+        "month": "Ce mois-ci",
+        "week": "Cette semaine"
+      },
+      "columns": {
+        "rank": "Rang",
+        "player": "Joueur",
+        "elo": "Elo",
+        "record": "V / D",
+        "winRate": "Victoires",
+        "trend": "Tendance"
+      },
+      "podiumLabel": "Top 3",
+      "yourPosition": "Votre position",
+      "yourRank": "Rang n° {rank} sur {total}",
+      "notRankedTitle": "Vous n’êtes pas encore classé",
+      "notRankedDescription": "Connectez-vous et jouez un match pour apparaître au classement.",
+      "games": {
+        "one": "{count} partie",
+        "other": "{count} parties"
+      },
+      "players": {
+        "one": "{count} joueur classé",
+        "other": "{count} joueurs classés"
+      },
+      "showing": "{shown} sur {total} affichés",
+      "loadMore": "Afficher plus",
+      "trendLabel": "{value} Elo sur la période",
+      "emptyTitle": "Aucun joueur classé",
+      "emptyDescription": "Personne n’a encore joué sur cette période.",
+      "friendsEmptyTitle": "Aucun ami classé",
+      "friendsEmptyDescription": "Ajoutez des amis pour comparer votre Elo au leur.",
+      "errorTitle": "Classement indisponible",
+      "errorDescription": "Le classement n’a pas pu être chargé. Vérifiez votre connexion et réessayez.",
+      "sampleNotice": "Le classement utilise des données d’exemple en attendant le classement en ligne. Votre ligne utilise votre vrai profil."
+    },
+    "stats": {
+      "eyebrow": "Compétition",
+      "title": "Statistiques",
+      "description": "Votre Elo, votre forme et vos résultats contre chaque bot.",
+      "kpis": {
+        "elo": "Elo",
+        "eloDetail": "{change} sur 30 jours",
+        "games": "Parties jouées",
+        "winRate": "Taux de victoire",
+        "winRateDetail": "Tous adversaires confondus",
+        "bestStreak": "Meilleure série",
+        "bestStreakValue": {
+          "one": "{count} victoire",
+          "other": "{count} victoires"
+        },
+        "bestStreakDetail": "Victoires consécutives",
+        "fastestShot": "Tir le plus rapide",
+        "fastestShotValue": "{speed} km/h",
+        "fastestShotDetail": "Enregistré {date}",
+        "noRecordDetail": "Jouez un match pour établir un record"
+      },
+      "eloChart": {
+        "title": "Historique Elo",
+        "subtitle": "Votre classement, un point par jour",
+        "periodLabel": "Période du graphique",
+        "periods": {
+          "month": "30 jours",
+          "quarter": "90 jours",
+          "year": "1 an"
+        },
+        "summary": "{start} → {end} ({change})",
+        "tooltipElo": "{elo} Elo",
+        "emptyTitle": "Pas encore d’historique",
+        "emptyDescription": "Votre courbe Elo commence avec votre premier match classé."
+      },
+      "byBot": {
+        "title": "Résultats par bot",
+        "subtitle": "Victoires et défaites contre chaque bot d’entraînement",
+        "notPlayed": "Pas encore affronté",
+        "beaten": "Battu",
+        "winRate": "{rate} de victoires",
+        "play": "Jouer"
+      },
+      "recent": {
+        "title": "Derniers matchs",
+        "subtitle": "Vos dernières parties, les plus récentes en premier",
+        "botOpponent": "Bot",
+        "playerOpponent": "En ligne",
+        "score": "{player} – {opponent}",
+        "emptyTitle": "Aucun match pour l’instant",
+        "emptyDescription": "Vos parties apparaîtront ici dès que vous commencerez à jouer.",
+        "playNow": "Jouer un match"
+      },
+      "errorTitle": "Profil indisponible",
+      "errorDescription": "Votre profil n’a pas pu être chargé. Les chiffres ci-dessous sont des exemples.",
+      "sampleNotice": "L’historique Elo, les séries, la vitesse de tir et la liste des matchs sont des données d’exemple en attendant le suivi des matchs."
+    },
+    "tournaments": {
+      "eyebrow": "Compétition",
+      "title": "Tournois",
+      "description": "Inscrivez-vous aux événements programmés et visez le podium.",
+      "tabsLabel": "Statut des tournois",
+      "tabs": {
+        "upcoming": "À venir",
+        "ongoing": "En cours",
+        "finished": "Terminés"
+      },
+      "types": {
+        "league": "Ligue",
+        "bracket": "Élimination directe",
+        "pool-and-bracket": "Poules + élimination"
+      },
+      "rules": {
+        "classic": "Classique",
+        "timed": "Chronométré",
+        "sudden death": "Mort subite"
+      },
+      "premium": "Premium",
+      "fields": {
+        "format": "Format",
+        "prize": "Récompense",
+        "start": "Début",
+        "end": "Fin",
+        "players": "Joueurs"
+      },
+      "formatValue": "{type} · {rules}",
+      "playersValue": {
+        "one": "{count} / {max} joueur",
+        "other": "{count} / {max} joueurs"
+      },
+      "spotsLeft": {
+        "one": "{count} place restante",
+        "other": "{count} places restantes"
+      },
+      "noPrize": "Aucune récompense",
+      "actions": {
+        "join": "Rejoindre",
+        "joined": "Inscrit",
+        "full": "Complet",
+        "closed": "Inscriptions closes",
+        "details": "Détails",
+        "close": "Fermer"
+      },
+      "joinSuccess": "Vous êtes inscrit à {name}.",
+      "joinError": "Impossible de rejoindre ce tournoi. Réessayez.",
+      "detail": {
+        "about": "À propos",
+        "noDescription": "Aucune description.",
+        "prizes": "Récompenses",
+        "places": {
+          "firstPlace": "1re place",
+          "secondPlace": "2e place",
+          "thirdPlace": "3e place"
+        },
+        "participants": "Participants",
+        "participantsEmpty": "Personne ne s’est encore inscrit.",
+        "participantsError": "Les participants n’ont pas pu être chargés."
+      },
+      "unknownPlayer": "Joueur {id}",
+      "empty": {
+        "upcoming": "Aucun tournoi à venir",
+        "ongoing": "Aucun tournoi en cours",
+        "finished": "Aucun tournoi terminé",
+        "description": "Revenez bientôt : de nouveaux événements sont publiés chaque semaine."
+      },
+      "errorTitle": "Tournois indisponibles",
+      "errorDescription": "La liste des tournois n’a pas pu être chargée.",
+      "sampleNotice": "Aucun tournoi n’est encore publié : vous voyez des événements d’exemple. L’inscription y est simulée."
+    },
+    "profile": {
+      "eyebrow": "Compte",
+      "title": "Profil",
+      "description": "Votre identité, votre progression et vos succès.",
+      "memberSince": "Membre depuis le {date}",
+      "level": "Niveau {level}",
+      "xp": "{current} / {required} XP",
+      "xpLabel": "Expérience vers le niveau suivant",
+      "changePhoto": "Changer la photo",
+      "plans": {
+        "free": "Gratuit",
+        "premium": "Premium",
+        "pro": "Pro"
+      },
+      "record": {
+        "elo": "Elo",
+        "victories": "Victoires",
+        "defeats": "Défaites",
+        "winRate": "Taux de victoire"
+      },
+      "edit": {
+        "title": "Informations du compte",
+        "subtitle": "Laissez les champs de mot de passe vides pour conserver le mot de passe actuel.",
+        "username": "Nom d’utilisateur",
+        "email": "Adresse e-mail",
+        "currentPassword": "Mot de passe actuel",
+        "newPassword": "Nouveau mot de passe",
+        "newPasswordHint": "6 caractères minimum",
+        "confirmNewPassword": "Confirmer le nouveau mot de passe",
+        "save": "Enregistrer",
+        "reset": "Annuler"
+      },
+      "errors": {
+        "usernameRequired": "Le nom d’utilisateur est requis",
+        "invalidEmail": "Adresse e-mail invalide",
+        "currentPasswordRequired": "Saisissez votre mot de passe actuel pour en définir un nouveau",
+        "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+        "passwordMismatch": "Les mots de passe ne correspondent pas"
+      },
+      "updateSuccess": "Profil mis à jour.",
+      "updateError": "Impossible de mettre à jour votre profil.",
+      "pictureUpdated": "Photo de profil mise à jour.",
+      "uploadError": "Impossible d’envoyer cette photo.",
+      "achievements": {
+        "title": "Succès",
+        "unlockedCount": "{unlocked} sur {total} débloqués",
+        "progress": "{current} / {target}",
+        "unlocked": "Débloqué",
+        "items": {
+          "firstWin": {
+            "name": "Premier sang",
+            "description": "Gagner votre premier match"
+          },
+          "tenWins": {
+            "name": "Habitué",
+            "description": "Gagner 10 matchs"
+          },
+          "fiftyWins": {
+            "name": "Vétéran",
+            "description": "Gagner 50 matchs"
+          },
+          "eloThousand": {
+            "name": "Prétendant",
+            "description": "Atteindre 1 000 Elo"
+          },
+          "eloFifteenHundred": {
+            "name": "Expert",
+            "description": "Atteindre 1 500 Elo"
+          },
+          "levelTen": {
+            "name": "Assidu",
+            "description": "Atteindre le niveau 10"
+          },
+          "beatMaster": {
+            "name": "Dompteur de feu",
+            "description": "Battre Inferno, le bot maître"
+          },
+          "beatAllBots": {
+            "name": "Fléau des bots",
+            "description": "Battre tous les bots d’entraînement"
+          }
+        }
+      },
+      "activity": {
+        "title": "Activité récente",
+        "items": {
+          "matchWin": "Victoire contre {opponent}",
+          "matchLoss": "Défaite contre {opponent}",
+          "levelUp": "Niveau {level} atteint",
+          "tournamentJoin": "Inscription à {name}"
+        },
+        "emptyTitle": "Aucune activité pour l’instant",
+        "emptyDescription": "Vos matchs, passages de niveau et inscriptions aux tournois apparaîtront ici."
+      },
+      "loadErrorTitle": "Profil indisponible",
+      "loadErrorDescription": "Votre profil n’a pas pu être chargé."
+    }
+  }
+}

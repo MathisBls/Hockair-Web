@@ -8,4 +8,12 @@
   --background-black: #0d0d0d;
   --red-focus: #ff5c7a;
   --white: #fff;
+  --ink: #0b0d18;
+  --gold: #ffc94a;
+  --orange: #ff8a3d;
+  --lime: #9cff57;
+  --violet: #b07cff;
+  --panel: rgba(22, 33, 62, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --muted: rgba(255, 255, 255, 0.6);
 }

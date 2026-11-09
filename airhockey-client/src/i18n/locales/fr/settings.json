@@ -1,0 +1,130 @@
+{
+  "page": {
+    "settings": {
+      "eyebrow": "Préférences",
+      "title": "Paramètres",
+      "description": "Gérez votre compte, vos préférences de jeu et les données enregistrées sur cet appareil.",
+      "navAria": "Sections des paramètres",
+      "savedLocally": "Enregistré sur cet appareil",
+      "sections": {
+        "account": {
+          "label": "Compte",
+          "description": "Les informations liées à votre compte Hockair."
+        },
+        "gameplay": {
+          "label": "Jeu",
+          "description": "Vos réglages par défaut pour les matchs contre les bots. Ils sont repris automatiquement dans le lobby."
+        },
+        "audio": {
+          "label": "Audio",
+          "description": "Les sons joués pendant les matchs."
+        },
+        "display": {
+          "label": "Affichage et langue",
+          "description": "La langue de l'interface."
+        },
+        "privacy": {
+          "label": "Confidentialité",
+          "description": "Ce que Hockair enregistre localement dans votre navigateur."
+        },
+        "danger": {
+          "label": "Zone sensible",
+          "description": "Actions irréversibles sur vos données locales."
+        }
+      },
+      "account": {
+        "username": "Nom d'utilisateur",
+        "email": "Adresse e-mail",
+        "memberSince": "Membre depuis",
+        "level": "Niveau",
+        "elo": "ELO",
+        "plan": "Offre",
+        "coins": "Pièces",
+        "plans": {
+          "free": "Gratuit",
+          "premium": "Premium",
+          "pro": "Pro"
+        },
+        "levelValue": "Niveau {level}",
+        "editProfile": "Modifier le profil",
+        "managePlan": "Gérer l'offre",
+        "logout": "Se déconnecter",
+        "logoutDescription": "Vous serez redirigé vers la page de connexion.",
+        "errorTitle": "Impossible de charger votre compte",
+        "errorDescription": "Vérifiez votre connexion puis réessayez.",
+        "retry": "Réessayer"
+      },
+      "gameplay": {
+        "malletSkin": "Maillet par défaut",
+        "malletSkinHint": "La couleur de votre maillet en match.",
+        "tableTheme": "Table par défaut",
+        "tableThemeHint": "L'ambiance de la table et de l'arène.",
+        "goalTarget": "Buts pour gagner",
+        "goalTargetHint": "Le premier joueur à atteindre ce score remporte le match.",
+        "timeLimit": "Durée limite",
+        "timeLimitHint": "Au-delà, le meilleur score l'emporte.",
+        "goals": {
+          "one": "{count} but",
+          "other": "{count} buts"
+        },
+        "unlimited": "Illimitée",
+        "minutes": "{minutes} min",
+        "skins": {
+          "cyan": "Cyan",
+          "red": "Rouge",
+          "lime": "Citron vert",
+          "violet": "Violet",
+          "gold": "Or"
+        },
+        "tables": {
+          "neon": "Néon",
+          "ice": "Glace",
+          "sunset": "Crépuscule"
+        },
+        "saved": "Préférences enregistrées"
+      },
+      "audio": {
+        "soundEffects": "Effets sonores",
+        "soundEffectsHint": "Impacts, buts, compte à rebours.",
+        "testSound": "Tester le son",
+        "testSoundHint": "Joue un son de but pour vérifier votre volume."
+      },
+      "display": {
+        "language": "Langue",
+        "languageHint": "S'applique immédiatement à toute l'interface.",
+        "languages": {
+          "fr": "Français",
+          "en": "English"
+        }
+      },
+      "privacy": {
+        "intro": "Ces données restent dans votre navigateur et ne sont jamais envoyées à nos serveurs.",
+        "items": {
+          "progress": "Progression contre les bots",
+          "matchSettings": "Préférences de match",
+          "audio": "Préférence audio",
+          "language": "Langue de l'interface",
+          "session": "Session de connexion"
+        },
+        "beatenBots": {
+          "one": "{count} bot battu sur {total}",
+          "other": "{count} bots battus sur {total}"
+        },
+        "soundOn": "Son activé",
+        "soundOff": "Son coupé",
+        "sessionActive": "Connecté sur cet appareil",
+        "accountData": "Les données de votre compte (profil, matchs classés, achats) sont gérées sur nos serveurs."
+      },
+      "danger": {
+        "resetProgress": "Réinitialiser la progression locale",
+        "resetProgressHint": "Efface les bots battus et remet les préférences de match par défaut. Votre compte n'est pas touché.",
+        "resetAction": "Réinitialiser",
+        "confirmTitle": "Réinitialiser la progression ?",
+        "confirmDescription": "Les bots battus et vos préférences de match seront effacés de cet appareil. Cette action est irréversible.",
+        "confirmCancel": "Annuler",
+        "confirmSubmit": "Oui, réinitialiser",
+        "resetDone": "Progression locale réinitialisée"
+      }
+    }
+  }
+}

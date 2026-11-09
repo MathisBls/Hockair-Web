@@ -1,0 +1,185 @@
+{
+  "page": {
+    "shop": {
+      "eyebrow": "Cosmetics",
+      "title": "Shop",
+      "description": "Customize your mallets, pucks and tables. Purchased items are tied to your account.",
+      "wallet": {
+        "label": "Balance",
+        "unavailable": "Balance unavailable",
+        "coins": {
+          "one": "{count} coin",
+          "other": "{count} coins"
+        }
+      },
+      "categoryAria": "Filter by category",
+      "categories": {
+        "all": "All",
+        "puck": "Pucks",
+        "mallet": "Mallets",
+        "table": "Tables"
+      },
+      "types": {
+        "puck": "Puck",
+        "mallet": "Mallet",
+        "table": "Table"
+      },
+      "resultCount": {
+        "one": "{count} item",
+        "other": "{count} items"
+      },
+      "featured": {
+        "eyebrow": "Featured",
+        "description": "Our current pick. Stand out from your very next match.",
+        "interactionHint": "Move your mouse: it follows you with its eyes."
+      },
+      "badges": {
+        "owned": "Owned",
+        "equipped": "Equipped",
+        "premium": "Premium",
+        "preview": "Preview"
+      },
+      "price": {
+        "free": "Free"
+      },
+      "actions": {
+        "buy": "Buy",
+        "equip": "Equip",
+        "equipped": "Equipped",
+        "notEnoughCoins": "Not enough coins"
+      },
+      "previewNotice": {
+        "title": "Catalog preview",
+        "description": "The online catalog is empty or unreachable. These items come from the local game: you can equip them for your bot matches, purchases will open with the online catalog."
+      },
+      "catalog": {
+        "mallets": {
+          "cyan": "Cyan Mallet",
+          "red": "Red Mallet",
+          "lime": "Lime Mallet",
+          "violet": "Violet Mallet",
+          "gold": "Gold Mallet"
+        },
+        "tables": {
+          "neon": "Neon Table",
+          "ice": "Ice Table",
+          "sunset": "Sunset Table"
+        }
+      },
+      "confirm": {
+        "title": "Confirm purchase",
+        "description": "Add \"{name}\" to your collection?",
+        "price": "Price",
+        "balance": "Current balance",
+        "balanceAfter": "Balance after purchase",
+        "insufficient": "You need {amount} more for this item.",
+        "cancel": "Cancel",
+        "submit": "Buy for {amount}"
+      },
+      "feedback": {
+        "purchased": "\"{name}\" was added to your collection.",
+        "equipped": "\"{name}\" is now equipped.",
+        "purchaseFailed": "The purchase could not be completed. Please try again shortly.",
+        "equipFailed": "This item cannot be equipped right now.",
+        "dismiss": "Dismiss message"
+      },
+      "empty": {
+        "title": "Nothing in this category",
+        "description": "New items arrive regularly. Check back soon.",
+        "action": "Browse the full catalog"
+      }
+    },
+    "subscriptions": {
+      "eyebrow": "Subscriptions",
+      "title": "Take your game further",
+      "description": "Play free forever, or unlock rewards, deeper stats and exclusive tournaments.",
+      "billing": {
+        "aria": "Billing period",
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "savingsBadge": "Up to -{percent}%"
+      },
+      "pricePeriod": {
+        "monthly": "/ month",
+        "yearly": "/ year"
+      },
+      "billedYearly": "That's {amount} per month, billed yearly",
+      "billedMonthly": "Billed monthly, cancel anytime",
+      "yearlySavings": "Save {amount} per year",
+      "freeForever": "Free, forever",
+      "recommended": "Most popular",
+      "currentPlan": "Your current plan",
+      "plans": {
+        "free": {
+          "name": "Free",
+          "target": "Discover Hockair and play at your own pace",
+          "advantages": [
+            "Ranked matches and bot games",
+            "Global leaderboard and player profile",
+            "Essential stats",
+            "Access to the cosmetics shop"
+          ]
+        }
+      },
+      "cta": {
+        "free": "Play for free",
+        "paid": "Choose {plan}",
+        "current": "Current plan"
+      },
+      "comparison": {
+        "title": "Compare plans",
+        "description": "Everything that changes from one plan to the next.",
+        "featureColumn": "Feature",
+        "included": "Included",
+        "notIncluded": "Not included",
+        "rows": {
+          "rankedMatches": "Ranked matches and bots",
+          "coinRewards": "Coin rewards",
+          "exclusiveSkins": "Exclusive skins (table, puck, mallets)",
+          "advancedStats": "Advanced stats",
+          "premiumBadge": "Premium badge",
+          "priorityMatchmaking": "Priority matchmaking",
+          "aiCoaching": "Personalized AI coaching",
+          "exclusiveTournaments": "Exclusive tournaments",
+          "animatedCosmetics": "Ultra-rare animated cosmetics",
+          "eloBoost": "ELO gain bonus",
+          "shopDiscount": "Shop discount",
+          "opponentScouting": "Opponent stats before the match"
+        },
+        "values": {
+          "standardRewards": "x1",
+          "boostedRewards": "x2, x3 on a clean sheet",
+          "eloBoost": "+5%",
+          "shopDiscount": "10 to 15%"
+        }
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Can I cancel at any time?",
+            "answer": "Yes. The monthly plan has no commitment: you keep your benefits until the end of the current period."
+          },
+          {
+            "question": "What happens to my skins if I cancel?",
+            "answer": "Items bought with your coins stay yours. Only subscriber-exclusive skins can no longer be equipped."
+          },
+          {
+            "question": "Does a subscription give an in-game advantage?",
+            "answer": "No. Physics and rules are the same for everyone. Plans bring rewards, stats and cosmetics, never gameplay bonuses."
+          },
+          {
+            "question": "How does yearly billing work?",
+            "answer": "You pay once a year and save the equivalent of two months compared with the monthly plan."
+          }
+        ]
+      },
+      "comingSoon": {
+        "title": "Coming soon",
+        "description": "Online payment is not open yet. {plan} will be available for {price} at launch.",
+        "note": "No payment has been made.",
+        "close": "Got it"
+      }
+    }
+  }
+}

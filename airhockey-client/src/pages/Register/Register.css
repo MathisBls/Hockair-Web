@@ -1,145 +1,152 @@
-@import url('../../vars.css');
+@import url('../../styles/tokens.css');
 
-.register-container {
+.register-password {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    var(--background-black) 0%,
-    var(--bleu) 100%
-  );
+  gap: var(--space-3);
 }
 
-.register-content {
+/* Password requirements */
+.password-requirements {
+  --strength-color: var(--danger);
+
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-1);
+  border: 0.0625rem solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.password-strength-fair {
+  --strength-color: var(--warning);
+}
+
+.password-strength-good,
+.password-strength-strong {
+  --strength-color: var(--success);
+}
+
+.password-strength {
+  display: flex;
   align-items: center;
+  gap: var(--space-3);
+}
+
+.password-strength-bar {
+  display: grid;
   flex: 1;
-  padding: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-1);
 }
 
-.register-card {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  max-width: 500px;
-  width: 100%;
+.password-strength-segment {
+  height: 0.25rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-3);
+  transition: background-color var(--duration-base) var(--ease-out);
 }
 
-.register-card h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--cyan);
-  text-align: center;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+.password-strength-segment-filled {
+  background: var(--strength-color);
 }
 
-.register-card p {
-  font-size: 1rem;
-  color: var(--white);
-  margin-bottom: 2rem;
-  text-align: center;
+.password-strength-label {
+  min-width: 7.5rem;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  text-align: right;
 }
 
-.form-group-register {
-  margin-bottom: 1.5rem;
+.password-rules-title {
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
 }
 
-.form-group-register label {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  display: block;
-  color: var(--cyan);
+.password-rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.form-group-register input {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: none;
-  border-bottom: 2px solid var(--cyan);
-  background-color: transparent;
-  color: var(--white);
-  transition: all 0.3s ease;
-}
-
-.form-group-register input:focus {
-  outline: none;
-  border-color: var(--rouge);
-  box-shadow: 0 4px 6px rgba(233, 69, 96, 0.1);
-}
-
-.btn-register {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: var(--white);
-  background-color: var(--rouge);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 1.5rem;
-}
-
-.btn-register:hover {
-  background-color: var(--red-focus);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(233, 69, 96, 0.3);
-}
-
-.register-footer {
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.register-footer p {
-  font-size: 1rem;
-  color: var(--white);
-}
-
-.register-footer a {
-  color: var(--cyan);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.register-footer a:hover {
-  color: var(--rouge);
-  text-decoration: underline;
-}
-
-.error-message {
-  color: var(--rouge);
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  text-align: left;
-}
-
-.success-message {
-  color: #4caf50;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: rgba(76, 175, 80, 0.1);
-  border-radius: 10px;
-  text-align: center;
-}
-
-.header-login {
-  padding: 1rem 2rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
+.password-rule {
+  display: inline-flex;
   align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  transition: color var(--duration-base) var(--ease-out);
 }
 
-.header-login img {
-  max-height: 50px;
-  width: auto;
+.password-rule-satisfied {
+  color: var(--text-primary);
+}
+
+.password-rule-satisfied svg {
+  color: var(--success);
+}
+
+/* Success state */
+.register-success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.register-success-icon svg {
+  font-size: 1.75rem;
+}
+
+.register-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: register-step;
+}
+
+.register-step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  counter-increment: register-step;
+}
+
+.register-step::before {
+  content: counter(register-step);
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0.0625rem solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--surface-2);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+@media (max-width: 30rem) {
+  .password-rules {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

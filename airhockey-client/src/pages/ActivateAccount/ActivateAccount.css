@@ -1,60 +1,60 @@
-/* ActivateAccount.css */
+@import url('../../styles/tokens.css');
 
-.activate-container {
-  display: flex;
-  justify-content: center;
+.activate-status {
+  display: inline-flex;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(
-    to bottom,
-    var(--background-black),
-    var(--background)
-  );
-  color: var(--white);
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  color: var(--text-secondary);
+  animation: activate-status-enter var(--duration-slow) var(--ease-out);
 }
 
-.activate-card {
-  text-align: center;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 92, 122, 0.9),
-    rgba(22, 33, 62, 0.8)
-  );
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 500px;
+.activate-status svg {
+  font-size: 1.75rem;
 }
 
-.activate-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: var(--bleu-bg);
+.activate-status-success {
+  background: var(--success-soft);
+  color: var(--success);
 }
 
-.activate-message {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  line-height: 1.5;
+.activate-status-warning {
+  background: var(--warning-soft);
+  color: var(--warning);
 }
 
-.activate-button {
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  color: var(--white);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: var(--bleu-bg);
-  color: var(--rouge);
-  font-weight: bold;
+.activate-status-danger {
+  background: var(--danger-soft);
+  color: var(--danger);
 }
 
-.activate-button:hover {
-  background-color: var(--rouge);
-  color: var(--white);
-  transform: scale(1.05);
+.activate-spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.1875rem solid var(--border-strong);
+  border-top-color: var(--accent);
+  border-radius: var(--radius-full);
+  animation: activate-spin 0.8s linear infinite;
+}
+
+@keyframes activate-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes activate-status-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .activate-status {
+    animation: none;
+  }
 }

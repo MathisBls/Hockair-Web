@@ -1,0 +1,291 @@
+{
+  "competitive": {
+    "common": {
+      "retry": "Try again",
+      "you": "You",
+      "eloValue": "{elo} Elo",
+      "recordValue": "{victories} W · {defeats} L",
+      "noValue": "—",
+      "sampleData": "Sample data",
+      "results": {
+        "win": "Win",
+        "lose": "Loss",
+        "draw": "Draw"
+      }
+    },
+    "leaderboard": {
+      "eyebrow": "Competitive",
+      "title": "Leaderboard",
+      "description": "The best air-hockey players, ranked by Elo rating.",
+      "scopeLabel": "Ranking scope",
+      "periodLabel": "Time range",
+      "scopes": {
+        "global": "Global",
+        "friends": "Friends",
+        "country": "Country · soon"
+      },
+      "periods": {
+        "allTime": "All time",
+        "month": "This month",
+        "week": "This week"
+      },
+      "columns": {
+        "rank": "Rank",
+        "player": "Player",
+        "elo": "Elo",
+        "record": "W / L",
+        "winRate": "Win rate",
+        "trend": "Trend"
+      },
+      "podiumLabel": "Top 3",
+      "yourPosition": "Your position",
+      "yourRank": "Rank #{rank} of {total}",
+      "notRankedTitle": "You are not ranked yet",
+      "notRankedDescription": "Sign in and play a match to appear in the leaderboard.",
+      "games": {
+        "one": "{count} game",
+        "other": "{count} games"
+      },
+      "players": {
+        "one": "{count} ranked player",
+        "other": "{count} ranked players"
+      },
+      "showing": "Showing {shown} of {total}",
+      "loadMore": "Load more",
+      "trendLabel": "{value} Elo over the period",
+      "emptyTitle": "No ranked players",
+      "emptyDescription": "Nobody has played in this time range yet.",
+      "friendsEmptyTitle": "No friends ranked yet",
+      "friendsEmptyDescription": "Add friends to compare your rating with theirs.",
+      "errorTitle": "Leaderboard unavailable",
+      "errorDescription": "The rankings could not be loaded. Check your connection and try again.",
+      "sampleNotice": "Rankings are sample data until the live ladder launches. Your own row uses your real profile."
+    },
+    "stats": {
+      "eyebrow": "Competitive",
+      "title": "Statistics",
+      "description": "Your rating, your form and how you fare against every bot.",
+      "kpis": {
+        "elo": "Elo rating",
+        "eloDetail": "{change} over 30 days",
+        "games": "Games played",
+        "winRate": "Win rate",
+        "winRateDetail": "Across all opponents",
+        "bestStreak": "Best streak",
+        "bestStreakValue": {
+          "one": "{count} win",
+          "other": "{count} wins"
+        },
+        "bestStreakDetail": "Consecutive victories",
+        "fastestShot": "Fastest shot",
+        "fastestShotValue": "{speed} km/h",
+        "fastestShotDetail": "Recorded {date}",
+        "noRecordDetail": "Play a match to set a record"
+      },
+      "eloChart": {
+        "title": "Elo history",
+        "subtitle": "Your rating, one point per day",
+        "periodLabel": "Chart range",
+        "periods": {
+          "month": "30 days",
+          "quarter": "90 days",
+          "year": "1 year"
+        },
+        "summary": "{start} → {end} ({change})",
+        "tooltipElo": "{elo} Elo",
+        "emptyTitle": "No rating history yet",
+        "emptyDescription": "Your Elo curve starts with your first ranked match."
+      },
+      "byBot": {
+        "title": "Results by bot",
+        "subtitle": "Wins and losses against each practice bot",
+        "notPlayed": "Not played yet",
+        "beaten": "Beaten",
+        "winRate": "{rate} wins",
+        "play": "Play"
+      },
+      "recent": {
+        "title": "Recent matches",
+        "subtitle": "Your last games, newest first",
+        "botOpponent": "Bot",
+        "playerOpponent": "Online",
+        "score": "{player} – {opponent}",
+        "emptyTitle": "No matches yet",
+        "emptyDescription": "Your games will appear here once you start playing.",
+        "playNow": "Play a match"
+      },
+      "errorTitle": "Profile unavailable",
+      "errorDescription": "Your profile could not be loaded. Figures below use sample data.",
+      "sampleNotice": "Rating history, streaks, shot speed and match list are sample data until match tracking is live."
+    },
+    "tournaments": {
+      "eyebrow": "Competitive",
+      "title": "Tournaments",
+      "description": "Sign up for scheduled events and fight for the podium.",
+      "tabsLabel": "Tournament status",
+      "tabs": {
+        "upcoming": "Upcoming",
+        "ongoing": "Ongoing",
+        "finished": "Finished"
+      },
+      "types": {
+        "league": "League",
+        "bracket": "Bracket",
+        "pool-and-bracket": "Pools + bracket"
+      },
+      "rules": {
+        "classic": "Classic",
+        "timed": "Timed",
+        "sudden death": "Sudden death"
+      },
+      "premium": "Premium",
+      "fields": {
+        "format": "Format",
+        "prize": "Prize",
+        "start": "Start",
+        "end": "End",
+        "players": "Players"
+      },
+      "formatValue": "{type} · {rules}",
+      "playersValue": {
+        "one": "{count} / {max} player",
+        "other": "{count} / {max} players"
+      },
+      "spotsLeft": {
+        "one": "{count} spot left",
+        "other": "{count} spots left"
+      },
+      "noPrize": "No prize",
+      "actions": {
+        "join": "Join",
+        "joined": "Registered",
+        "full": "Full",
+        "closed": "Registration closed",
+        "details": "Details",
+        "close": "Close"
+      },
+      "joinSuccess": "You are registered for {name}.",
+      "joinError": "Could not join this tournament. Please try again.",
+      "detail": {
+        "about": "About",
+        "noDescription": "No description provided.",
+        "prizes": "Prizes",
+        "places": {
+          "firstPlace": "1st place",
+          "secondPlace": "2nd place",
+          "thirdPlace": "3rd place"
+        },
+        "participants": "Participants",
+        "participantsEmpty": "No one has registered yet.",
+        "participantsError": "Participants could not be loaded."
+      },
+      "unknownPlayer": "Player {id}",
+      "empty": {
+        "upcoming": "No upcoming tournaments",
+        "ongoing": "No tournament in progress",
+        "finished": "No finished tournaments",
+        "description": "Check back soon: new events are published every week."
+      },
+      "errorTitle": "Tournaments unavailable",
+      "errorDescription": "The tournament list could not be loaded.",
+      "sampleNotice": "No tournament is published yet: you are viewing sample events. Joining them is simulated."
+    },
+    "profile": {
+      "eyebrow": "Account",
+      "title": "Profile",
+      "description": "Your identity, progression and achievements.",
+      "memberSince": "Member since {date}",
+      "level": "Level {level}",
+      "xp": "{current} / {required} XP",
+      "xpLabel": "Experience towards next level",
+      "changePhoto": "Change photo",
+      "plans": {
+        "free": "Free",
+        "premium": "Premium",
+        "pro": "Pro"
+      },
+      "record": {
+        "elo": "Elo",
+        "victories": "Wins",
+        "defeats": "Losses",
+        "winRate": "Win rate"
+      },
+      "edit": {
+        "title": "Account details",
+        "subtitle": "Leave the password fields empty to keep your current password.",
+        "username": "Username",
+        "email": "Email address",
+        "currentPassword": "Current password",
+        "newPassword": "New password",
+        "newPasswordHint": "At least 6 characters",
+        "confirmNewPassword": "Confirm new password",
+        "save": "Save changes",
+        "reset": "Reset"
+      },
+      "errors": {
+        "usernameRequired": "Username is required",
+        "invalidEmail": "Invalid email address",
+        "currentPasswordRequired": "Enter your current password to set a new one",
+        "passwordTooShort": "Password must be at least 6 characters",
+        "passwordMismatch": "Passwords do not match"
+      },
+      "updateSuccess": "Profile updated.",
+      "updateError": "Could not update your profile.",
+      "pictureUpdated": "Profile picture updated.",
+      "uploadError": "Could not upload this picture.",
+      "achievements": {
+        "title": "Achievements",
+        "unlockedCount": "{unlocked} of {total} unlocked",
+        "progress": "{current} / {target}",
+        "unlocked": "Unlocked",
+        "items": {
+          "firstWin": {
+            "name": "First blood",
+            "description": "Win your first match"
+          },
+          "tenWins": {
+            "name": "Regular",
+            "description": "Win 10 matches"
+          },
+          "fiftyWins": {
+            "name": "Veteran",
+            "description": "Win 50 matches"
+          },
+          "eloThousand": {
+            "name": "Contender",
+            "description": "Reach 1,000 Elo"
+          },
+          "eloFifteenHundred": {
+            "name": "Expert",
+            "description": "Reach 1,500 Elo"
+          },
+          "levelTen": {
+            "name": "Dedicated",
+            "description": "Reach level 10"
+          },
+          "beatMaster": {
+            "name": "Fire tamer",
+            "description": "Beat Inferno, the master bot"
+          },
+          "beatAllBots": {
+            "name": "Bot slayer",
+            "description": "Beat every practice bot"
+          }
+        }
+      },
+      "activity": {
+        "title": "Recent activity",
+        "items": {
+          "matchWin": "Won against {opponent}",
+          "matchLoss": "Lost to {opponent}",
+          "levelUp": "Reached level {level}",
+          "tournamentJoin": "Registered for {name}"
+        },
+        "emptyTitle": "No activity yet",
+        "emptyDescription": "Your matches, level-ups and tournament entries will show up here."
+      },
+      "loadErrorTitle": "Profile unavailable",
+      "loadErrorDescription": "Your profile could not be loaded."
+    }
+  }
+}

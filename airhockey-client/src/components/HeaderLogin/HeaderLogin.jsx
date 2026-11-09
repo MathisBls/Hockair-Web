@@ -1,17 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
+import { useLanguage } from '../../../LanguageContext';
 import logo from '../../assets/logo.png';
 import './HeaderLogin.css';
 
-const HeaderLogin = () => {
+const HeaderLogin = ({ className = '' }) => {
+  const { translations } = useLanguage();
+  const brandTranslations = translations.page.auth.brand;
+
   return (
-    <div>
-      <div className='logo-headerlog'>
-        <a href='/'>
-          <img src={logo} alt='Logo' />
-        </a>
-      </div>
-    </div>
+    <Link
+      to='/'
+      className={`header-login ${className}`}
+      aria-label={brandTranslations.homeLink}
+    >
+      <img src={logo} alt='' className='header-login-logo' />
+      <span className='header-login-name'>{brandTranslations.name}</span>
+    </Link>
   );
 };
 

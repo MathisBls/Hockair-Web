@@ -1,0 +1,162 @@
+{
+  "page": {
+    "arcade": {
+      "eyebrow": "Arcade",
+      "title": "Arcade",
+      "description": "Des jeux d'adresse courts pour affûter votre toucher entre deux matchs. Chaque partie compte pour vos défis du jour et de la semaine.",
+      "viewChallenges": "Voir les défis",
+      "play": "Jouer",
+      "personalBest": "Record personnel",
+      "noBest": "Aucun score",
+      "starsOutOf": "{count} / {total} étoiles",
+      "loading": "Préparation de la table…",
+      "backToArcade": "Arcade",
+      "soundOn": "Couper le son",
+      "soundOff": "Activer le son",
+      "quitHint": "Échap pour quitter la partie",
+      "summary": {
+        "playsToday": "Parties aujourd'hui",
+        "playsThisWeek": {
+          "one": "{value} partie cette semaine",
+          "other": "{value} parties cette semaine"
+        },
+        "records": "Records personnels",
+        "recordsDetail": "Jeux avec un score enregistré",
+        "outOf": "{count} / {total}",
+        "stars": "Étoiles Bank Shot",
+        "levelsCleared": {
+          "one": "{count} niveau réussi",
+          "other": "{count} niveaux réussis"
+        }
+      },
+      "difficulty": {
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile"
+      },
+      "scoreUnits": {
+        "points": {
+          "one": "{value} point",
+          "other": "{value} points"
+        },
+        "saves": {
+          "one": "{value} arrêt",
+          "other": "{value} arrêts"
+        },
+        "stars": {
+          "one": "{value} étoile",
+          "other": "{value} étoiles"
+        }
+      },
+      "games": {
+        "targetRush": {
+          "name": "Target Rush",
+          "tagline": "60 secondes, un maximum de cibles.",
+          "description": "Des cibles apparaissent dans le camp adverse. Envoyez le palet dessus, enchaînez les touches pour augmenter le multiplicateur et visez le meilleur score.",
+          "format": "60 s",
+          "rules": [
+            "Déplacez le maillet à la souris et frappez le palet vers les cibles.",
+            "Une cible classique vaut 100 points, une cible dorée 300. Un but ne rapporte rien : visez les cibles.",
+            "Les touches consécutives montent le multiplicateur jusqu'à ×4. Un tir qui revient sans toucher le remet à zéro.",
+            "Les cibles rétrécissent et se déplacent à mesure que le temps file."
+          ]
+        },
+        "goalieReflex": {
+          "name": "Goalie Reflex",
+          "tagline": "Tenez bon pendant que les tirs accélèrent.",
+          "description": "Viper enchaîne les tirs sur votre but. Bloquez-les, dégagez-les et gardez vos trois vies le plus longtemps possible.",
+          "format": "3 vies",
+          "rules": [
+            "Placez-vous entre le palet et votre but, puis renvoyez-le vers le haut de la table.",
+            "Chaque dégagement compte comme un arrêt et accélère le tir suivant.",
+            "Les tirs en bande arrivent après quelques arrêts, les doubles tirs après dix.",
+            "Chaque but encaissé coûte une vie. La partie s'arrête quand il n'en reste plus."
+          ]
+        },
+        "bankShot": {
+          "name": "Bank Shot",
+          "tagline": "Utilisez les bandes pour trouver le chemin.",
+          "description": "Des niveaux casse-tête où la ligne directe est bloquée. Jouez les angles sur les bandes et les plots pour marquer avec le moins de tirs possible.",
+          "format": "8 niveaux",
+          "rules": [
+            "Frappez le palet une seule fois par tir ; il roule ensuite seul.",
+            "Marquez dans le but adverse avant d'avoir épuisé vos tirs.",
+            "Premier tir : 3 étoiles, deuxième tir : 2, tirs suivants : 1.",
+            "Réussissez un niveau pour débloquer le suivant."
+          ]
+        }
+      },
+      "start": {
+        "howToPlay": "Comment jouer",
+        "controls": "La souris contrôle le maillet",
+        "play": "Commencer"
+      },
+      "hud": {
+        "score": "Score",
+        "time": "Temps restant",
+        "multiplier": "Multiplicateur",
+        "multiplierValue": "×{value}",
+        "comboCount": {
+          "one": "{count} touche d'affilée",
+          "other": "{count} touches d'affilée"
+        },
+        "points": "+{points}",
+        "saves": "Arrêts",
+        "level": "Niveau",
+        "shotSpeed": "Dernier tir",
+        "speedValue": "{speed} km/h",
+        "save": "Arrêt · {speed} km/h",
+        "conceded": "But encaissé",
+        "livesLeft": {
+          "one": "{count} vie restante",
+          "other": "{count} vies restantes"
+        },
+        "shots": "Tirs restants",
+        "shotsValue": "{remaining} / {total}",
+        "potentialStars": {
+          "one": "Marquez maintenant : {count} étoile",
+          "other": "Marquez maintenant : {count} étoiles"
+        }
+      },
+      "result": {
+        "timeUp": "Temps écoulé",
+        "gameOver": "Partie terminée",
+        "newBest": "Nouveau record personnel",
+        "retry": "Rejouer",
+        "targetsHit": "Cibles touchées",
+        "bestCombo": "Meilleur combo",
+        "levelReached": "Niveau atteint",
+        "fastestSave": "Arrêt le plus rapide",
+        "shotsUsed": "Tirs utilisés"
+      },
+      "bankShot": {
+        "levelNumber": "Niveau {number}",
+        "chooseLevel": "Choisissez un niveau",
+        "locked": "Verrouillé",
+        "cleared": "Niveau réussi",
+        "outOfShots": "Plus de tirs",
+        "nextLevel": "Niveau suivant",
+        "levels": "Niveaux",
+        "levelNames": {
+          "first-bank": "Première bande",
+          "side-door": "Porte latérale",
+          "pinball": "Flipper",
+          "sliding-wall": "Mur mobile",
+          "zigzag": "Zigzag",
+          "goalkeeper": "Gardien",
+          "narrow-gap": "Passage étroit",
+          "gauntlet": "Parcours final"
+        },
+        "outcomes": {
+          "scored": "But",
+          "stopped": "Le palet s'est arrêté. Tir perdu.",
+          "ownGoal": "But contre votre camp. Tir perdu."
+        }
+      },
+      "notFound": {
+        "title": "Ce jeu n'existe pas",
+        "description": "Le lien est peut-être obsolète. Choisissez un jeu dans l'arcade."
+      }
+    }
+  }
+}

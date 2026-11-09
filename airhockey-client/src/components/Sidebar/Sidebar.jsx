@@ -12,6 +12,7 @@ import {
   Logout as LogoutIcon,
   Login as LoginIcon,
   GpsFixed as ChallengeIcon,
+  VideogameAsset as ArcadeIcon,
 } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -122,6 +123,11 @@ const Sidebar = () => {
         <li onClick={() => navigate('/play')}>
           <p className='list-side'>
             <GameIcon /> {translations.sidebar.playOnline}
+          </p>
+        </li>
+        <li onClick={() => navigate('/arcade')}>
+          <p className='list-side'>
+            <ArcadeIcon /> {translations.sidebar.arcade}
           </p>
         </li>
         <li onClick={() => navigate('/challenges')}>

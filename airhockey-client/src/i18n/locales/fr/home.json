@@ -1,0 +1,236 @@
+{
+  "page": {
+    "home": {
+      "greeting": {
+        "morning": "Bonjour, {username}",
+        "afternoon": "Bon après-midi, {username}",
+        "evening": "Bonsoir, {username}",
+        "fallback": "Bon retour",
+        "guestTitle": "Bienvenue sur Hockair",
+        "guestDescription": "La plateforme de air hockey compétitif. Affrontez les bots, affûtez vos réflexes dans l'arcade et grimpez au classement mondial.",
+        "memberDescription": "Voici ce qui se passe sur Hockair aujourd'hui.",
+        "signUp": "Créer un compte gratuit",
+        "logIn": "Se connecter",
+        "viewStats": "Voir mes statistiques",
+        "profileError": "Impossible de charger votre profil.",
+        "retry": "Réessayer"
+      },
+      "stats": {
+        "elo": "Classement Elo",
+        "record": "Bilan",
+        "recordValue": "{victories}V · {defeats}D",
+        "winRate": "Taux de victoire",
+        "winRateValue": "{percent} %",
+        "noGames": "Aucune partie",
+        "level": "Niveau",
+        "xp": "{xp} XP"
+      },
+      "hero": {
+        "eyebrow": "Jouer maintenant",
+        "title": "Affrontez l'ordinateur",
+        "description": "Cinq bots, du débutant endormi au maître impitoyable. Premier à 5 buts, sans limite de temps.",
+        "play": "Jouer",
+        "quickPlayTitle": "Partie rapide par difficulté",
+        "quickPlayAriaLabel": "Lancer une partie rapide contre {bot}",
+        "rating": "Elo {rating}",
+        "tiers": {
+          "beginner": "Débutant",
+          "intermediate": "Intermédiaire",
+          "advanced": "Avancé",
+          "master": "Maître"
+        }
+      },
+      "ladder": {
+        "title": "Échelle des bots",
+        "subtitle": "Battez tous les bots pour compléter l'échelle.",
+        "progress": {
+          "one": "{count} bot battu sur {total}",
+          "other": "{count} bots battus sur {total}"
+        },
+        "beaten": "Battu",
+        "nextTarget": "Prochaine cible",
+        "toBeat": "À battre",
+        "challenge": "Défier",
+        "rematch": "Revanche",
+        "completeTitle": "Échelle complétée",
+        "completeDescription": "Tous les bots sont battus. Place aux tournois."
+      },
+      "arcade": {
+        "title": "Arcade",
+        "subtitle": "Des exercices courts, parfaits entre deux matchs.",
+        "open": "Ouvrir l'arcade",
+        "games": {
+          "target-rush": {
+            "name": "Target Rush",
+            "description": "Touchez un maximum de cibles avant la fin du chrono."
+          },
+          "goalie-reflex": {
+            "name": "Goalie Reflex",
+            "description": "Gardez vos cages inviolées face à des tirs de plus en plus rapides."
+          },
+          "bank-shot": {
+            "name": "Bank Shot",
+            "description": "Marquez en utilisant les bandes. Chaque rebond compte."
+          }
+        }
+      },
+      "challenge": {
+        "eyebrow": "Défi du jour",
+        "resetsIn": {
+          "one": "Renouvelé dans {count} heure",
+          "other": "Renouvelé dans {count} heures"
+        },
+        "resetsSoon": "Renouvelé dans moins d'une heure",
+        "reward": "Récompense",
+        "coins": {
+          "one": "{count} pièce",
+          "other": "{count} pièces"
+        },
+        "xp": {
+          "one": "{count} XP",
+          "other": "{count} XP"
+        },
+        "cta": "Voir les défis",
+        "items": {
+          "cleanSheet": {
+            "title": "Cage inviolée",
+            "description": {
+              "one": "Gagnez un match sans encaisser le moindre but.",
+              "other": "Gagnez un match sans encaisser le moindre but."
+            }
+          },
+          "speedDemon": {
+            "title": "Tir supersonique",
+            "description": {
+              "one": "Marquez {count} but à plus de 40 km/h.",
+              "other": "Marquez {count} buts à plus de 40 km/h."
+            }
+          },
+          "winStreak": {
+            "title": "En feu",
+            "description": {
+              "one": "Gagnez {count} match d'affilée.",
+              "other": "Gagnez {count} matchs d'affilée."
+            }
+          },
+          "bankShots": {
+            "title": "Artiste des bandes",
+            "description": {
+              "one": "Marquez {count} but après un rebond sur la bande.",
+              "other": "Marquez {count} buts après un rebond sur la bande."
+            }
+          },
+          "comeback": {
+            "title": "Remontada",
+            "description": {
+              "one": "Gagnez un match après avoir été mené de deux buts.",
+              "other": "Gagnez un match après avoir été mené de deux buts."
+            }
+          }
+        }
+      },
+      "tournaments": {
+        "title": "Tournois",
+        "viewAll": "Tout voir",
+        "guestTitle": "Des tournois avec de vraies récompenses",
+        "guestDescription": "Connectez-vous pour voir les prochains tournois et vous inscrire.",
+        "logIn": "Se connecter",
+        "emptyTitle": "Aucun tournoi programmé",
+        "emptyDescription": "De nouveaux tournois sont annoncés chaque semaine. Revenez bientôt.",
+        "errorTitle": "Tournois indisponibles",
+        "errorDescription": "Impossible de charger les tournois pour le moment.",
+        "retry": "Réessayer",
+        "players": {
+          "one": "{count}/{max} joueur",
+          "other": "{count}/{max} joueurs"
+        },
+        "status": {
+          "upcoming": "À venir",
+          "ongoing": "En cours"
+        },
+        "premium": "Premium",
+        "startsOn": "Début le {date}"
+      },
+      "leaderboard": {
+        "title": "Meilleurs joueurs",
+        "viewAll": "Classement complet",
+        "eloValue": "{elo}",
+        "trendUp": "+{delta}",
+        "trendDown": "{delta}",
+        "trendFlat": "=",
+        "trendLabel": "Évolution Elo cette semaine",
+        "rankLabel": "Rang {rank}"
+      },
+      "news": {
+        "title": "Actualités et notes de version",
+        "version": "v{version}",
+        "categories": {
+          "update": "Mise à jour",
+          "event": "Événement",
+          "community": "Communauté"
+        },
+        "items": {
+          "botLadder": {
+            "title": "Nouvelle échelle des bots et adversaires plus malins",
+            "summary": "Les bots anticipent les rebonds de façon plus réaliste et l'échelle suit chacune de vos victoires."
+          },
+          "arcadeLaunch": {
+            "title": "L'arcade ouvre ses portes",
+            "summary": "Trois exercices pour travailler la visée, les réflexes et les tirs en bande, avec vos records sauvegardés."
+          },
+          "winterCup": {
+            "title": "Inscriptions à la Winter Cup",
+            "summary": "Un tableau à 64 joueurs avec des récompenses premium. Ouverture des inscriptions le 1er décembre."
+          },
+          "clubsSpotlight": {
+            "title": "Coup de projecteur communauté",
+            "summary": "Rencontrez les joueurs derrière le tir le plus rapide de l'histoire de Hockair : 61 km/h."
+          }
+        }
+      },
+      "tips": {
+        "title": "Conseils pour débuter",
+        "items": {
+          "stayHome": "Restez près de votre but et laissez venir le palet avant de frapper.",
+          "useRails": "Visez les bandes : un tir en rebond est bien plus difficile à lire qu'un tir direct.",
+          "readAngles": "Regardez l'angle du palet, pas votre maillet. La main suit les yeux.",
+          "controlSpeed": "Sous pression, ralentissez le palet, puis choisissez votre tir."
+        }
+      }
+    }
+  },
+  "footer": {
+    "tagline": "La plateforme de air hockey compétitif. Affrontez les bots, entraînez-vous dans l'arcade et grimpez au classement.",
+    "navigationLabel": "Pied de page",
+    "columns": {
+      "product": {
+        "title": "Jouer",
+        "play": "Jouer contre l'ordinateur",
+        "arcade": "Arcade",
+        "shop": "Boutique",
+        "subscriptions": "Premium"
+      },
+      "community": {
+        "title": "Communauté",
+        "tournaments": "Tournois",
+        "leaderboard": "Classement",
+        "challenges": "Défis",
+        "friends": "Amis"
+      },
+      "legal": {
+        "title": "Mentions légales",
+        "terms": "Conditions d'utilisation",
+        "privacy": "Politique de confidentialité",
+        "cookies": "Politique de cookies",
+        "soon": "Bientôt"
+      }
+    },
+    "language": "Langue",
+    "copyright": "© {year} Hockair. Tous droits réservés.",
+    "brandName": "Hockair",
+    "languages": {
+      "fr": "Français",
+      "en": "English"
+    }
+  }
+}

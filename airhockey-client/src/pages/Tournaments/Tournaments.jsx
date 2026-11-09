@@ -1,108 +1,327 @@
-import React from 'react';
+import {
+  ErrorOutline as ErrorIcon,
+  EventBusy as NoEventIcon,
+  InfoOutlined as InfoIcon,
+} from '@mui/icons-material';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { useLanguage } from '../../../LanguageContext';
+import { ApiError } from '../../api/apiClient';
+import Toast from '../../components/Toast/Toast';
 import Tournament from '../../components/Tournament/Tournament';
+import TournamentDetailModal from '../../components/Tournament/TournamentDetailModal';
+import {
+  Button,
+  ButtonVariant,
+  Card,
+  EmptyState,
+  PageContainer,
+  PageHeader,
+  Skeleton,
+  Tabs,
+} from '../../components/ui';
+import { formatTranslation } from '../../i18n/formatTranslation';
+import { RequestStatus } from '../Profile/requestStatus';
+import { useUserProfile } from '../Profile/useUserProfile';
+
+import {
+  fetchTournamentParticipants,
+  fetchTournaments,
+  joinTournament,
+  TournamentStatus,
+} from './tournamentsData';
+import {
+  buildParticipantRows,
+  buildTournamentCard,
+  groupTournamentCardsByStatus,
+} from './tournamentsViewModel';
 import './Tournaments.css';
 
+const ToastType = Object.freeze({
+  SUCCESS: 'success',
+  ERROR: 'error',
+});
+
+const HTTP_BAD_REQUEST = 400;
+const SAMPLE_CURRENT_USER_ID = 'sample-current-user';
+
+const CARD_SKELETON_KEYS = [
+  'tournament-skeleton-1',
+  'tournament-skeleton-2',
+  'tournament-skeleton-3',
+];
+
+const INITIAL_PARTICIPANTS = { isLoading: false, hasError: false, items: [] };
+
+const TournamentCardSkeleton = () => (
+  <div className='tournaments-skeleton-card'>
+    <Skeleton width='5rem' height='1.375rem' />
+    <Skeleton width='70%' height='1.25rem' />
+    <Skeleton height='2.5rem' />
+    <Skeleton height='3rem' />
+    <Skeleton width='40%' height='2.5rem' />
+  </div>
+);
+
 const Tournaments = () => {
-  const tournaments = [
-    {
-      id: 1,
-      name: 'Winter Clash',
-      description: 'A thrilling 32-player tournament in icy arenas.',
-      rules: '5v5, Single Elimination',
-      participants: 32,
-      date: 'Dec 25, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-    {
-      id: 2,
-      name: 'Summer Heatwave',
-      description: 'Challenge yourself in the blazing summer sun.',
-      rules: '1v1, Best of 3',
-      participants: 16,
-      date: 'Jul 15, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-    {
-      id: 3,
-      name: 'Champions League',
-      description: 'The ultimate showdown for the best players worldwide.',
-      rules: '3v3, Double Elimination',
-      participants: 64,
-      date: 'Mar 10, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-    {
-      id: 4,
-      name: 'Rookie Rumble',
-      description: 'A beginner-friendly tournament to hone your skills.',
-      rules: 'Free-for-All, 20 Players',
-      participants: 20,
-      date: 'Jan 5, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676e78c7&is=676d2747&hm=c98a6f187efa1eb2f9546064f9814d0a274b5fcd5b362665657490b29f5aa981&=&format=webp&quality=lossless&width=593&height=593',
-    },
-    {
-      id: 5,
-      name: 'Spring Showdown',
-      description: 'A vibrant tournament to celebrate the spring season.',
-      rules: '2v2, Round Robin',
-      participants: 24,
-      date: 'Apr 20, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-    {
-      id: 6,
-      name: 'Autumn Arena',
-      description: 'Battle it out in the crisp autumn air.',
-      rules: '4v4, Single Elimination',
-      participants: 40,
-      date: 'Oct 10, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-    {
-      id: 7,
-      name: 'Night Owl Knockout',
-      description: 'A late-night tournament for the night owls.',
-      rules: '1v1, Single Elimination',
-      participants: 16,
-      date: 'Nov 1, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-    {
-      id: 8,
-      name: 'Holiday Havoc',
-      description: 'Celebrate the holidays with an intense tournament.',
-      rules: '3v3, Double Elimination',
-      participants: 48,
-      date: 'Dec 20, 2024',
-      image:
-        'https://media.discordapp.net/attachments/1311338282776399933/1321777557938634843/file-EfS6cwgsXFtqyGuNmbf1ii.png?ex=676fca47&is=676e78c7&hm=1bb46cfe0f2c1de31a12a33eb5326fb54908d1149be34c55dfab6602342ba6fa&=&format=webp&quality=lossless&width=525&height=525',
-    },
-  ];
+  const { translations, language } = useLanguage();
+  const tournamentTexts = translations.competitive.tournaments;
+  const { profile } = useUserProfile();
+  const [tournaments, setTournaments] = useState([]);
+  const [isSample, setIsSample] = useState(false);
+  const [requestStatus, setRequestStatus] = useState(RequestStatus.LOADING);
+  const [reloadCount, setReloadCount] = useState(0);
+  const [activeTab, setActiveTab] = useState(TournamentStatus.UPCOMING);
+  const [joinedTournamentIds, setJoinedTournamentIds] = useState([]);
+  const [joiningTournamentId, setJoiningTournamentId] = useState(null);
+  const [selectedTournamentId, setSelectedTournamentId] = useState(null);
+  const [participants, setParticipants] = useState(INITIAL_PARTICIPANTS);
+  const [toast, setToast] = useState(null);
+
+  const currentUserId = profile?._id ?? null;
+
+  useEffect(() => {
+    let isStale = false;
+    setRequestStatus(RequestStatus.LOADING);
+    fetchTournaments()
+      .then((result) => {
+        if (!isStale) {
+          setTournaments(result.tournaments);
+          setIsSample(result.isSample);
+          setRequestStatus(RequestStatus.SUCCESS);
+        }
+      })
+      .catch(() => {
+        if (!isStale) {
+          setRequestStatus(RequestStatus.ERROR);
+        }
+      });
+
+    return () => {
+      isStale = true;
+    };
+  }, [reloadCount]);
+
+  const selectedTournament = useMemo(
+    () =>
+      tournaments.find((tournament) => tournament._id === selectedTournamentId),
+    [tournaments, selectedTournamentId]
+  );
+
+  useEffect(() => {
+    if (!selectedTournament) {
+      return undefined;
+    }
+    let isStale = false;
+    setParticipants({ isLoading: true, hasError: false, items: [] });
+    fetchTournamentParticipants(selectedTournament)
+      .then((participantItems) => {
+        if (!isStale) {
+          setParticipants({
+            isLoading: false,
+            hasError: false,
+            items: Array.isArray(participantItems) ? participantItems : [],
+          });
+        }
+      })
+      .catch(() => {
+        if (!isStale) {
+          setParticipants({ isLoading: false, hasError: true, items: [] });
+        }
+      });
+
+    return () => {
+      isStale = true;
+    };
+  }, [selectedTournament]);
+
+  const markTournamentJoined = (tournamentId) => {
+    const joiningUserId = currentUserId ?? SAMPLE_CURRENT_USER_ID;
+    setJoinedTournamentIds((joinedIds) => [...joinedIds, tournamentId]);
+    setTournaments((previousTournaments) =>
+      previousTournaments.map((tournament) =>
+        tournament._id === tournamentId &&
+        !tournament.participants.includes(joiningUserId)
+          ? {
+              ...tournament,
+              participants: [...tournament.participants, joiningUserId],
+            }
+          : tournament
+      )
+    );
+  };
+
+  const handleJoin = async (card) => {
+    setJoiningTournamentId(card.id);
+    try {
+      await joinTournament(card.id);
+      markTournamentJoined(card.id);
+      setToast({
+        id: Date.now(),
+        type: ToastType.SUCCESS,
+        message: formatTranslation(tournamentTexts.joinSuccess, {
+          name: card.name,
+        }),
+      });
+    } catch (joinError) {
+      const isAlreadyJoined =
+        joinError instanceof ApiError && joinError.status === HTTP_BAD_REQUEST;
+      if (isAlreadyJoined) {
+        markTournamentJoined(card.id);
+      } else {
+        setToast({
+          id: Date.now(),
+          type: ToastType.ERROR,
+          message: tournamentTexts.joinError,
+        });
+      }
+    } finally {
+      setJoiningTournamentId(null);
+    }
+  };
+
+  const handleOpenDetails = (card) => setSelectedTournamentId(card.id);
+
+  const handleCloseDetails = useCallback(
+    () => setSelectedTournamentId(null),
+    []
+  );
+
+  const viewModel = useMemo(() => {
+    const formattingContext = { language, translations };
+    const joinContext = {
+      currentUserId: currentUserId ?? SAMPLE_CURRENT_USER_ID,
+      joinedTournamentIds,
+      joiningTournamentId,
+    };
+    const cards = tournaments.map((tournament) =>
+      buildTournamentCard(tournament, joinContext, formattingContext)
+    );
+    const cardsByStatus = groupTournamentCardsByStatus(cards);
+    const activeCards = cardsByStatus[activeTab] ?? [];
+
+    return {
+      tabs: Object.values(TournamentStatus).map((status) => ({
+        value: status,
+        label: tournamentTexts.tabs[status],
+        count: cardsByStatus[status]?.length ?? 0,
+      })),
+      activeCards,
+      hasActiveCards: activeCards.length > 0,
+      emptyTitle: tournamentTexts.empty[activeTab],
+      selectedCard:
+        cards.find((card) => card.id === selectedTournamentId) ?? null,
+      participantsView: {
+        isLoading: participants.isLoading,
+        hasError: participants.hasError,
+        rows: buildParticipantRows(
+          participants.items,
+          joinContext.currentUserId,
+          profile?.username ?? null,
+          formattingContext
+        ),
+      },
+    };
+  }, [
+    tournaments,
+    activeTab,
+    joinedTournamentIds,
+    joiningTournamentId,
+    selectedTournamentId,
+    participants,
+    currentUserId,
+    profile,
+    language,
+    translations,
+    tournamentTexts,
+  ]);
+
+  const isLoading = requestStatus === RequestStatus.LOADING;
+  const isError = requestStatus === RequestStatus.ERROR;
+  const isReady = requestStatus === RequestStatus.SUCCESS;
 
   return (
-    <div className='tournament-container'>
-      <div className='dashboard-section'>
-        <h2>Upcoming Tournaments</h2>
-        <div className='tournament-grid'>
-          {tournaments.map((tournament) => (
+    <PageContainer className='tournaments-page'>
+      <PageHeader
+        eyebrow={tournamentTexts.eyebrow}
+        title={tournamentTexts.title}
+        description={tournamentTexts.description}
+      />
+
+      <Tabs
+        tabs={viewModel.tabs}
+        activeTab={activeTab}
+        onChange={setActiveTab}
+        ariaLabel={tournamentTexts.tabsLabel}
+      />
+
+      {isSample && isReady && (
+        <p className='tournaments-notice'>
+          <InfoIcon aria-hidden='true' />
+          {tournamentTexts.sampleNotice}
+        </p>
+      )}
+
+      {isLoading && (
+        <div className='tournaments-grid' aria-busy='true'>
+          {CARD_SKELETON_KEYS.map((skeletonKey) => (
+            <TournamentCardSkeleton key={skeletonKey} />
+          ))}
+        </div>
+      )}
+
+      {isError && (
+        <Card>
+          <EmptyState
+            icon={<ErrorIcon />}
+            title={tournamentTexts.errorTitle}
+            description={tournamentTexts.errorDescription}
+            action={
+              <Button
+                variant={ButtonVariant.SECONDARY}
+                onClick={() => setReloadCount((count) => count + 1)}
+              >
+                {translations.competitive.common.retry}
+              </Button>
+            }
+          />
+        </Card>
+      )}
+
+      {isReady && viewModel.hasActiveCards && (
+        <div className='tournaments-grid'>
+          {viewModel.activeCards.map((card) => (
             <Tournament
-              key={tournament.id}
-              name={tournament.name}
-              description={tournament.description}
-              image={tournament.image}
+              key={card.id}
+              card={card}
+              onJoin={handleJoin}
+              onOpenDetails={handleOpenDetails}
             />
           ))}
         </div>
-      </div>
-    </div>
+      )}
+
+      {isReady && !viewModel.hasActiveCards && (
+        <Card>
+          <EmptyState
+            icon={<NoEventIcon />}
+            title={viewModel.emptyTitle}
+            description={tournamentTexts.empty.description}
+          />
+        </Card>
+      )}
+
+      <TournamentDetailModal
+        card={viewModel.selectedCard}
+        participants={viewModel.participantsView}
+        onClose={handleCloseDetails}
+        onJoin={handleJoin}
+      />
+
+      {toast && (
+        <Toast key={toast.id} message={toast.message} type={toast.type} />
+      )}
+    </PageContainer>
   );
 };
 

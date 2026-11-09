@@ -1,0 +1,194 @@
+{
+  "social": {
+    "friends": {
+      "eyebrow": "Communauté",
+      "title": "Amis",
+      "description": "Retrouvez vos amis, gérez vos demandes et lancez un défi.",
+      "messagesAction": "Messages",
+      "tabsLabel": "Sections de la page amis",
+      "tabs": {
+        "friends": "Amis",
+        "requests": "Demandes",
+        "blocked": "Bloqués",
+        "add": "Ajouter un ami"
+      },
+      "userMeta": "{elo} Elo · Niveau {level}",
+      "unknownUser": "Joueur inconnu",
+      "filterLabel": "Filtrer vos amis",
+      "filterPlaceholder": "Filtrer par pseudo",
+      "friendCount": {
+        "one": "{count} ami",
+        "other": "{count} amis"
+      },
+      "requestCount": {
+        "one": "{count} demande en attente",
+        "other": "{count} demandes en attente"
+      },
+      "blockedCount": {
+        "one": "{count} joueur bloqué",
+        "other": "{count} joueurs bloqués"
+      },
+      "searchResultCount": {
+        "one": "{count} joueur trouvé",
+        "other": "{count} joueurs trouvés"
+      },
+      "searchLabel": "Rechercher un joueur",
+      "searchPlaceholder": "Pseudo du joueur",
+      "searchHint": "La recherche démarre dès {count} caractères.",
+      "actions": {
+        "message": "Message",
+        "challenge": "Défier",
+        "more": "Plus d'actions pour {username}",
+        "remove": "Retirer des amis",
+        "block": "Bloquer",
+        "unblock": "Débloquer",
+        "accept": "Accepter",
+        "decline": "Refuser",
+        "add": "Ajouter",
+        "retry": "Réessayer",
+        "cancel": "Annuler"
+      },
+      "badges": {
+        "friend": "Ami",
+        "requestSent": "Demande envoyée",
+        "blocked": "Bloqué",
+        "incomingRequest": "Vous a invité"
+      },
+      "empty": {
+        "friends": {
+          "title": "Pas encore d'amis",
+          "description": "Recherchez un joueur par son pseudo pour lui envoyer une demande.",
+          "action": "Trouver des amis"
+        },
+        "filter": {
+          "title": "Aucun résultat",
+          "description": "Aucun ami ne correspond à « {query} »."
+        },
+        "requests": {
+          "title": "Aucune demande en attente",
+          "description": "Les demandes d'amis que vous recevez apparaîtront ici."
+        },
+        "blocked": {
+          "title": "Aucun joueur bloqué",
+          "description": "Les joueurs que vous bloquez n'apparaissent plus dans vos amis."
+        },
+        "searchIdle": {
+          "title": "Trouver un joueur",
+          "description": "Saisissez au moins {count} caractères pour rechercher par pseudo."
+        },
+        "searchNoResult": {
+          "title": "Aucun joueur trouvé",
+          "description": "Aucun pseudo ne correspond à « {query} »."
+        }
+      },
+      "errors": {
+        "load": {
+          "title": "Chargement impossible",
+          "description": "Vérifiez votre connexion puis réessayez."
+        },
+        "search": {
+          "title": "La recherche a échoué",
+          "description": "Le service de recherche ne répond pas. Réessayez dans un instant."
+        }
+      },
+      "confirm": {
+        "remove": {
+          "title": "Retirer {username} ?",
+          "description": "{username} sera retiré de votre liste d'amis. Vous pourrez lui renvoyer une demande plus tard.",
+          "confirm": "Retirer"
+        },
+        "block": {
+          "title": "Bloquer {username} ?",
+          "description": "{username} n'apparaîtra plus dans vos amis. Vous pourrez le débloquer depuis l'onglet Bloqués.",
+          "confirm": "Bloquer"
+        }
+      },
+      "toasts": {
+        "requestSent": "Demande envoyée à {username}",
+        "requestAlreadySent": "Vous avez déjà envoyé une demande à {username}",
+        "requestFailed": "Impossible d'envoyer la demande",
+        "accepted": "{username} fait maintenant partie de vos amis",
+        "acceptFailed": "Impossible d'accepter la demande",
+        "declined": "Demande de {username} refusée",
+        "declineFailed": "Impossible de refuser la demande",
+        "removed": "{username} a été retiré de vos amis",
+        "removeFailed": "Impossible de retirer cet ami",
+        "blocked": "{username} a été bloqué",
+        "blockFailed": "Impossible de bloquer ce joueur",
+        "unblocked": "{username} a été débloqué",
+        "unblockFailed": "Impossible de débloquer ce joueur"
+      }
+    },
+    "messages": {
+      "eyebrow": "Communauté",
+      "title": "Messages",
+      "description": "Vos conversations avec vos amis.",
+      "friendsAction": "Gérer mes amis",
+      "conversationsLabel": "Conversations",
+      "filterLabel": "Rechercher une conversation",
+      "filterPlaceholder": "Rechercher",
+      "sections": {
+        "recent": "Récentes",
+        "friends": "Démarrer une conversation"
+      },
+      "ownPreview": "Vous : {content}",
+      "noMessagePreview": "Aucun message pour l'instant",
+      "unreadLabel": "Messages non lus",
+      "emptyList": {
+        "title": "Aucune conversation",
+        "description": "Ajoutez des amis pour commencer à discuter.",
+        "action": "Trouver des amis"
+      },
+      "noFilterResult": {
+        "title": "Aucun résultat",
+        "description": "Aucune conversation ne correspond à « {query} »."
+      },
+      "listError": {
+        "title": "Conversations indisponibles",
+        "description": "La liste n'a pas pu être chargée.",
+        "action": "Réessayer"
+      },
+      "selectConversation": {
+        "title": "Sélectionnez une conversation",
+        "description": "Choisissez un ami dans la liste pour afficher vos échanges."
+      },
+      "conversationNotFound": {
+        "title": "Conversation introuvable",
+        "description": "Ce joueur ne fait pas partie de vos amis ni de vos conversations.",
+        "action": "Retour aux messages"
+      },
+      "emptyConversation": {
+        "title": "Démarrez la conversation",
+        "description": "Envoyez un premier message à {username}."
+      },
+      "loadError": {
+        "title": "Chargement impossible",
+        "description": "Les messages n'ont pas pu être récupérés.",
+        "action": "Réessayer"
+      },
+      "today": "Aujourd'hui",
+      "yesterday": "Hier",
+      "seen": "Vu",
+      "composer": {
+        "label": "Message à {username}",
+        "placeholder": "Écrire à {username}…",
+        "send": "Envoyer",
+        "hint": "Entrée pour envoyer · Maj + Entrée pour aller à la ligne"
+      },
+      "back": "Retour aux conversations",
+      "challenge": "Défier",
+      "deleteMessage": "Supprimer le message",
+      "confirmDelete": {
+        "title": "Supprimer ce message ?",
+        "description": "Le message sera supprimé pour vous et votre ami. Cette action est irréversible.",
+        "confirm": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "toasts": {
+        "sendFailed": "Le message n'a pas pu être envoyé",
+        "deleted": "Message supprimé",
+        "deleteFailed": "Impossible de supprimer le message"
+      }
+    }
+  }
+}

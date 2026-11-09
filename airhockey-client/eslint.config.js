@@ -65,7 +65,37 @@ export default [
       'react/no-unknown-property': [
         'error',
         {
-          ignore: ['object', 'position', 'intensity', 'angle', 'penumbra'], // Propriétés spécifiques
+          ignore: [
+            'object',
+            'position',
+            'intensity',
+            'angle',
+            'penumbra',
+            'args',
+            'attach',
+            'blending',
+            'castShadow',
+            'decay',
+            'depthWrite',
+            'distance',
+            'frustumCulled',
+            'geometry',
+            'gradientMap',
+            'map',
+            'receiveShadow',
+            'rotation',
+            'shadow-bias',
+            'shadow-camera-bottom',
+            'shadow-camera-left',
+            'shadow-camera-right',
+            'shadow-camera-top',
+            'shadow-mapSize',
+            'side',
+            'toneMapped',
+            'transparent',
+            'vertexColors',
+            'visible',
+          ], // Three.js / react-three-fiber props
         },
       ],
       'css-modules/no-unused-class': 'warn', // Avertit sur les classes CSS inutilisées

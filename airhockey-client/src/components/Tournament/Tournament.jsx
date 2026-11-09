@@ -1,76 +1,94 @@
-import React, { useEffect, useState } from 'react';
+import {
+  CalendarMonth as CalendarIcon,
+  CheckCircle as JoinedIcon,
+  EmojiEvents as TrophyIcon,
+  Groups as PlayersIcon,
+  WorkspacePremium as PremiumIcon,
+} from '@mui/icons-material';
+import React from 'react';
+
+import { useLanguage } from '../../../LanguageContext';
+import { Badge, BadgeTone, Button, ButtonVariant, ProgressBar } from '../ui';
 import './Tournament.css';
 
-const Tournament = () => {
-  const [tournaments, setTournaments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const TournamentJoinButton = ({ card, onJoin }) =>
+  card.isJoinable || card.isJoining ? (
+    <Button isLoading={card.isJoining} onClick={() => onJoin(card)}>
+      {card.joinLabel}
+    </Button>
+  ) : (
+    <span className={`tournament-join-state tournament-join-${card.joinState}`}>
+      {card.isJoined && <JoinedIcon aria-hidden='true' />}
+      {card.joinLabel}
+    </span>
+  );
 
-  useEffect(() => {
-    const fetchTournaments = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/tournaments`,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch tournaments');
-        }
-
-        const data = await response.json();
-
-        // Filter out duplicates using a Set to track unique IDs
-        const uniqueTournaments = data.filter(
-          (tournament, index, self) =>
-            index === self.findIndex((t) => t._id === tournament._id)
-        );
-
-        setTournaments(uniqueTournaments);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTournaments();
-  }, []); // Ensure useEffect runs only once
-
-  if (loading) {
-    return <div>Loading tournaments...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+const Tournament = ({ card, onJoin, onOpenDetails }) => {
+  const { translations } = useLanguage();
+  const tournamentTexts = translations.competitive.tournaments;
 
   return (
-    <div className='tournament-list'>
-      {tournaments.map((tournament) => (
-        <div key={tournament._id} className='tournament-card'>
-          <div
-            className='tournament-image'
-            style={{ backgroundImage: `url(${tournament.image})` }}
-          >
-            <div className='tournament-overlay'>
-              <div className='tournament-details'>
-                <h3 className='tournament-name'>{tournament.name}</h3>
-                <p className='tournament-description'>
-                  {tournament.description || 'No description available.'}
-                </p>
-              </div>
-            </div>
-          </div>
+    <article className='tournament-card'>
+      <header className='tournament-card-header'>
+        <div className='tournament-card-badges'>
+          <Badge>{card.typeLabel}</Badge>
+          {card.isPremium && (
+            <Badge tone={BadgeTone.WARNING} icon={<PremiumIcon />}>
+              {tournamentTexts.premium}
+            </Badge>
+          )}
         </div>
-      ))}
-    </div>
+        <h3 className='tournament-card-name'>{card.name}</h3>
+        <p className='tournament-card-description'>{card.description}</p>
+      </header>
+
+      <dl className='tournament-card-facts'>
+        <div className='tournament-card-fact'>
+          <dt>{tournamentTexts.fields.format}</dt>
+          <dd>{card.formatLabel}</dd>
+        </div>
+        <div className='tournament-card-fact'>
+          <dt>
+            <CalendarIcon aria-hidden='true' />
+            {tournamentTexts.fields.start}
+          </dt>
+          <dd>{card.startLabel}</dd>
+        </div>
+        <div className='tournament-card-fact'>
+          <dt>
+            <TrophyIcon aria-hidden='true' className='tournament-prize-icon' />
+            {tournamentTexts.fields.prize}
+          </dt>
+          <dd>{card.prizeLabel}</dd>
+        </div>
+      </dl>
+
+      <div className='tournament-card-players'>
+        <div className='tournament-card-players-text'>
+          <span>
+            <PlayersIcon aria-hidden='true' />
+            {card.playersLabel}
+          </span>
+          {card.spotsLeftLabel && (
+            <span className='tournament-card-spots'>{card.spotsLeftLabel}</span>
+          )}
+        </div>
+        <ProgressBar
+          ratio={card.fillRatio}
+          label={tournamentTexts.fields.players}
+        />
+      </div>
+
+      <div className='tournament-card-footer'>
+        <Button
+          variant={ButtonVariant.GHOST}
+          onClick={() => onOpenDetails(card)}
+        >
+          {tournamentTexts.actions.details}
+        </Button>
+        <TournamentJoinButton card={card} onJoin={onJoin} />
+      </div>
+    </article>
   );
 };
 

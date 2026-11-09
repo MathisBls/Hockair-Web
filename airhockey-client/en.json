@@ -125,30 +125,30 @@
         },
         "subscriptionData": {
             "hockairPro": {
-            "name": "Hockair Pro",
-            "price": "4.99€/month",
-            "target": "Regular players, competitive aspect",
-            "advantages": [
-                "Double virtual currency gains or triple if 0 points on the opponent's side",
-                "Access to exclusive skins (table, puck, strikers)",
-                "More advanced stats",
-                "Premium badge"
-            ]
+                "name": "Hockair Pro",
+                "price": "4.99€/month",
+                "target": "Regular players, competitive aspect",
+                "advantages": [
+                    "Double virtual currency gains or triple if 0 points on the opponent's side",
+                    "Access to exclusive skins (table, puck, strikers)",
+                    "More advanced stats",
+                    "Premium badge"
+                ]
             },
             "hockairChampion": {
-            "name": "Hockair Champion",
-            "price": "9.99€/month",
-            "target": "Competitive players, highly invested in the game",
-            "advantages": [
-                "Everything included in Hockair Pro",
-                "Priority placement against opponents of the same level",
-                "Personalized suggestions based on play style (AI Coaching)",
-                "Access to exclusive tournaments with significant rewards",
-                "Ultra-rare and animated cosmetic items",
-                "Increased ELO points gained (+5%)",
-                "10-15% discount on all in-game purchases",
-                "Access to detailed opponent stats before the match"
-            ]
+                "name": "Hockair Champion",
+                "price": "9.99€/month",
+                "target": "Competitive players, highly invested in the game",
+                "advantages": [
+                    "Everything included in Hockair Pro",
+                    "Priority placement against opponents of the same level",
+                    "Personalized suggestions based on play style (AI Coaching)",
+                    "Access to exclusive tournaments with significant rewards",
+                    "Ultra-rare and animated cosmetic items",
+                    "Increased ELO points gained (+5%)",
+                    "10-15% discount on all in-game purchases",
+                    "Access to detailed opponent stats before the match"
+                ]
             },
             "subscribe": "Upgrade"
         },
@@ -168,15 +168,63 @@
             "button": "Sign Up",
             "alreadyHaveAccount": "Already have an account?",
             "loginRedirect": "Log in"
+        },
+        "play": {
+            "title": "Play",
+            "subtitle": "Take on our cartoon bots and climb the ranks",
+            "modes": {
+                "computer": "Computer",
+                "online": "Online",
+                "friend": "Friend",
+                "soon": "Soon"
+            },
+            "chooseOpponent": "Choose your opponent",
+            "tiers": {
+                "beginner": "Beginner",
+                "intermediate": "Intermediate",
+                "advanced": "Advanced",
+                "master": "Master"
+            },
+            "rating": "Elo {rating}",
+            "beaten": "Beaten",
+            "settings": {
+                "title": "Match settings",
+                "goals": "Goals to win",
+                "timeLimit": "Duration",
+                "noLimit": "Unlimited",
+                "minutes": {
+                    "one": "{count} min",
+                    "other": "{count} min"
+                },
+                "malletColor": "Your mallet",
+                "table": "Table"
+            },
+            "start": "Play",
+            "skins": {
+                "cyan": "Cyan",
+                "red": "Red",
+                "lime": "Lime",
+                "violet": "Violet",
+                "gold": "Gold"
+            },
+            "tables": {
+                "neon": "Neon",
+                "ice": "Ice",
+                "sunset": "Sunset"
+            },
+            "stats": {
+                "speed": "Speed",
+                "reflexes": "Reflexes",
+                "precision": "Precision",
+                "aggression": "Aggression"
+            }
         }
     },
     "errors": {
         "genericError": "An error occurred.",
         "serverError": "Server error. Please try again later.",
         "passwordsDoNotMatch": "Passwords do not match.",
-        "weakPassword": "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.",
-        "genericError": "An error occurred.",
-        "serverError": "Server error. Please try again later."
+        "weakPassword": "Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character."
     },
     "success": {
         "registerSuccess": "Account successfully created!"
@@ -196,5 +244,85 @@
         "right": {
             "copyright": "© 2024 Hockair. All rights reserved."
         }
+    },
+    "bots": {
+        "puffy": {
+            "name": "Puffy",
+            "quote": "Zzz... oh, my turn? Go easy on me please."
+        },
+        "bouncy": {
+            "name": "Bouncy",
+            "quote": "Yay, a new friend! Let's play! Let's play!"
+        },
+        "blitz": {
+            "name": "Blitz",
+            "quote": "I compute every bounce. Show me what you've got."
+        },
+        "viper": {
+            "name": "Viper",
+            "quote": "The rails are my playground. Good luck."
+        },
+        "inferno": {
+            "name": "Inferno",
+            "quote": "I. NEVER. LOSE. Get ready to burn."
+        }
+    },
+    "game": {
+        "you": "You",
+        "vsComputer": "Versus computer",
+        "firstTo": {
+            "one": "First to {count} goal",
+            "other": "First to {count} goals"
+        },
+        "elapsed": "Game time",
+        "remaining": "Time left",
+        "goal": "GOAL!",
+        "conceded": "CONCEDED",
+        "go": "GO!",
+        "replay": "REPLAY",
+        "skipReplay": "Click or Space to skip",
+        "suddenDeath": "SUDDEN DEATH",
+        "suddenDeathHint": "Next goal wins!",
+        "powerShot": "POWER SHOT!",
+        "kmh": "{speed} km/h",
+        "feedTitle": "Match feed",
+        "feedEmpty": "The match hasn't started yet",
+        "feed": {
+            "kickoff": "Kick-off!",
+            "shot": "Shot on target by {player} at {speed} km/h",
+            "save": "Save by {player}",
+            "goal": "GOAL by {player}! ({playerScore} - {botScore})",
+            "suddenDeath": "Time's up, sudden death!"
+        },
+        "stats": {
+            "title": "Statistics",
+            "shots": "Shots",
+            "shotsOnTarget": "On target",
+            "saves": "Saves",
+            "maxShot": "Fastest shot",
+            "hits": "Touches"
+        },
+        "resign": "Resign",
+        "confirmResign": "Confirm resign?",
+        "soundOn": "Sound on",
+        "soundOff": "Sound off",
+        "controlsHint": "Move your mouse to control your mallet",
+        "result": {
+            "win": "Victory!",
+            "loss": "Defeat",
+            "resigned": "Resigned",
+            "draw": "Draw",
+            "winSubtitle": "You beat {bot}!",
+            "lossSubtitle": "{bot} wins this time",
+            "resignedSubtitle": "You resigned against {bot}",
+            "firstWin": "New bot beaten!"
+        },
+        "rematch": "Rematch",
+        "newOpponent": "New opponent",
+        "loading": "Loading the arena...",
+        "fullscreen": "Fullscreen",
+        "exitFullscreen": "Exit fullscreen",
+        "showPanel": "Show match feed",
+        "hidePanel": "Hide match feed"
     }
 }

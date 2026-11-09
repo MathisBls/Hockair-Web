@@ -1,0 +1,118 @@
+{
+  "page": {
+    "challenges": {
+      "eyebrow": "Défis",
+      "title": "Défis",
+      "description": "De nouveaux objectifs chaque jour et chaque semaine. La progression suit vos parties d'arcade et vos victoires contre les bots.",
+      "openArcade": "Ouvrir l'arcade",
+      "tabs": {
+        "daily": "Du jour",
+        "weekly": "De la semaine"
+      },
+      "summary": {
+        "daily": "Défis du jour",
+        "weekly": "Défis de la semaine",
+        "coins": "Pièces récupérées",
+        "outOf": "{count} / {total}",
+        "coinsDetail": {
+          "one": "Sur les défis en cours",
+          "other": "Sur les défis en cours"
+        }
+      },
+      "resetsIn": "Renouvellement dans {duration}",
+      "duration": {
+        "days": {
+          "one": "{count} jour",
+          "other": "{count} jours"
+        },
+        "hours": {
+          "one": "{count} h",
+          "other": "{count} h"
+        },
+        "minutes": {
+          "one": "{count} min",
+          "other": "{count} min"
+        }
+      },
+      "scope": {
+        "daily": "Aujourd'hui",
+        "weekly": "Cette semaine",
+        "allTime": "Progression totale"
+      },
+      "tiers": {
+        "standard": "Standard",
+        "hard": "Difficile"
+      },
+      "titles": {
+        "daily-target-best": {
+          "one": "Marquez {target} point en une partie de Target Rush",
+          "other": "Marquez {target} points en une partie de Target Rush"
+        },
+        "daily-goalie-best": {
+          "one": "Réalisez {target} arrêt en une partie de Goalie Reflex",
+          "other": "Réalisez {target} arrêts en une partie de Goalie Reflex"
+        },
+        "daily-target-total": {
+          "one": "Cumulez {target} point sur Target Rush aujourd'hui",
+          "other": "Cumulez {target} points sur Target Rush aujourd'hui"
+        },
+        "daily-goalie-total": {
+          "one": "Cumulez {target} arrêt sur Goalie Reflex aujourd'hui",
+          "other": "Cumulez {target} arrêts sur Goalie Reflex aujourd'hui"
+        },
+        "daily-runs": {
+          "one": "Jouez {target} partie d'arcade",
+          "other": "Jouez {target} parties d'arcade"
+        },
+        "daily-bank-runs": {
+          "one": "Tentez {target} niveau de Bank Shot",
+          "other": "Tentez {target} niveaux de Bank Shot"
+        },
+        "weekly-bots": {
+          "one": "Battez {target} bot différent",
+          "other": "Battez {target} bots différents"
+        },
+        "weekly-stars": {
+          "one": "Obtenez {target} étoile sur Bank Shot",
+          "other": "Obtenez {target} étoiles sur Bank Shot"
+        },
+        "weekly-runs": {
+          "one": "Jouez {target} partie d'arcade cette semaine",
+          "other": "Jouez {target} parties d'arcade cette semaine"
+        },
+        "weekly-target-best": {
+          "one": "Atteignez {target} point sur Target Rush",
+          "other": "Atteignez {target} points sur Target Rush"
+        },
+        "weekly-goalie-best": {
+          "one": "Atteignez {target} arrêt sur Goalie Reflex",
+          "other": "Atteignez {target} arrêts sur Goalie Reflex"
+        }
+      },
+      "progress": "{current} / {target}",
+      "reward": {
+        "coins": {
+          "one": "{value} pièce",
+          "other": "{value} pièces"
+        },
+        "xp": "{value} XP"
+      },
+      "status": {
+        "inProgress": "En cours",
+        "completed": "Terminé",
+        "claimed": "Récupéré"
+      },
+      "claim": "Récupérer",
+      "play": "Jouer",
+      "error": {
+        "title": "Impossible de charger les défis",
+        "description": "Vérifiez votre connexion puis réessayez.",
+        "retry": "Réessayer"
+      },
+      "empty": {
+        "title": "Aucun défi pour le moment",
+        "description": "De nouveaux défis arrivent au prochain renouvellement."
+      }
+    }
+  }
+}

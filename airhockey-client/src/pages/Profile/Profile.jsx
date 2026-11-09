@@ -1,324 +1,460 @@
-import React, { useState, useEffect } from 'react';
+import {
+  Bolt as EloIcon,
+  CameraAlt as CameraIcon,
+  EmojiEvents as TrophyIcon,
+  ErrorOutline as ErrorIcon,
+  Groups as TournamentIcon,
+  Lock as LockIcon,
+  MilitaryTech as MedalIcon,
+  SmartToy as BotIcon,
+  SportsScore as MatchIcon,
+  TrendingUp as LevelIcon,
+  WorkspacePremium as PremiumIcon,
+  Whatshot as FireIcon,
+} from '@mui/icons-material';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useLanguage } from '../../../LanguageContext';
+import { apiRequest, HttpMethod } from '../../api/apiClient';
 import Toast from '../../components/Toast/Toast';
+import {
+  Avatar,
+  AvatarSize,
+  Badge,
+  BadgeTone,
+  Button,
+  ButtonSize,
+  ButtonVariant,
+  Card,
+  EmptyState,
+  PageContainer,
+  PageHeader,
+  ProgressBar,
+  Skeleton,
+  TextField,
+} from '../../components/ui';
+import { getBeatenBotIds } from '../../game/progress';
+
+import {
+  AchievementId,
+  ActivityKind,
+  buildRecentActivityDto,
+  SubscriptionStatus,
+} from './profileData';
+import {
+  buildAchievementsView,
+  buildActivityRows,
+  buildProfileForm,
+  buildProfileHeader,
+  buildUpdateUserRequest,
+  EMPTY_PROFILE_FORM,
+  validateProfileForm,
+} from './profileViewModel';
+import { useUserProfile } from './useUserProfile';
 import './Profile.css';
 
+const UPDATE_USER_PATH = '/api/users/update';
+const UPLOAD_PROFILE_PICTURE_PATH = '/api/users/upload-profile-picture';
+const PROFILE_PICTURE_FIELD = 'file';
+const ACCEPTED_IMAGE_TYPES = 'image/*';
+
+const ToastType = Object.freeze({
+  SUCCESS: 'success',
+  ERROR: 'error',
+});
+
+const PLAN_BADGE_TONE_BY_STATUS = {
+  [SubscriptionStatus.FREE]: BadgeTone.NEUTRAL,
+  [SubscriptionStatus.PREMIUM]: BadgeTone.WARNING,
+  [SubscriptionStatus.PRO]: BadgeTone.WARNING,
+};
+
+const ACHIEVEMENT_ICON_BY_ID = {
+  [AchievementId.FIRST_WIN]: <MatchIcon />,
+  [AchievementId.TEN_WINS]: <MedalIcon />,
+  [AchievementId.FIFTY_WINS]: <TrophyIcon />,
+  [AchievementId.ELO_THOUSAND]: <EloIcon />,
+  [AchievementId.ELO_FIFTEEN_HUNDRED]: <PremiumIcon />,
+  [AchievementId.LEVEL_TEN]: <LevelIcon />,
+  [AchievementId.BEAT_MASTER]: <FireIcon />,
+  [AchievementId.BEAT_ALL_BOTS]: <BotIcon />,
+};
+
+const ACTIVITY_ICON_BY_KIND = {
+  [ActivityKind.MATCH_WIN]: <MatchIcon />,
+  [ActivityKind.MATCH_LOSS]: <MatchIcon />,
+  [ActivityKind.LEVEL_UP]: <LevelIcon />,
+  [ActivityKind.TOURNAMENT_JOIN]: <TournamentIcon />,
+};
+
+const FORM_FIELDS = [
+  { name: 'username', type: 'text', autoComplete: 'username' },
+  { name: 'email', type: 'email', autoComplete: 'email' },
+  {
+    name: 'currentPassword',
+    type: 'password',
+    autoComplete: 'current-password',
+  },
+  {
+    name: 'newPassword',
+    type: 'password',
+    autoComplete: 'new-password',
+    hintKey: 'newPasswordHint',
+  },
+  {
+    name: 'confirmNewPassword',
+    type: 'password',
+    autoComplete: 'new-password',
+  },
+];
+
+const ProfileHeaderSkeleton = () => (
+  <Card className='profile-identity'>
+    <div className='profile-identity-main'>
+      <Skeleton width='6rem' height='6rem' isRound />
+      <Skeleton width='10rem' height='1.5rem' />
+      <Skeleton width='8rem' />
+    </div>
+    <Skeleton height='0.375rem' />
+    <Skeleton height='4rem' />
+  </Card>
+);
+
 const Profile = () => {
-  const { translations } = useLanguage();
-  const [user, setUser] = useState(null);
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    currentPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
-  });
-
-  const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState('');
-  const [profilePicture, setProfilePicture] = useState(
-    user?.profilePicture || ''
-  ); // État pour la photo de profil
-
-  const [toast, setToast] = useState({ visible: false, message: '', type: '' }); // État pour gérer les toasts
+  const { translations, language } = useLanguage();
+  const profileTexts = translations.competitive.profile;
+  const { profile, isLoading, error, setProfile, reloadProfile } =
+    useUserProfile();
+  const fileInputRef = useRef(null);
+  const [form, setForm] = useState(EMPTY_PROFILE_FORM);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
-    // Fetch user data
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/users/profile`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-          }
-        );
-        const data = await response.json();
-        setUser(data);
-        setFormData({
-          username: data.username || '',
-          email: data.email || '',
-          currentPassword: '',
-          newPassword: '',
-          confirmNewPassword: '',
-        });
-      } catch (error) {
-        console.error(
-          'Erreur lors de la récupération des données utilisateur :',
-          error
-        );
-      }
-    };
+    setForm(buildProfileForm(profile));
+  }, [profile]);
 
-    fetchUser();
-  }, []);
+  const showToast = (type, message) =>
+    setToast({ id: Date.now(), type, message });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    setForm((previousForm) => ({ ...previousForm, [name]: value }));
   };
 
-  const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
+  const handleReset = () => {
+    setForm(buildProfileForm(profile));
+    setFormErrors({});
+  };
 
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/users/upload-profile-picture`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: formData,
-          }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          setProfilePicture(
-            `${import.meta.env.VITE_BACKEND_URL}${data.user.profilePicture}`
-          ); // Mettre à jour la prévisualisation
-          setSuccessMessage(translations.page.profile.info.pictureUpdated); // Message de succès
-          setToast({
-            visible: true,
-            message: translations.page.profile.info.pictureUpdated,
-            type: 'success',
-          }); // Afficher le toast
-        } else {
-          const error = await response.json();
-          setToast({
-            visible: true,
-            message:
-              error.message || translations.page.profile.info.uploadError,
-            type: 'error',
-          }); // Afficher le toast d'erreur
-        }
-      } catch (error) {
-        console.error('Erreur lors de l’upload de l’image :', error);
-        setToast({
-          visible: true,
-          message: translations.page.profile.info.uploadError,
-          type: 'error',
-        });
-      }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const errors = validateProfileForm(form, profileTexts.errors);
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      return;
     }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!formData.username.trim())
-      newErrors.username = translations.page.profile.errors.usernameRequired;
-    if (!formData.email.includes('@'))
-      newErrors.email = translations.page.profile.errors.invalidEmail;
-
-    if (formData.newPassword) {
-      if (formData.newPassword.length < 6)
-        newErrors.newPassword =
-          translations.page.profile.errors.passwordTooShort;
-      if (formData.newPassword !== formData.confirmNewPassword)
-        newErrors.confirmNewPassword =
-          translations.page.profile.errors.passwordMismatch;
-    }
-
-    setErrors(newErrors);
-
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSave = async () => {
-    if (!validateForm()) return;
-
+    setIsSaving(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/update`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (response.ok) {
-        const updatedUser = await response.json();
-        setUser(updatedUser);
-        setSuccessMessage(translations.page.profile.updateSuccess);
-        setToast({
-          visible: true,
-          message: translations.page.profile.updateSuccess,
-          type: 'success',
-        }); // Afficher le toast de succès
-      } else {
-        const error = await response.json();
-        setToast({
-          visible: true,
-          message: error.message || translations.page.profile.updateError,
-          type: 'error',
-        });
-      }
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour :', error);
-      setToast({
-        visible: true,
-        message: translations.page.profile.updateError,
-        type: 'error',
+      const response = await apiRequest(UPDATE_USER_PATH, {
+        method: HttpMethod.PUT,
+        body: buildUpdateUserRequest(form),
       });
+      setProfile((previousProfile) => ({
+        ...previousProfile,
+        username: response?.user?.username ?? form.username,
+        email: response?.user?.email ?? form.email,
+      }));
+      showToast(ToastType.SUCCESS, profileTexts.updateSuccess);
+    } catch {
+      showToast(ToastType.ERROR, profileTexts.updateError);
+    } finally {
+      setIsSaving(false);
     }
   };
+
+  const handlePictureChange = async (event) => {
+    const [selectedFile] = event.target.files ?? [];
+    event.target.value = '';
+    if (!selectedFile) {
+      return;
+    }
+    const pictureFormData = new FormData();
+    pictureFormData.append(PROFILE_PICTURE_FIELD, selectedFile);
+    setIsUploading(true);
+    try {
+      const response = await apiRequest(UPLOAD_PROFILE_PICTURE_PATH, {
+        method: HttpMethod.POST,
+        formData: pictureFormData,
+      });
+      setProfile((previousProfile) => ({
+        ...previousProfile,
+        profilePicture:
+          response?.user?.profilePicture ?? previousProfile.profilePicture,
+      }));
+      showToast(ToastType.SUCCESS, profileTexts.pictureUpdated);
+    } catch {
+      showToast(ToastType.ERROR, profileTexts.uploadError);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const viewModel = useMemo(() => {
+    if (!profile) {
+      return null;
+    }
+    const formattingContext = { language, translations };
+    const beatenBotIds = getBeatenBotIds();
+    const activityRows = buildActivityRows(
+      buildRecentActivityDto({
+        level: profile.level ?? 1,
+        gamesPlayed: (profile.victories ?? 0) + (profile.defeats ?? 0),
+        beatenBotIds,
+      }),
+      formattingContext
+    );
+
+    return {
+      header: buildProfileHeader(profile, formattingContext),
+      achievementsView: buildAchievementsView(
+        { profile, beatenBotIds },
+        formattingContext
+      ),
+      activityRows,
+      hasActivity: activityRows.length > 0,
+    };
+  }, [profile, language, translations]);
+
+  const formFields = useMemo(
+    () =>
+      FORM_FIELDS.map((field) => ({
+        ...field,
+        label: profileTexts.edit[field.name],
+        hint: field.hintKey ? profileTexts.edit[field.hintKey] : null,
+      })),
+    [profileTexts]
+  );
+
+  if (error && !profile) {
+    return (
+      <PageContainer>
+        <PageHeader eyebrow={profileTexts.eyebrow} title={profileTexts.title} />
+        <Card>
+          <EmptyState
+            icon={<ErrorIcon />}
+            title={profileTexts.loadErrorTitle}
+            description={profileTexts.loadErrorDescription}
+            action={
+              <Button variant={ButtonVariant.SECONDARY} onClick={reloadProfile}>
+                {translations.competitive.common.retry}
+              </Button>
+            }
+          />
+        </Card>
+      </PageContainer>
+    );
+  }
 
   return (
-    <div className='profile-container'>
-      <div className='profile-header'>
-        <div className='profile-picture-container'>
-          <div
-            className='profile-picture-frame'
-            onClick={() => document.getElementById('file-input').click()}
-          >
-            {profilePicture ? (
-              <img
-                src={profilePicture}
-                alt='Profile'
-                className='profile-picture'
-              />
-            ) : (
-              <div className='profile-picture-placeholder'>
-                <i className='fas fa-user'></i>
+    <PageContainer className='profile-page'>
+      <PageHeader
+        eyebrow={profileTexts.eyebrow}
+        title={profileTexts.title}
+        description={profileTexts.description}
+      />
+
+      <div className='profile-top'>
+        {isLoading || !viewModel ? (
+          <ProfileHeaderSkeleton />
+        ) : (
+          <Card className='profile-identity'>
+            <div className='profile-identity-main'>
+              <div className='profile-avatar'>
+                <Avatar
+                  name={viewModel.header.username}
+                  imageUrl={viewModel.header.profilePictureUrl}
+                  size={AvatarSize.EXTRA_LARGE}
+                />
+                <input
+                  ref={fileInputRef}
+                  type='file'
+                  accept={ACCEPTED_IMAGE_TYPES}
+                  className='profile-file-input'
+                  onChange={handlePictureChange}
+                  tabIndex={-1}
+                  aria-hidden='true'
+                />
               </div>
-            )}
-          </div>
-          <input
-            type='file'
-            id='file-input'
-            accept='image/*'
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
-        </div>
-        <h1 className='profile-username'>{user?.username}</h1>
-      </div>
+              <Button
+                variant={ButtonVariant.SECONDARY}
+                size={ButtonSize.SMALL}
+                icon={<CameraIcon />}
+                isLoading={isUploading}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                {profileTexts.changePhoto}
+              </Button>
+              <h2 className='profile-username'>{viewModel.header.username}</h2>
+              <div className='profile-identity-meta'>
+                <Badge
+                  tone={
+                    PLAN_BADGE_TONE_BY_STATUS[
+                      viewModel.header.subscriptionStatus
+                    ]
+                  }
+                >
+                  {viewModel.header.planLabel}
+                </Badge>
+                {viewModel.header.memberSinceLabel && (
+                  <span>{viewModel.header.memberSinceLabel}</span>
+                )}
+              </div>
+            </div>
 
-      <div className='profile-content'>
-        <div className='profile-stats'>
-          <h2>{translations.page.profile.info.title}</h2>
-          <div className='stats-grid'>
-            <div className='stat-item'>
-              <span className='stat-label'>
-                {translations.page.profile.info.elo}
-              </span>
-              <span className='stat-value'>{user?.elo}</span>
+            <div className='profile-level'>
+              <div className='profile-level-text'>
+                <span className='profile-level-label'>
+                  {viewModel.header.levelLabel}
+                </span>
+                <span className='profile-level-xp'>
+                  {viewModel.header.xpLabel}
+                </span>
+              </div>
+              <ProgressBar
+                ratio={viewModel.header.xpRatio}
+                label={profileTexts.xpLabel}
+              />
             </div>
-            <div className='stat-item'>
-              <span className='stat-label'>
-                {translations.page.profile.info.level}
-              </span>
-              <span className='stat-value'>{user?.level}</span>
-            </div>
-            <div className='stat-item'>
-              <span className='stat-label'>
-                {translations.page.profile.info.victories}
-              </span>
-              <span className='stat-value'>{user?.victories}</span>
-            </div>
-            <div className='stat-item'>
-              <span className='stat-label'>
-                {translations.page.profile.info.defeats}
-              </span>
-              <span className='stat-value'>{user?.defeats}</span>
-            </div>
-          </div>
-        </div>
 
-        <div className='profile-edit'>
-          <h2>{translations.page.profile.edit.title}</h2>
-          {successMessage && (
-            <p className='success-message'>{successMessage}</p>
-          )}
-          <form onSubmit={handleSave}>
-            <div className='form-group'>
-              <label htmlFor='username'>
-                {translations.page.profile.edit.username}
-              </label>
-              <input
-                type='text'
-                id='username'
-                name='username'
-                value={formData.username}
-                onChange={handleInputChange}
+            <dl className='profile-record'>
+              {viewModel.header.recordItems.map((recordItem) => (
+                <div key={recordItem.id} className='profile-record-item'>
+                  <dt>{recordItem.label}</dt>
+                  <dd>{recordItem.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Card>
+        )}
+
+        <Card
+          className='profile-edit'
+          title={profileTexts.edit.title}
+          subtitle={profileTexts.edit.subtitle}
+        >
+          <form className='profile-form' onSubmit={handleSubmit} noValidate>
+            {formFields.map((field) => (
+              <TextField
+                key={field.name}
+                className={`profile-field-${field.name}`}
+                label={field.label}
+                hint={field.hint}
+                error={formErrors[field.name] ?? null}
+                name={field.name}
+                type={field.type}
+                autoComplete={field.autoComplete}
+                value={form[field.name]}
+                onChange={handleFieldChange}
+                disabled={isLoading}
               />
-              {errors.username && (
-                <p className='error-message'>{errors.username}</p>
-              )}
+            ))}
+            <div className='profile-form-actions'>
+              <Button
+                variant={ButtonVariant.GHOST}
+                onClick={handleReset}
+                disabled={isSaving}
+              >
+                {profileTexts.edit.reset}
+              </Button>
+              <Button type='submit' isLoading={isSaving} disabled={isLoading}>
+                {profileTexts.edit.save}
+              </Button>
             </div>
-            <div className='form-group'>
-              <label htmlFor='email'>
-                {translations.page.profile.edit.email}
-              </label>
-              <input
-                type='email'
-                id='email'
-                name='email'
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-              {errors.email && <p className='error-message'>{errors.email}</p>}
-            </div>
-            <div className='form-group'>
-              <label htmlFor='currentPassword'>
-                {translations.page.profile.edit.currentPassword}
-              </label>
-              <input
-                type='password'
-                id='currentPassword'
-                name='currentPassword'
-                value={formData.currentPassword}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className='form-group'>
-              <label htmlFor='newPassword'>
-                {translations.page.profile.edit.newPassword}
-              </label>
-              <input
-                type='password'
-                id='newPassword'
-                name='newPassword'
-                value={formData.newPassword}
-                onChange={handleInputChange}
-              />
-              {errors.newPassword && (
-                <p className='error-message'>{errors.newPassword}</p>
-              )}
-            </div>
-            <div className='form-group'>
-              <label htmlFor='confirmNewPassword'>
-                {translations.page.profile.edit.confirmNewPassword}
-              </label>
-              <input
-                type='password'
-                id='confirmNewPassword'
-                name='confirmNewPassword'
-                value={formData.confirmNewPassword}
-                onChange={handleInputChange}
-              />
-              {errors.confirmNewPassword && (
-                <p className='error-message'>{errors.confirmNewPassword}</p>
-              )}
-            </div>
-            <button type='submit' className='save-button'>
-              {translations.page.profile.edit.saveButton}
-            </button>
           </form>
-        </div>
+        </Card>
       </div>
-    </div>
+
+      {viewModel && (
+        <div className='profile-bottom'>
+          <Card
+            className='profile-achievements'
+            title={profileTexts.achievements.title}
+            subtitle={viewModel.achievementsView.summaryLabel}
+          >
+            <ul className='profile-achievement-grid'>
+              {viewModel.achievementsView.achievements.map((achievement) => (
+                <li
+                  key={achievement.id}
+                  className={`profile-achievement ${achievement.isUnlocked ? 'profile-achievement-unlocked' : ''}`}
+                >
+                  <span className='profile-achievement-icon'>
+                    {achievement.isUnlocked ? (
+                      ACHIEVEMENT_ICON_BY_ID[achievement.id]
+                    ) : (
+                      <LockIcon />
+                    )}
+                  </span>
+                  <div className='profile-achievement-text'>
+                    <span className='profile-achievement-name'>
+                      {achievement.name}
+                    </span>
+                    <span className='profile-achievement-description'>
+                      {achievement.description}
+                    </span>
+                    <ProgressBar
+                      ratio={achievement.progressRatio}
+                      label={achievement.progressLabel}
+                    />
+                    <span className='profile-achievement-progress'>
+                      {achievement.progressLabel}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Card>
+
+          <Card
+            className='profile-activity'
+            title={profileTexts.activity.title}
+          >
+            {viewModel.hasActivity ? (
+              <ol className='profile-activity-list'>
+                {viewModel.activityRows.map((activityRow) => (
+                  <li
+                    key={activityRow.id}
+                    className={`profile-activity-item profile-activity-${activityRow.kind}`}
+                  >
+                    <span className='profile-activity-icon'>
+                      {ACTIVITY_ICON_BY_KIND[activityRow.kind]}
+                    </span>
+                    <span className='profile-activity-label'>
+                      {activityRow.label}
+                    </span>
+                    <span className='profile-activity-time'>
+                      {activityRow.timeLabel}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <EmptyState
+                icon={<MatchIcon />}
+                title={profileTexts.activity.emptyTitle}
+                description={profileTexts.activity.emptyDescription}
+              />
+            )}
+          </Card>
+        </div>
+      )}
+
+      {toast && (
+        <Toast key={toast.id} message={toast.message} type={toast.type} />
+      )}
+    </PageContainer>
   );
 };
 

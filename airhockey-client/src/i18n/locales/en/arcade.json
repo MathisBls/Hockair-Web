@@ -1,0 +1,162 @@
+{
+  "page": {
+    "arcade": {
+      "eyebrow": "Arcade",
+      "title": "Arcade",
+      "description": "Short skill games to sharpen your touch between matches. Every run counts toward your daily and weekly challenges.",
+      "viewChallenges": "View challenges",
+      "play": "Play",
+      "personalBest": "Personal best",
+      "noBest": "No score yet",
+      "starsOutOf": "{count} / {total} stars",
+      "loading": "Loading the table…",
+      "backToArcade": "Arcade",
+      "soundOn": "Mute sound",
+      "soundOff": "Unmute sound",
+      "quitHint": "Press Esc to leave the run",
+      "summary": {
+        "playsToday": "Runs today",
+        "playsThisWeek": {
+          "one": "{value} run this week",
+          "other": "{value} runs this week"
+        },
+        "records": "Personal bests",
+        "recordsDetail": "Games with a recorded score",
+        "outOf": "{count} / {total}",
+        "stars": "Bank Shot stars",
+        "levelsCleared": {
+          "one": "{count} level cleared",
+          "other": "{count} levels cleared"
+        }
+      },
+      "difficulty": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "scoreUnits": {
+        "points": {
+          "one": "{value} point",
+          "other": "{value} points"
+        },
+        "saves": {
+          "one": "{value} save",
+          "other": "{value} saves"
+        },
+        "stars": {
+          "one": "{value} star",
+          "other": "{value} stars"
+        }
+      },
+      "games": {
+        "targetRush": {
+          "name": "Target Rush",
+          "tagline": "60 seconds, as many targets as you can.",
+          "description": "Targets pop up on the opponent's half. Send the puck through them, chain hits to raise your multiplier and finish with the highest score.",
+          "format": "60 s",
+          "rules": [
+            "Move your mallet with the mouse and strike the puck toward the targets.",
+            "Standard targets are worth 100 points, gold targets 300. A goal scores nothing: aim for the targets.",
+            "Consecutive hits raise the multiplier up to ×4. A shot that comes back empty resets it.",
+            "Targets shrink and start moving as the clock runs down."
+          ]
+        },
+        "goalieReflex": {
+          "name": "Goalie Reflex",
+          "tagline": "Hold the line as the shots speed up.",
+          "description": "Viper fires an endless stream of shots at your goal. Block them, clear them and keep your three lives as long as you can.",
+          "format": "3 lives",
+          "rules": [
+            "Stay between the puck and your goal, then send it back up the table.",
+            "Each clearance counts as one save and makes the next shot faster.",
+            "Bank shots arrive after a few saves, double shots after ten.",
+            "Every goal conceded costs a life. The run ends when you have none left."
+          ]
+        },
+        "bankShot": {
+          "name": "Bank Shot",
+          "tagline": "Use the rails to find the way in.",
+          "description": "Puzzle levels where the direct line is blocked. Play the angles off the rails and bumpers to score with as few shots as possible.",
+          "format": "8 levels",
+          "rules": [
+            "Hit the puck once per shot; it then rolls on its own.",
+            "Score in the opponent's goal before you run out of shots.",
+            "First shot earns 3 stars, second shot 2, any later shot 1.",
+            "Clear a level to unlock the next one."
+          ]
+        }
+      },
+      "start": {
+        "howToPlay": "How to play",
+        "controls": "Mouse controls the mallet",
+        "play": "Start"
+      },
+      "hud": {
+        "score": "Score",
+        "time": "Time left",
+        "multiplier": "Multiplier",
+        "multiplierValue": "×{value}",
+        "comboCount": {
+          "one": "{count} hit in a row",
+          "other": "{count} hits in a row"
+        },
+        "points": "+{points}",
+        "saves": "Saves",
+        "level": "Level",
+        "shotSpeed": "Last shot",
+        "speedValue": "{speed} km/h",
+        "save": "Save · {speed} km/h",
+        "conceded": "Goal conceded",
+        "livesLeft": {
+          "one": "{count} life left",
+          "other": "{count} lives left"
+        },
+        "shots": "Shots left",
+        "shotsValue": "{remaining} / {total}",
+        "potentialStars": {
+          "one": "Score now for {count} star",
+          "other": "Score now for {count} stars"
+        }
+      },
+      "result": {
+        "timeUp": "Time's up",
+        "gameOver": "Run over",
+        "newBest": "New personal best",
+        "retry": "Play again",
+        "targetsHit": "Targets hit",
+        "bestCombo": "Best combo",
+        "levelReached": "Level reached",
+        "fastestSave": "Fastest save",
+        "shotsUsed": "Shots used"
+      },
+      "bankShot": {
+        "levelNumber": "Level {number}",
+        "chooseLevel": "Choose a level",
+        "locked": "Locked",
+        "cleared": "Level cleared",
+        "outOfShots": "Out of shots",
+        "nextLevel": "Next level",
+        "levels": "Levels",
+        "levelNames": {
+          "first-bank": "First bank",
+          "side-door": "Side door",
+          "pinball": "Pinball",
+          "sliding-wall": "Sliding wall",
+          "zigzag": "Zigzag",
+          "goalkeeper": "Goalkeeper",
+          "narrow-gap": "Narrow gap",
+          "gauntlet": "Gauntlet"
+        },
+        "outcomes": {
+          "scored": "Goal",
+          "stopped": "The puck stopped. Shot lost.",
+          "ownGoal": "Own goal. Shot lost."
+        }
+      },
+      "notFound": {
+        "title": "This game doesn't exist",
+        "description": "The link may be outdated. Pick a game from the arcade."
+      }
+    }
+  }
+}

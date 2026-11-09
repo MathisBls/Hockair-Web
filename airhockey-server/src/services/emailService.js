@@ -37,8 +37,12 @@ export const sendFriendRequestNotification = async (recipientEmail, senderUserna
   }
 };
 export const sendActivationEmail = async (email, token) => {
+  const activationLink = `${process.env.FRONTEND_URL}/activate/${token}`;
+  if (!process.env.SMTP_HOST) {
+    console.log(`SMTP not configured, activation link for ${email}: ${activationLink}`);
+    return;
+  }
   try {
-    const activationLink = `${process.env.FRONTEND_URL}/activate/${token}`;
     const mailOptions = {
       from: '"Hockair Support" <no-reply@hockair.com>',
       to: email,

@@ -1,0 +1,236 @@
+@import url('../../styles/tokens.css');
+
+.arcade-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.arcade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.arcade-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.arcade-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-0.125rem);
+}
+
+.arcade-card-art {
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-2);
+}
+
+.arcade-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 1;
+  padding: var(--space-5);
+}
+
+.arcade-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.arcade-card-difficulty {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.arcade-difficulty {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.1875rem;
+}
+
+.arcade-difficulty-bar {
+  width: 0.25rem;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+
+.arcade-difficulty-bar:nth-child(1) {
+  height: 0.5rem;
+}
+
+.arcade-difficulty-bar:nth-child(2) {
+  height: 0.75rem;
+}
+
+.arcade-difficulty-bar:nth-child(3) {
+  height: 1rem;
+}
+
+.arcade-difficulty-bar-filled {
+  background: var(--accent);
+}
+
+.arcade-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+
+.arcade-card-tagline {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+.arcade-card-description {
+  flex: 1;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+}
+
+.arcade-card-best {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  font-size: var(--text-sm);
+}
+
+.arcade-card-best-icon {
+  font-size: 1.1rem;
+  color: var(--text-tertiary);
+}
+
+.arcade-card-best-icon-earned {
+  color: var(--gold);
+}
+
+.arcade-card-best-label {
+  color: var(--text-secondary);
+}
+
+.arcade-card-best-value {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Illustrations */
+.arcade-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.arcade-art-floor {
+  fill: var(--surface-2);
+}
+
+.arcade-art-rail {
+  fill: var(--bleu);
+  stroke: var(--border-default);
+}
+
+.arcade-art-surface {
+  fill: var(--surface-3);
+}
+
+.arcade-art-line {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.arcade-art-goal {
+  fill: var(--accent);
+}
+
+.arcade-art-goal-own {
+  fill: var(--secondary-accent);
+}
+
+.arcade-art-target {
+  fill: var(--accent);
+}
+
+.arcade-art-target-gold {
+  fill: var(--gold);
+}
+
+.arcade-art-target-ring {
+  fill: var(--text-primary);
+}
+
+.arcade-art-mallet {
+  fill: var(--secondary-accent);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.arcade-art-mallet-knob {
+  fill: var(--text-on-accent);
+  opacity: 0.6;
+}
+
+.arcade-art-shooter {
+  fill: var(--accent);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.arcade-art-puck {
+  fill: var(--ink);
+  stroke: var(--text-primary);
+  stroke-width: 1.5;
+}
+
+.arcade-art-block {
+  fill: var(--bleu);
+  stroke: var(--text-secondary);
+  stroke-width: 1.5;
+}
+
+.arcade-art-path {
+  fill: none;
+  stroke: var(--text-secondary);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+@media (max-width: 64rem) {
+  .arcade-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 44rem) {
+  .arcade-grid,
+  .arcade-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-card,
+  .arcade-card:hover {
+    transition: none;
+    transform: none;
+  }
+}

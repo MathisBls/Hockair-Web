@@ -162,3 +162,15 @@ hr {
 .sidebar::-webkit-scrollbar-track {
   background: var(--bleu);
 }
+
+.sidebar h1,
+.sidebar h2,
+.sidebar h4 {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  letter-spacing: normal;
+  line-height: 1.5;
+}
+
+.sidebar .menu .list-side {
+  margin: 1em 0;
+}

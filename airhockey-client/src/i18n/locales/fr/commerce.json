@@ -1,0 +1,185 @@
+{
+  "page": {
+    "shop": {
+      "eyebrow": "Cosmétiques",
+      "title": "Boutique",
+      "description": "Personnalisez vos maillets, palets et tables. Les objets achetés sont liés à votre compte.",
+      "wallet": {
+        "label": "Solde",
+        "unavailable": "Solde indisponible",
+        "coins": {
+          "one": "{count} pièce",
+          "other": "{count} pièces"
+        }
+      },
+      "categoryAria": "Filtrer par catégorie",
+      "categories": {
+        "all": "Tout",
+        "puck": "Palets",
+        "mallet": "Maillets",
+        "table": "Tables"
+      },
+      "types": {
+        "puck": "Palet",
+        "mallet": "Maillet",
+        "table": "Table"
+      },
+      "resultCount": {
+        "one": "{count} article",
+        "other": "{count} articles"
+      },
+      "featured": {
+        "eyebrow": "À la une",
+        "description": "Notre sélection du moment. Démarquez-vous dès votre prochain match.",
+        "interactionHint": "Bougez la souris : il vous suit du regard."
+      },
+      "badges": {
+        "owned": "Possédé",
+        "equipped": "Équipé",
+        "premium": "Premium",
+        "preview": "Aperçu"
+      },
+      "price": {
+        "free": "Gratuit"
+      },
+      "actions": {
+        "buy": "Acheter",
+        "equip": "Équiper",
+        "equipped": "Équipé",
+        "notEnoughCoins": "Solde insuffisant"
+      },
+      "previewNotice": {
+        "title": "Aperçu du catalogue",
+        "description": "Le catalogue en ligne est vide ou injoignable. Ces objets viennent du jeu local : vous pouvez les équiper pour vos matchs contre les bots, les achats ouvriront avec le catalogue en ligne."
+      },
+      "catalog": {
+        "mallets": {
+          "cyan": "Maillet Cyan",
+          "red": "Maillet Rouge",
+          "lime": "Maillet Citron vert",
+          "violet": "Maillet Violet",
+          "gold": "Maillet Or"
+        },
+        "tables": {
+          "neon": "Table Néon",
+          "ice": "Table Glace",
+          "sunset": "Table Crépuscule"
+        }
+      },
+      "confirm": {
+        "title": "Confirmer l'achat",
+        "description": "Ajouter « {name} » à votre collection ?",
+        "price": "Prix",
+        "balance": "Solde actuel",
+        "balanceAfter": "Solde après achat",
+        "insufficient": "Il vous manque {amount} pour cet objet.",
+        "cancel": "Annuler",
+        "submit": "Acheter pour {amount}"
+      },
+      "feedback": {
+        "purchased": "« {name} » a été ajouté à votre collection.",
+        "equipped": "« {name} » est maintenant équipé.",
+        "purchaseFailed": "L'achat n'a pas pu aboutir. Réessayez dans un instant.",
+        "equipFailed": "Impossible d'équiper cet objet pour le moment.",
+        "dismiss": "Fermer le message"
+      },
+      "empty": {
+        "title": "Rien dans cette catégorie",
+        "description": "De nouveaux objets arrivent régulièrement. Revenez bientôt.",
+        "action": "Voir tout le catalogue"
+      }
+    },
+    "subscriptions": {
+      "eyebrow": "Abonnements",
+      "title": "Passez au niveau supérieur",
+      "description": "Jouez gratuitement pour toujours, ou débloquez des récompenses, des statistiques et des tournois exclusifs.",
+      "billing": {
+        "aria": "Période de facturation",
+        "monthly": "Mensuel",
+        "yearly": "Annuel",
+        "savingsBadge": "Jusqu'à -{percent} %"
+      },
+      "pricePeriod": {
+        "monthly": "/ mois",
+        "yearly": "/ an"
+      },
+      "billedYearly": "Soit {amount} par mois, facturé annuellement",
+      "billedMonthly": "Facturé chaque mois, sans engagement",
+      "yearlySavings": "Économisez {amount} par an",
+      "freeForever": "Gratuit, pour toujours",
+      "recommended": "Le plus populaire",
+      "currentPlan": "Votre offre actuelle",
+      "plans": {
+        "free": {
+          "name": "Gratuit",
+          "target": "Pour découvrir Hockair et jouer à son rythme",
+          "advantages": [
+            "Matchs classés et parties contre les bots",
+            "Classement mondial et profil joueur",
+            "Statistiques essentielles",
+            "Accès à la boutique de cosmétiques"
+          ]
+        }
+      },
+      "cta": {
+        "free": "Jouer gratuitement",
+        "paid": "Choisir {plan}",
+        "current": "Offre actuelle"
+      },
+      "comparison": {
+        "title": "Comparer les offres",
+        "description": "Tout ce qui change d'une offre à l'autre.",
+        "featureColumn": "Fonctionnalité",
+        "included": "Inclus",
+        "notIncluded": "Non inclus",
+        "rows": {
+          "rankedMatches": "Matchs classés et bots",
+          "coinRewards": "Gains en pièces",
+          "exclusiveSkins": "Skins exclusifs (table, palet, maillets)",
+          "advancedStats": "Statistiques avancées",
+          "premiumBadge": "Badge premium",
+          "priorityMatchmaking": "Matchmaking prioritaire",
+          "aiCoaching": "Coaching IA personnalisé",
+          "exclusiveTournaments": "Tournois exclusifs",
+          "animatedCosmetics": "Cosmétiques animés ultra-rares",
+          "eloBoost": "Bonus d'ELO gagné",
+          "shopDiscount": "Réduction en boutique",
+          "opponentScouting": "Stats de l'adversaire avant le match"
+        },
+        "values": {
+          "standardRewards": "x1",
+          "boostedRewards": "x2, x3 sans but encaissé",
+          "eloBoost": "+5 %",
+          "shopDiscount": "10 à 15 %"
+        }
+      },
+      "faq": {
+        "title": "Questions fréquentes",
+        "items": [
+          {
+            "question": "Puis-je annuler à tout moment ?",
+            "answer": "Oui. L'abonnement mensuel est sans engagement : vous gardez vos avantages jusqu'à la fin de la période en cours."
+          },
+          {
+            "question": "Que deviennent mes skins si je résilie ?",
+            "answer": "Les objets achetés avec vos pièces restent à vous. Seuls les skins réservés aux abonnés ne peuvent plus être équipés."
+          },
+          {
+            "question": "L'abonnement donne-t-il un avantage en jeu ?",
+            "answer": "Non. La physique et les règles sont identiques pour tous. Les offres apportent des récompenses, des statistiques et des cosmétiques, jamais de bonus de jeu."
+          },
+          {
+            "question": "Comment fonctionne la formule annuelle ?",
+            "answer": "Vous payez une fois par an et économisez l'équivalent de deux mois par rapport à la formule mensuelle."
+          }
+        ]
+      },
+      "comingSoon": {
+        "title": "Bientôt disponible",
+        "description": "Le paiement en ligne n'est pas encore ouvert. {plan} sera proposé à {price} dès le lancement.",
+        "note": "Aucun paiement n'a été effectué.",
+        "close": "Compris"
+      }
+    }
+  }
+}

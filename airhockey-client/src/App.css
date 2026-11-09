@@ -1,4 +1,4 @@
-@import url('vars.css');
+@import url('./styles/tokens.css');
 
 body,
 html {
@@ -40,7 +40,6 @@ body {
 }
 
 .sidebar {
-  width: 300px;
   flex-shrink: 0;
   background: linear-gradient(to bottom, var(--background), var(--bleu));
   border-right: 2px solid var(--rouge);
@@ -51,20 +50,12 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: var(--bleu-bg);
-  color: var(--white);
+  min-width: 0;
+  background-color: var(--surface-app);
+  color: var(--text-primary);
   box-sizing: border-box;
 }
 
-footer {
-  width: 100%;
-  background: var(--background);
-  color: var(--white);
-  text-align: center;
-  padding: 10px 0;
-  margin-top: auto;
-  border-top: 2px solid var(--rouge);
-}
 
 ::-webkit-scrollbar {
   width: 8px;
